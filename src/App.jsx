@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import Requirement from './components/Requirement';
 import Hotels from './components/hotels';
 import Gatherings from './components/Gatherings';
-
+import React from 'react';
 function App() {
 
   return (
