@@ -9,12 +9,13 @@ import Catering from './components/Catering';
 import BirthdayParty from './components/BirthdayParty';
 import Party from './components/Party';
 import PersonalStay from './components/personalStay';
-import Confrence from './components/confrence';
+import Confrence from './components/Conference';
 import Anniversary from './components/anniversary';
 import Nav from './components/Navbar';
 import Footer from './components/Footer';
 import Requirement from './components/Requirement';
 import Hotels from './components/hotels';
+import Conference from './components/Conference';
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
           <Route path='/birthdayParty' element={<BirthdayParty />} > </Route>
           <Route path='/party' element={<Party />} > </Route>
           <Route path='/personalStay' element={<PersonalStay />} > </Route>
-          <Route path='/confrence' element={<Confrence />} > </Route>
+          <Route path='/conference' element={<Conference />} > </Route>
           <Route path='/anniversary' element={<Anniversary />} > </Route>
           <Route path='/verify' element={<Verify />} > </Route>
           <Route path='/catering' element={<Catering />} > </Route>

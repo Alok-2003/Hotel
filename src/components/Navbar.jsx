@@ -25,7 +25,7 @@ const Nav = () => {
         <nav>
             <div className='font-[gilroy] h-16 flex justify-between z-50 text-white lg:py-5 px-20 py-4 bg-slate-900 '>
                 <div className='flex items-center flex-1'>
-                    <span className='text-3xl font-bold font-["Amita-bold"]'> Hotel Hub</span>
+                    <span className='text-3xl font-bold '> Hotel Hub</span>
                 </div>
                 <div className='lg:flex md:flex lg:flex-1 items-center justify-end font-normal hidden'>
                     <div className='flex-10'>
