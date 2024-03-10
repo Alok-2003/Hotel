@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Requirement = () => {
-    // Array of card objects
     const cards = [
-        { title: "Marriage", image: "/Marriage.jpg", link: "/marriage" },
-        { title: "Birthday Party", image: "/Birthday.jpg", link: "/birthdayParty" },
-        { title: "Party", image: "/Party.jpg", link: "/party" },
-        { title: "Personal Stay", image: "/Personal_Stay.jpg", link: "/personalStay" },
-        { title: "Conference", image: "/Conference.jpg", link: "/conference" },
-        { title: "Anniversary", image: "/anniversary.jpg", link: "/anniversary" }
+        { title: "Marriage", image: "/Marriage.jpg", link: "/gathering?option=Marriage" },
+        { title: "Birthday Party", image: "/Birthday.jpg", link: "/gathering?option=BirthdayParty" },
+        { title: "Party", image: "/Party.jpg", link: "/gathering?option=Party" },
+        { title: "Personal Stay", image: "/Personal_Stay.jpg", link: "/gathering?option=PersonalStay" },
+        { title: "Conference", image: "/Conference.jpg", link: "/gathering?option=Conference" },
+        { title: "Anniversary", image: "/anniversary.jpg", link: "/gathering?option=Anniversary" }
     ];
 
     return (
@@ -19,8 +18,6 @@ const Requirement = () => {
                     <div className="flex font-bold font-[gilroy] text-gray-600 text-5xl leading-8 h-6 mt-4 mb-8">What is your requirement</div>
                 </div>
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 ">
-                    {/* Mapping over the cards array */}
-                    {/* // Requirement.js */}
                     {cards.map((card, index) => (
                         <div key={index} className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg">
                             <div className="h-48">
@@ -32,7 +29,6 @@ const Requirement = () => {
                             </Link>
                         </div>
                     ))}
-
                 </div>
             </div>
         </div>

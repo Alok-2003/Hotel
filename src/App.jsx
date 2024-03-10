@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import Requirement from './components/Requirement';
 import Hotels from './components/hotels';
 import Conference from './components/Conference';
+import Gatherings from './components/Gatherings';
 
 function App() {
 
@@ -29,7 +30,9 @@ function App() {
           <Route path='/' element={<Login />} > </Route>
           <Route path='/otp' element={<OTP />} > </Route>
           <Route path='/requirement' element={<Requirement />} > </Route>
-          <Route path='/marriage' element={<Marriage />} > </Route>
+          <Route path='/gathering' element={<Gatherings />} > </Route>
+          
+          {/* <Route path='/marriage' element={<Marriage />} > </Route>
           <Route path='/birthdayParty' element={<BirthdayParty />} > </Route>
           <Route path='/party' element={<Party />} > </Route>
           <Route path='/personalStay' element={<PersonalStay />} > </Route>
@@ -37,7 +40,7 @@ function App() {
           <Route path='/anniversary' element={<Anniversary />} > </Route>
           <Route path='/verify' element={<Verify />} > </Route>
           <Route path='/catering' element={<Catering />} > </Route>
-          <Route path='/hotels' element={<Hotels />} > </Route>
+          <Route path='/hotels' element={<Hotels />} > </Route> */}
         </Routes>
         <Footer/>
       </Router>
