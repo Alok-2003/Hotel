@@ -7,7 +7,7 @@ import Catering from './components/Catering';
 import Nav from './components/Navbar';
 import Footer from './components/Footer';
 import Requirement from './components/Requirement';
-import Hotels from './components/hotels';
+import Hotels from './components/Hotels';
 import Gatherings from './components/Gatherings';
 import React from 'react';
 function App() {
