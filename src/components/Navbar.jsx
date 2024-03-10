@@ -30,13 +30,13 @@ const Nav = () => {
                 <div className='lg:flex md:flex lg:flex-1 items-center justify-end font-normal hidden'>
                     <div className='flex-10'>
                         <ul className='flex gap-8 mr-16 text-[18px] '>
-                            <Link spy={true} smooth={true} >
+                            <Link to={"hotels"} spy={true} smooth={true} >
                                 <li className='hover:text-fuchsia-600 trantio border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer'>Hotel</li>
                             </Link>
                             <Link spy={true} smooth={true} >
                                 <li className='hover:text-fuchsia-600 trantio border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer'>About</li>
                             </Link>
-                            <Link spy={true} smooth={true} >
+                            <Link to={"/"} spy={true} smooth={true} >
                                 <li className='hover:text-fuchsia-600 trantio border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer'>Login</li>
                             </Link>
                         </ul>

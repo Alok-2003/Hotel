@@ -6,7 +6,7 @@ const Verify = () => {
             <div className='min-h-[83vh] flex justify-center items-center'>
                 <div className=" w-4/5 mx-2  svelte-1l8159u">
                     <div className="flex justify-center">
-                        <div className="flex font-bold text-gray-600 text-3xl leading-8  h-6 mt-8 mb-4">Enter your E-mail</div>
+                        <div className="flex font-bold text-gray-600 text-3xl leading-8  h-6 mt-8 mb-4">Enter your E-mail / WhatsApp number</div>
                     </div>
                     <div className="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
                         <input placeholder="jhon@.com" className="p-1 px-2 appearance-none outline-none w-full text-gray-800" />
