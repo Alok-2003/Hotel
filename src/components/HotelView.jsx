@@ -28,11 +28,11 @@ const HotelView = () => {
     return (
         <div>
             <main className="container mx-auto px-4 py-6">
-                <div className="md:flex">
+                <div className="">
                     {/* Image */}
-                    <div className="container mx-auto p-4">
+                    <div className="container mx-auto p-4  ">
                         {isSmallDisplay ? (
-                            <Carousel>
+                            <Carousel className="-z-40" >
                                 {slides.map((s) => (
                                     <img key={s} src={s} alt="" />
                                 ))}

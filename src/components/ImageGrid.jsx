@@ -2,10 +2,10 @@ import React from 'react';
 
 const ImageGrid = () => {
   return (
-    <div className="grid grid-cols-2 gap-1">
+    <div className="grid grid-cols-2 gap-1 ">
       {/* Big Image */}
       <div>
-        <img src="https://i.ibb.co/ncrXc2V/1.png" alt="Big" className="w-full h-auto" />
+        <img src="https://i.ibb.co/ncrXc2V/1.png" alt="Big" className="w-full h-auto " />
       </div>
       {/* Small Images */}
       <div className="grid grid-cols-2 gap-1  p-[0.75px]">
