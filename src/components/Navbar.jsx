@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
-import { CiMenuFries } from 'react-icons/ci';
+import { FiAlignRight } from "react-icons/fi";
 
 const Nav = () => {
     const [click, setClick] = useState(false);
@@ -47,8 +47,8 @@ const Nav = () => {
                     </div>
                 </div>
                 <div>{click && content}</div>
-                <button className="block md:hidden lg:hidden transition" onClick={handleClick}>
-                    {click ? <FaTimes /> : <CiMenuFries />}
+                <button className="block md:hidden lg:hidden transition text-2xl" onClick={handleClick}>
+                    {click ? <FaTimes /> : <FiAlignRight />}
                 </button>
             </div>
         </nav>

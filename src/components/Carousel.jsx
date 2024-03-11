@@ -29,13 +29,13 @@ export default function Carousel({ children: slides, autoSlide = true, autoSlide
                     onClick={prev}
                     className="p-1 rounded-full shadow bg-white/50 text-gray-800 hover:bg-white"
                 >
-                    <ChevronLeft size={40} />
+                    <ChevronLeft size={20} />
                 </button>
                 <button
                     onClick={next}
                     className="p-1 rounded-full shadow bg-white/50 text-gray-800 hover:bg-white"
                 >
-                    <ChevronRight size={40} />
+                    <ChevronRight size={20} />
                 </button>
             </div>
 
@@ -44,7 +44,7 @@ export default function Carousel({ children: slides, autoSlide = true, autoSlide
                 <div className="flex items-center justify-center gap-2">
                     {slides.map((_, i) => (
                         <div
-                            className={`transition-all w-3 h-3 bg-white rounded-full ${curr === i ? "p-2" : "bg-opacity-50"}`}
+                            className={`transition-all w-2 h-2 bg-white rounded-full ${curr === i ? "p-2" : "bg-opacity-50"}`}
                         />
                     ))}
                 </div>
