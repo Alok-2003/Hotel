@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import Carousel from './Carousel';
+import ImageGrid from './ImageGrid';
+
+const slides = [
+    "https://i.ibb.co/ncrXc2V/1.png",
+    "https://i.ibb.co/B3s7v4h/2.png",
+    "https://i.ibb.co/XXR8kzF/3.png",
+    "https://i.ibb.co/yg7BSdM/4.png"
+];
 
 const HotelView = () => {
+    const [isSmallDisplay, setIsSmallDisplay] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallDisplay(window.innerWidth < 768);
+        };
+
+        handleResize(); // Call it initially to set isSmallDisplay correctly
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     return (
         <div>
             <main className="container mx-auto px-4 py-6">
-                <div className="flex">
+                <div className="md:flex">
                     {/* Image */}
-                    <div className="w-1/2">
-                        <img
-                            className="w-full rounded-lg shadow-md"
-                            src="https://images.trvl-media.com/lodging/1000000/530000/523600/523578/f9df586b.jpg?impolicy=resizecrop&rw=1200&ra=fit"
-                            alt="Hotel"
-                        />
+                    <div className="container mx-auto p-4">
+                        <h1 className="text-2xl font-semibold mb-4">Image Gallery</h1>
+                        {isSmallDisplay ? (
+                            <Carousel>
+                                {slides.map((s) => (
+                                    <img key={s} src={s} alt="" />
+                                ))}
+                            </Carousel>
+                        ) : (
+                            <ImageGrid />
+                        )}
                     </div>
 
                     {/* Description */}
@@ -37,7 +66,7 @@ const HotelView = () => {
                 </div>
             </main>
         </div>
-    )
-}
+    );
+};
 
-export default HotelView
+export default HotelView;

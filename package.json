@@ -1,12 +1,12 @@
 {
-  "homepage":"https://alok-2003.github.io/hotel:",
+  "homepage": "https://alok-2003.github.io/hotel:",
   "name": "hotel",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run dev",
-    "deploy":"gh-pages -d dist",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -16,6 +16,7 @@
     "aos": "^3.0.0-beta.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-feather": "^2.0.10",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.1",
     "react-scroll": "^1.9.0",
