@@ -10,6 +10,7 @@ import Requirement from './components/Requirement';
 import Hotels from './components/Hotels';
 import Gatherings from './components/Gatherings';
 import React from 'react';
+import HotelView from './components/HotelView';
 function App() {
 
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/catering' element={<Catering />} > </Route>
           <Route path='/verify' element={<Verify />} > </Route>
           <Route path='/hotels' element={<Hotels />} > </Route>
+          <Route path='/hotelView' element={<HotelView />} > </Route>
 
         </Routes>
         <Footer />
