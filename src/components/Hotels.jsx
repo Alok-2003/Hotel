@@ -12,10 +12,10 @@ const Hotels = () => {
     ];
 
     return (
-        <div className='mx-6 my-6 font-[gilroy]'>
+        <div className=' mx-6 md:pt-24 pt-24 pb-4 font-[gilroy]'>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 ">
                 {Typehotels.map((hotel, index) => (
-                    <a href='404' key={index} className="relative rounded-3xl">
+                    <a href='/hotelView' key={index} className="relative rounded-3xl">
                         <img src={hotel.imageUrl} alt="Image" className="w-full h-auto rounded-3xl" />
                         <div className="flex justify-between items-end">
                             <p className="text-2xl font-bold">{hotel.name}</p>
