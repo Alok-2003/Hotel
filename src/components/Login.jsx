@@ -1,92 +1,97 @@
-import { useState } from 'react';
-import Select from 'react-select';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import PhoneInput from "react-phone-number-input";
+// import { useUserAuth } from "../context/UserAuthContext";
 
 const Login = () => {
-    const [phoneNumber, setPhoneNumber] = useState('');
+  const [error, setError] = useState("");
+  const [number, setNumber] = useState("");
+  const [flag, setFlag] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [result, setResult] = useState("");
+  // const { setUpRecaptha } = useUserAuth();
+  const navigate = useNavigate();
 
-    const [selectedCountryCode, setSelectedCountryCode] = useState({ value: '+91', label: '+91 (India)' });
-    // Sample country codes options
-    const countryCodesOptions = [
-        { value: '+91', label: '+91 (India)' },
-        { value: "+61", label: "+61 (Australia)" },
-        { value: "+880", label: "+880 (Bangladesh)" },
-        { value: "+975", label: "+975 (Bhutan)" },
-        { value: '+1', label: '+1 (United States)' },
-        // Add more country code options as needed
-    ];
+  const getOtp = async (e) => {
+    e.preventDefault();
+    console.log(number);
+    setError("");
+    if (number === "" || number === undefined)
+      return setError("Please enter a valid phone number!");
+    try {
+      // const response = await setUpRecaptha(number);
+      // setResult(response);
+      // setFlag(true);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission or further processing here
-        console.log('Selected Country Code:', selectedCountryCode);
-        console.log('Phone Number:', phoneNumber);
-    };
-    const handlePhoneNumberChange = (e) => {
-        setPhoneNumber(e.target.value);
-    };
-    const handleCountryCodeChange = (selectedOption) => {
-        setSelectedCountryCode(selectedOption);
-    };
+  const verifyOtp = async (e) => {
+    e.preventDefault();
+    setError("");
+    if (otp === "" || otp === null) return;
+    try {
+      // await result.confirm(otp);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
-    const [fullName, setFullName] = useState(''); // Initialize state for the input field
-
-    // Function to handle changes in the input field
-    const handleFullNameChange = (e) => {
-        setFullName(e.target.value); // Update the state with the new value entered by the user
-    };
-
-    return (
-        <>
-            <div className="md:min-h-[93.2vh]   min-h-[86vh]   flex justify-center items-center   ">
-                <div className="h-fit font-['gilroy'] bg-white shadow-xl rounded-xl px-8 pt-6 pb-6 border-2">
-                    <form onSubmit={handleSubmit} className=' h-full w-[300px]  ' >
-                        <h1 className='text-4xl font-bold '>Login</h1>
-                        <div className="block ">
-                            <h3 className='block mb-2 text-xl font-semibold text-gray-900 dark:text-gray-300 mt-3' >Full name</h3>
-                            <input
-                                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light font-medium"
-                                placeholder="Enter full name"
-                                required
-                                type="text"
-                                value={fullName} // Bind the value of the input field to the state variable
-                                onChange={handleFullNameChange} // Call the handleFullNameChange function when the input value changes
-                            />
-                            <h3 className='block mb-2 text-xl font-semibold text-gray-900 dark:text-gray-300 mt-3'>Phone Number</h3>
-                            <div className='text-2xl flex '>
-                                <Select
-                                    className="w-2/5 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block  p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                                    placeholder="Select Country Code"
-                                    value={selectedCountryCode}
-                                    required
-                                    onChange={handleCountryCodeChange}
-                                    options={countryCodesOptions}
-                                />
-                                <input
-                                    type="text"
-                                    className="w-3/5 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                                    placeholder="Enter Phone Number"
-                                    required
-                                    value={phoneNumber}
-                                    onChange={handlePhoneNumberChange}
-                                />
-                            </div>
-                        </div>
-
-
-                        <a href="/otp" className="relative inline-block text-lg group mt-3">
-                            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-                                <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-                                <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-                                <span className="relative">Next</span>
-                            </span>
-                            <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
-                        </a>
-                    </form>
-                </div>
+  return (
+    <>
+      <div className="md:min-h-[93.2vh] min-h-[86vh] flex justify-center items-center">
+        <div className="h-fit bg-white shadow-xl rounded-xl px-8 pt-6 pb-6 border-2">
+          <form onSubmit={getOtp} className="w-[300px]">
+            <h1 className="text-4xl font-bold mb-4">Phone Sign Up</h1>
+            {error && <div className="text-red-500">{error}</div>}
+            <div className="mb-4">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-300 mt-3">
+                Phone Number
+              </h3>
+              <PhoneInput
+                defaultCountry="IN"
+                value={number}
+                onChange={setNumber}
+                placeholder="Enter Phone Number"
+              />
             </div>
 
-        </>
-    )
-}
+            <div>
+                
+            </div>
 
-export default Login
+            <div className="flex justify-between">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                Send OTP
+              </button>
+            </div>
+          </form>
+
+          <form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-300 mt-3">
+              Enter OTP
+            </h3>
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Enter OTP"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+              />
+            </div>
+            <div className="flex justify-between">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                Verify
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Login;
