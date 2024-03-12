@@ -37,7 +37,7 @@ const OTP = () => {
 
     return (
         <>
-            <div className="min-h-[75vh] flex justify-center items-center mt-16 ">
+            <div className="md:min-h-[93.2vh]   min-h-[86vh] flex justify-center items-center ">
                 <div className="h-fit font-['gilroy'] bg-white shadow-xl rounded-xl px-8 pt-6 pb-6 border-2">
                     <form onSubmit={handleSubmit} className=' h-full w-[300px]  ' >
                         <h1 className='text-4xl font-bold '>Login</h1>
