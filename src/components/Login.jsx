@@ -1,97 +1,138 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import PhoneInput from "react-phone-number-input";
-// import { useUserAuth } from "../context/UserAuthContext";
+import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
+import { CgSpinner } from "react-icons/cg";
+
+import OtpInput from "otp-input-react";
+import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { auth } from "../firebase.config";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { toast, Toaster } from "react-hot-toast";
 
 const Login = () => {
-  const [error, setError] = useState("");
-  const [number, setNumber] = useState("");
-  const [flag, setFlag] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [result, setResult] = useState("");
-  // const { setUpRecaptha } = useUserAuth();
-  const navigate = useNavigate();
+    const [otp, setOtp] = useState("");
+    const [ph, setPh] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [showOTP, setShowOTP] = useState(false);
+    const [user, setUser] = useState(null);
 
-  const getOtp = async (e) => {
-    e.preventDefault();
-    console.log(number);
-    setError("");
-    if (number === "" || number === undefined)
-      return setError("Please enter a valid phone number!");
-    try {
-      // const response = await setUpRecaptha(number);
-      // setResult(response);
-      // setFlag(true);
-    } catch (err) {
-      setError(err.message);
+    function onCaptchVerify() {
+        if (!window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier(
+                "recaptcha-container",
+                {
+                    size: "invisible",
+                    callback: (response) => {
+                        onSignup();
+                    },
+                    "expired-callback": () => { },
+                },
+                auth
+            );
+        }
     }
-  };
 
-  const verifyOtp = async (e) => {
-    e.preventDefault();
-    setError("");
-    if (otp === "" || otp === null) return;
-    try {
-      // await result.confirm(otp);
-      navigate("/home");
-    } catch (err) {
-      setError(err.message);
+    function onSignup() {
+        setLoading(true);
+        onCaptchVerify();
+
+        const appVerifier = window.recaptchaVerifier;
+
+        const formatPh = "+" + ph;
+
+        signInWithPhoneNumber(auth, formatPh, appVerifier)
+            .then((confirmationResult) => {
+                window.confirmationResult = confirmationResult;
+                setLoading(false);
+                setShowOTP(true);
+                toast.success("OTP sended successfully!");
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            });
     }
-  };
 
-  return (
-    <>
-      <div className="md:min-h-[93.2vh] min-h-[86vh] flex justify-center items-center">
-        <div className="h-fit bg-white shadow-xl rounded-xl px-8 pt-6 pb-6 border-2">
-          <form onSubmit={getOtp} className="w-[300px]">
-            <h1 className="text-4xl font-bold mb-4">Phone Sign Up</h1>
-            {error && <div className="text-red-500">{error}</div>}
-            <div className="mb-4">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-300 mt-3">
-                Phone Number
-              </h3>
-              <PhoneInput
-                defaultCountry="IN"
-                value={number}
-                onChange={setNumber}
-                placeholder="Enter Phone Number"
-              />
-            </div>
+    function onOTPVerify() {
+        setLoading(true);
+        window.confirmationResult
+            .confirm(otp)
+            .then(async (res) => {
+                console.log(res);
+                setUser(res.user);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+                setLoading(false);
+            });
+    }
 
+    return (
+        <section className="bg-emerald-500 flex items-center justify-center h-screen">
             <div>
-                
-            </div>
+                <Toaster toastOptions={{ duration: 4000 }} />
+                <div id="recaptcha-container"></div>
+                {user ? (
+                    <h2 className="text-center text-white font-medium text-2xl">
+                        👍Login Success
+                    </h2>
+                ) : (
+                    <div className="w-80 flex flex-col gap-4 rounded-lg p-4">
 
-            <div className="flex justify-between">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
-                Send OTP
-              </button>
-            </div>
-          </form>
+                        {showOTP ? (
+                            <>
+                                <div className="bg-white text-emerald-500 w-fit mx-auto p-4 rounded-full">
+                                    <BsFillShieldLockFill size={30} />
+                                </div>
+                                <label
+                                    htmlFor="otp"
+                                    className="font-bold text-xl text-white text-center"
+                                >
+                                    Enter your OTP
+                                </label>
+                                <OtpInput
+                                    value={otp}
+                                    onChange={setOtp}
+                                    OTPLength={6}
+                                    otpType="number"
+                                    disabled={false}
+                                    autoFocus
+                                    className="opt-container "
+                                ></OtpInput>
+                                <button
+                                    onClick={onOTPVerify}
+                                    className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
+                                >
+                                    {loading && (
+                                        <CgSpinner size={20} className="mt-1 animate-spin" />
+                                    )}
+                                    <span>Verify OTP</span>
+                                </button>
+                            </>
+                        ) : (
+                            <>
 
-          <form onSubmit={verifyOtp} style={{ display: flag ? "block" : "none" }}>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-300 mt-3">
-              Enter OTP
-            </h3>
-            <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Enter OTP"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-              />
+                                <h1 className="text-center leading-normal text-white font-medium text-3xl mb-2">
+                                   Login
+                                </h1>
+                                <PhoneInput country={"in"} value={ph} onChange={setPh} />
+                                <button
+                                    onClick={onSignup}
+                                    className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
+                                >
+                                    {loading && (
+                                        <CgSpinner size={20} className="mt-1 animate-spin" />
+                                    )}
+                                    <span>Send code via SMS</span>
+                                </button>
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
-            <div className="flex justify-between">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
-                Verify
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </>
-  );
+        </section>
+    );
 };
 
 export default Login;
