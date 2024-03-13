@@ -22,6 +22,7 @@ const Login = () => {
                 throw new Error('Invalid phone number format.');
             }
 
+            // const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {})
             const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {})
             const confirmation = await signInWithPhoneNumber(auth, phoneNumber.number, recaptcha)
             setUser(confirmation)
@@ -55,21 +56,14 @@ const Login = () => {
 
                 <div id="recaptcha" className="mb-6"></div>
 
-                {/* <input 
-                className="border-2 border-black w-80 py-2.5 text-black rounded text-xl mb-6" 
-                placeholder="Enter OTP" 
-                type="text" 
-                value={otp} 
-                onChange={(e) => setOtp(e.target.value)}
-                /> */}
                 <OtpInput
                     value={otp}
                     onChange={setOtp}
                     OTPLength={6}
-                    otpType="text"
+                    otpType="number"
                     disabled={false}
                     autoFocus
-                    className="opt-container bg-emerald-600 text-black my-4   "
+                    className="opt-container bg-emerald-500 text-black my-4   "
                 ></OtpInput>
 
                 <button
