@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { auth } from "../firebase.config";
@@ -18,7 +18,7 @@ const Login = () => {
     const [log, setLog] = useState(null);
     const [showOTP, setShowOTP] = useState(false);
     const [otp, setOtp] = useState("");
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const sendOtp = async () => {
         try {
@@ -50,10 +50,20 @@ const Login = () => {
         }
     }
 
+    useEffect(() => {
+        if (log) {
+            const timeout = setTimeout(() => {
+                navigate("/requirement"); // Use navigate function to redirect
+            }, 3000);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [log, navigate]);
+
     return (
         <div className="font-['gilroy'] flex justify-center items-center h-full bg-emerald-500">
             <div>
-            <Toaster toastOptions={{ duration: 4000 }} />
+                <Toaster toastOptions={{ duration: 4000 }} />
                 <div className="flex justify-center items-center mb-4">
                     <h1 className="text-5xl font-bold">Login</h1>
                 </div>
@@ -95,7 +105,7 @@ const Login = () => {
                             </>
                         )}
                     </div>
-                )} 
+                )}
             </div>
         </div>
     );
