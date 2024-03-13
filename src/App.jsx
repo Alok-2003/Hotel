@@ -20,7 +20,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/' element={<Login />} > </Route>
-          <Route path='/otp' element={<OTP />} > </Route>
+          {/* <Route path='/otp' element={<OTP />} > </Route> */}
           <Route path='/requirement' element={<Requirement />} > </Route>
           <Route path='/gathering' element={<Gatherings />} > </Route>
 
