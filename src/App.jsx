@@ -2,7 +2,6 @@ import './App.css'
 import Login from './components/Login';
 import Verify from './components/Verify';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import OTP from './components/otp';
 import Catering from './components/Catering';
 import Nav from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,6 +10,7 @@ import Hotels from './components/Hotels';
 import Gatherings from './components/Gatherings';
 import React from 'react';
 import HotelView from './components/HotelView';
+import Profile from './components/Profile';
 function App() {
 
   return (
@@ -20,7 +20,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/' element={<Login />} > </Route>
-          {/* <Route path='/otp' element={<OTP />} > </Route> */}
+          <Route path='/profile' element={<Profile />} > </Route>
           <Route path='/requirement' element={<Requirement />} > </Route>
           <Route path='/gathering' element={<Gatherings />} > </Route>
 

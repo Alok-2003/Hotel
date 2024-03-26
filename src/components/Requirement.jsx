@@ -12,10 +12,10 @@ const Requirement = () => {
     ];
 
     return (
-        <div className='md:min-h-[93.2vh]   min-h-[86vh] flex justify-center items-center mb-6 md:mb-0'>
+        <div className='md:min-h-[100vh]    min-h-[86vh] flex justify-center items-center mb-6 md:mb-0 bg-[url("src/assets/Requirement.jpg")] bg-cover'>
             <div className=''>
                 <div className="flex justify-center mt-20 md:mt-0 ">
-                    <div className="flex font-bold font-[gilroy] text-gray-600 md:text-5xl text-3xl leading-8 h-6 mt-4 mb-8">What is your requirement</div>
+                    <div className="flex font-bold font-[gilroy] text-white md:text-5xl text-3xl leading-8 h-6 mt-4 mb-8">What is your requirement</div>
                 </div>
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 ">
                     {cards.map((card, index) => (

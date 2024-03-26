@@ -9,6 +9,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 
-// import ReportWebVitals from "./reportWebVitals";
-
-// ReportWebVitals();

@@ -15,10 +15,10 @@ const Catering = () => {
     };
     return (
         <>
-            <div className='flex justify-center items-center'>
-                <div className='md:min-h-[93.2vh]   min-h-[86vh] w-5/6  '>
+            <div className='flex justify-center items-center bg-[url("src/assets/1.jpg")] bg-cover'>
+                <div className='md:min-h-[100vh]   min-h-[86vh] w-5/6  '>
                     <div className="flex justify-center">
-                        <div className="flex font-bold text-gray-600 md:text-5xl text-2xl leading-8  h-6 md:mt-20 mt-24 md:mb-12 mb-6">Do you want catering in house</div>
+                        <div className="flex font-bold text-white md:text-5xl text-2xl leading-8  h-6 md:mt-20 mt-24 md:mb-12 mb-6">Do you want catering in house</div>
                     </div>
                     <div className="h-96 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2 ">
                         {/* 1st */}
@@ -36,7 +36,7 @@ const Catering = () => {
                         {/* 2nd */}
                         <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg">
                             <div className="h-96 bg-red-600 ">
-                                {/* <img className="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="/Marriage.jpg" alt="" /> */}
+                                <img className="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125 opacity-50" src="/Catering.jpg" alt="" />
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent group-hover:from-black/30 group-hover:via-black/30 group-hover:to-black/30"></div>
                             <Link to='/hotels' className="absolute inset-0 flex md:translate-y-[38%] translate-y-[34%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0">

@@ -13,11 +13,12 @@ body {
   width: 100%;
 }
 #root{
+  font-family: gilroy;
   height: 100%;
   width: 100%;
   /* background-image: url(https://img.freepik.com/free-photo/umbrella-chair-around-swimming-pool_1203-2409.jpg?t=st=1708854777~exp=1708858377~hmac=aae9b4a886d46b1d295391f23d41dfd60cbc2bd4ab889ef9f2460bf793357dd5&w=900); */
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
 }
 .react-tel-input .form-control {
   @apply !w-full py-6 !text-base;

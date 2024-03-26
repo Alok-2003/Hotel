@@ -53,17 +53,18 @@ const Login = () => {
     useEffect(() => {
         if (log) {
             const timeout = setTimeout(() => {
-                navigate("/requirement"); // Use navigate function to redirect
+                navigate("/profile"); // Use navigate function to redirect
             }, 3000);
 
             return () => clearTimeout(timeout);
         }
     }, [log, navigate]);
 
+    // bg-emerald-500
     return (
-        <div className="font-['gilroy'] flex justify-center items-center h-full bg-emerald-500">
-            <div>
-                <Toaster toastOptions={{ duration: 4000 }} />
+        <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('src/assets/background_img.png')] bg-cover">
+            <Toaster toastOptions={{ duration: 4000 }} />
+            <div className="backdrop-blur-sm bg-white/30 p-10 rounded-3xl">
                 <div className="flex justify-center items-center mb-4">
                     <h1 className="text-5xl font-bold">Login</h1>
                 </div>
@@ -74,7 +75,10 @@ const Login = () => {
                     <div>
                         {showOTP ? (
                             <>
-                                <label className="font-bold text-xl text-white text-center"> Enter your OTP </label>
+                                <div className="flex justify-center">
+
+                                    <label className="font-bold text-2xl text-black text-center my-2"> Enter your OTP </label>
+                                </div>
 
                                 <OtpInput
                                     value={otp}
@@ -83,7 +87,7 @@ const Login = () => {
                                     otpType="number"
                                     disabled={false}
                                     autoFocus
-                                    className="opt-container bg-emerald-500 text-black my-4   "
+                                    className="opt-container  text-black my-4   "
                                 ></OtpInput>
 
                                 <button
@@ -93,13 +97,16 @@ const Login = () => {
                             </>
                         ) : (
                             <>
-                                <label className="font-bold text-2xl text-white text-center"> Enter your phone number </label>
+                                <div className="flex justify-center">
+                                    <label className="font-bold text-2xl text-black text-center my-2"> Enter your phone number </label>
+                                </div>
                                 <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
 
                                 <button
                                     className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb-6"
                                     onClick={sendOtp}
-                                >Send OTP</button>
+                                >Send OTP
+                                </button>
 
                                 <div id="recaptcha" className="mb-6"></div>
                             </>

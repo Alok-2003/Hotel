@@ -56,10 +56,10 @@ const Gatherings = () => {
     }
 
     return (
-        <div className='md:min-h-[93.2vh]   min-h-[86vh] flex justify-center items-center md:mb-0 mb-6'>
+        <div className='md:min-h-[100vh]   min-h-[86vh] flex justify-center items-center md:mb-0 mb-6 bg-[url("src/assets/1.jpg")] bg-cover'>
             <div className='w-4/5 '>
                 <div className="flex justify-center ">
-                    <div className="flex font-bold text-gray-600 md:text-5xl leading-8  h-6 md:mt-8 md:mb-8 mt-20 mb-6 text-[26px]">Choose gathering strength</div>
+                    <div className="flex font-bold text-white md:text-5xl leading-8  h-6 md:mt-8 md:mb-8 mt-20 mb-6 text-[26px]">Choose gathering strength</div>
                 </div>
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 ">
                     {/* Mapping over the cards array */}

@@ -27,21 +27,21 @@ const Nav = () => {
 
     return (
         <nav className="z-50">
-            <div className="font-[gilroy] h-16 flex justify-between z-50 text-white lg:py-5 px-6 py-4 bg-slate-900 fixed w-full">
+            <div className="font-[gilroy] h-16 flex justify-between z-50 text-white lg:py-5 px-6 py-4  fixed w-full">
                 <div className="flex items-center flex-1">
                     <span className="text-3xl font-bold "> Hotel Hub</span>
                 </div>
                 <div className=" md:flex md:flex-1 items-center justify-end font-normal hidden">
                     <div className="flex-10">
-                        <ul className="flex gap-8 mr-16 text-[18px]">
-                            <Link to={"hotels"} spy={true} smooth={true}>
-                                <li className="hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer">Hotel</li>
+                        <ul className="flex gap-8 mr-16 text-[20px]">
+                            <Link to={"hotels"} >
+                                <li className="hover:text-fuchsia-600 transition   hover:border-fuchsia-600 cursor-pointer">Hotel</li>
                             </Link>
                             <Link spy={true} smooth={true}>
-                                <li className="hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer">About</li>
+                                <li className="hover:text-fuchsia-600 transition   hover:border-fuchsia-600 cursor-pointer">About</li>
                             </Link>
                             <Link to={"/"} spy={true} smooth={true}>
-                                <li className="hover:text-fuchsia-600 transition border-b-2 border-slate-900 hover:border-fuchsia-600 cursor-pointer">Login</li>
+                                <li className="hover:text-fuchsia-600 transition  hover:border-fuchsia-600 cursor-pointer">Login</li>
                             </Link>
                         </ul>
                     </div>
