@@ -11,6 +11,7 @@ import Gatherings from './components/Gatherings';
 import React from 'react';
 import HotelView from './components/HotelView';
 import Profile from './components/Profile';
+import HSearch from './components/HSearch';
 function App() {
 
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} > </Route>
           <Route path='/profile' element={<Profile />} > </Route>
+          <Route path='/HSearch' element={<HSearch />} > </Route>
           <Route path='/requirement' element={<Requirement />} > </Route>
           <Route path='/gathering' element={<Gatherings />} > </Route>
 

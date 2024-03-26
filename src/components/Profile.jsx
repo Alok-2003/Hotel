@@ -26,7 +26,7 @@ const Profile = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('src/assets/2.jpg')] bg-cover">
             <div className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl shadow-lg w-1/3">
-                <h2 className="text-4xl font-bold mb-2 text-white">Create Profile</h2>
+                <h2 className="text-4xl font-bold mb-2 text-black">Create Profile</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="fullName" className="block text-lg font-medium text-white">Full Name</label>
