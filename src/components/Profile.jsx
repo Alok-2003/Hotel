@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const [formData, setFormData] = useState({
@@ -50,7 +51,9 @@ const Profile = () => {
                         <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
                         <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                     </div>
-                    <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
+                    <Link to={'/HSearch'}>
+                        <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
+                    </Link>
                 </form>
             </div>
         </div>

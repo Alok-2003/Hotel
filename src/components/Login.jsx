@@ -62,6 +62,7 @@ const Login = () => {
 
     // bg-emerald-500
     return (
+        <>
         <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('src/assets/background_img.png')] bg-cover">
             <Toaster toastOptions={{ duration: 4000 }} />
             <div className="backdrop-blur-sm bg-white/30 p-10 rounded-3xl">
@@ -115,6 +116,8 @@ const Login = () => {
                 )}
             </div>
         </div>
+        </>
+
     );
 };
 

@@ -40,10 +40,10 @@ const HotelView = () => {
 
     return (
         <div>
-            <main className="container mx-auto px-4 py-6 flex justify-center ">
-                <div className="md:w-10/12 ">
+            <main className="  flex justify-center bg-[url('src/assets/building-night.jpg')] bg-cover ">
+                <div className="md:w-10/12 backdrop-blur-sm bg-white/50 rounded-3xl my-16">
                     {/* Image */}
-                    <div className="rounded-full container mx-auto mt-14 p-2  ">
+                    <div className="rounded-full container mx-auto   ">
                         {isSmallDisplay ? (
                             <Carousel className="" >
                                 {slides.map((s) => (
@@ -56,9 +56,9 @@ const HotelView = () => {
                     </div>
 
                     {/* Description */}
-                    <div className="max-w-xl mx-auto bg-white p-4 rounded shadow-lg md:max-w-full md:m-2 md:flex md:justify-between">
+                    <div className="max-w-xl mx-auto bg-white p-4 rounded-3xl shadow-lg md:max-w-full md:m-2 md:flex md:justify-between">
                         <div className='md:'>
-                            <h2 className="text-xl font-bold mb-2 md:text-4xl">Taj Chandigarh</h2>
+                            <h2 className="text-xl font-bold md:text-4xl">Taj Chandigarh</h2>
                             <p className="text-gray-700 mb-4 md:text-xl font-semibold">Luxury hotel with restaurant, connected to a shopping center</p>
 
                             <div className="flex items-center mb-3">

@@ -65,7 +65,7 @@ const Gatherings = () => {
                     {/* Mapping over the cards array */}
                     {cards.map((card, index) => (
                         <div key={index} className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg">
-                            <div className="md:h-96">
+                            <div className="h-[60vh]">
                                 <img className="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src={card.image} alt={card.title} />
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
