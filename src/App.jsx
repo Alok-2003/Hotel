@@ -12,6 +12,7 @@ import React from 'react';
 import HotelView from './components/HotelView';
 import Profile from './components/Profile';
 import HSearch from './components/HSearch';
+import TCatering from './components/TCatering';
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/gathering' element={<Gatherings />} > </Route>
 
           <Route path='/catering' element={<Catering />} > </Route>
+          <Route path='/tcatering' element={<TCatering />} > </Route>
           <Route path='/verify' element={<Verify />} > </Route>
           <Route path='/hotels' element={<Hotels />} > </Route>
           <Route path='/hotelView' element={<HotelView />} > </Route>
