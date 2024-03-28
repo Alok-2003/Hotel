@@ -13,6 +13,7 @@ import HotelView from './components/HotelView';
 import Profile from './components/Profile';
 import HSearch from './components/HSearch';
 import TCatering from './components/TCatering';
+import FForm from './components/FForm';
 function App() {
 
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='/verify' element={<Verify />} > </Route>
           <Route path='/hotels' element={<Hotels />} > </Route>
           <Route path='/hotelView' element={<HotelView />} > </Route>
+          <Route path='/fform' element={<FForm />} > </Route>
 
         </Routes>
         <Footer />
