@@ -7,6 +7,7 @@ import { LuParkingCircle } from "react-icons/lu";
 import { FaHospital, FaTrain, FaWifi } from "react-icons/fa";
 import { MdRestaurant } from "react-icons/md";
 import { MdLocalBar } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const slides = [
     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/07/d7/b9/exterior.jpg?w=1200&h=-1&s=1",
@@ -105,6 +106,11 @@ const HotelView = () => {
                     </div>
                 </div>
             </main>
+            <Link to={'/fform'} className="fixed bottom-8 right-8  ">
+                <button className="bg-green-500 hover:bg-blue-700 text-white text-xl py-4 px-4 rounded-full hover:scale-110  cursor-pointer animate-bounce">
+                    Interested
+                </button>
+            </Link>
         </div>
     );
 };

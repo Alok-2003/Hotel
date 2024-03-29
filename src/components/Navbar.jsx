@@ -11,7 +11,7 @@ const Nav = () => {
 
     const content = (
         <div className="lg:hidden block absolute top-16 w-full left-0 right-0 bg-slate-900">
-            <ul className="text-centre text-xl px-8 py-0">
+            <ul  className="text-centre text-xl px-8 py-0">
                 <Link to={"hotels"} spy={true} smooth={true} >
                     <li className="my-3 py-3 border-b border-slate-800 hover:rounded">Hotel</li>
                 </Link>
@@ -21,7 +21,7 @@ const Nav = () => {
                 <Link spy={true} smooth={true} to="">
                     <li className="my-3 py-3 border-b border-slate-800 hover:rounded">Login</li>
                 </Link>
-            </ul>
+            </ul >
         </div>
     );
 

@@ -31,11 +31,7 @@ const Hotels = () => {
                 </div>
             </div>
             {/* Floating Interested button */}
-            <Link to={'/fform'} className="fixed bottom-8 right-8  ">
-                <button className="bg-green-500 hover:bg-blue-700 text-white text-xl py-4 px-4 rounded-full hover:scale-110  cursor-pointer animate-bounce">
-                    Interested
-                </button>
-            </Link>
+            
         </div>
     );
 };
