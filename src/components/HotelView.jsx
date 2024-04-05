@@ -8,6 +8,8 @@ import { FaHospital, FaTrain, FaWifi } from "react-icons/fa";
 import { MdRestaurant } from "react-icons/md";
 import { MdLocalBar } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { useFirebase } from '../context/Firebase'
+
 
 const slides = [
     "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/07/d7/b9/exterior.jpg?w=1200&h=-1&s=1",

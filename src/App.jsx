@@ -14,15 +14,16 @@ import Profile from './components/Profile';
 import HSearch from './components/HSearch';
 import TCatering from './components/TCatering';
 import FForm from './components/FForm';
+import AdCreate from './components/AdCreate';
 function App() {
 
   return (
     <>
       {/* <Nav /> */}
-      <Router>
+      {/* <Router> */}
         <Nav />
         <Routes>
-          <Route path='/' element={<Login />} > </Route>
+          <Route path='/login' element={<Login />} > </Route>
           <Route path='/profile' element={<Profile />} > </Route>
           <Route path='/HSearch' element={<HSearch />} > </Route>
           <Route path='/requirement' element={<Requirement />} > </Route>
@@ -30,14 +31,15 @@ function App() {
 
           <Route path='/catering' element={<Catering />} > </Route>
           <Route path='/tcatering' element={<TCatering />} > </Route>
-          <Route path='/verify' element={<Verify />} > </Route>
+          {/* <Route path='/verify' element={<Verify />} > </Route> */}
           <Route path='/hotels' element={<Hotels />} > </Route>
           <Route path='/hotelView' element={<HotelView />} > </Route>
           <Route path='/fform' element={<FForm />} > </Route>
+          <Route path='/admin_create' element={<AdCreate />} > </Route>
 
         </Routes>
         <Footer />
-      </Router>
+      {/* </Router> */}
     </>
   )
 }
