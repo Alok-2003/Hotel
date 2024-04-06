@@ -15,6 +15,7 @@ import HSearch from './components/HSearch';
 import TCatering from './components/TCatering';
 import FForm from './components/FForm';
 import AdCreate from './components/AdCreate';
+import AdHotels from './components/AdHotels';
 function App() {
 
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path='/hotelView' element={<HotelView />} > </Route>
           <Route path='/fform' element={<FForm />} > </Route>
           <Route path='/admin_create' element={<AdCreate />} > </Route>
+          <Route path='/admin_hotels' element={<AdHotels />} > </Route>
 
         </Routes>
         <Footer />

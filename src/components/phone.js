@@ -1,3 +1,66 @@
+const HotelView = () => {
+    const firebase = useFirebase();
+    const [hotel, setHotel] = useState([]);
+
+    useEffect(() => {
+        firebase.listOfHotels().then((hotels) => setHotel(hotels.docs.map(doc => doc.data())));
+    }, []);
+
+    return (
+        <div>
+            {hotel.map((h, index) => (
+                <main key={index} className="flex justify-center bg-[url('src/assets/building-night.jpg')] bg-cover">
+                    <div className="md:w-10/12 backdrop-blur-sm bg-white/50 rounded-3xl my-16">
+                        {/* Image */}
+                        <div className="rounded-full container mx-auto">
+                            {/* Use h.images to display hotel images */}
+                            <Carousel className="">
+                                {h.images.map((image, idx) => (
+                                    <img key={idx} src={image} alt="" />
+                                ))}
+                            </Carousel>
+                        </div>
+
+                        {/* Description */}
+                        <div className="max-w-xl mx-auto bg-white p-4 rounded-3xl shadow-lg md:max-w-full md:m-2 md:flex md:justify-between">
+                            <div className='md:'>
+                                {/* Display hotel name */}
+                                <h2 className="text-xl font-bold md:text-4xl">{h.name}</h2>
+                                {/* Other details such as location, pincode, contact, email, event, meal can be displayed similarly */}
+                            </div>
+
+                            <div className='rounded-full'>
+                                {/* Display Google Maps iframe or any other map component */}
+                                <iframe src={h.mapUrl} width="330" height="250" allowfullscreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                                {/* Display locations nearby */}
+                                <ul className="mb-2">
+                                    {h.locations.map((location, idx) => (
+                                        <li key={idx} className="flex items-center mb-1">
+                                            {/* Display location icon */}
+                                            <div>{location.icon}</div>
+                                            {/* Display location name and distance */}
+                                            <div className="ml-2">
+                                                <p className="text-sm">{location.name}</p>
+                                                <p className="text-xs text-gray-500">{location.distance}</p>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            ))}
+            <Link to={'/fform'} className="fixed bottom-8 right-8">
+                <button className="bg-green-500 hover:bg-blue-700 text-white text-xl py-4 px-4 rounded-full hover:scale-110 cursor-pointer animate-bounce">
+                    Interested
+                </button>
+            </Link>
+        </div>
+    );
+};
+
+
 // const countries = [
 //   { name: "Afghanistan", code: "AF", phone: 93 },
 //   { name: "Aland Islands", code: "AX", phone: 358 },

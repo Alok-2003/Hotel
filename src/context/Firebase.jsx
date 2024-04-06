@@ -78,17 +78,25 @@ export const FirebaseProvider = (props) => {
     // fullName, city, pincode, whatsappNo, email, eventType, meal, images
     // console.log(user)
 
-    const listAllBooks = () => {
-        return getDocs(collection(firestore, "books"))
+    const listOfHotels = () => {
+        return getDocs(collection(firestore, "Hotels"))
     };
 
-    const getImageURL = (path) =>{
-        return getDownloadURL(ref(storage,path));
-    }
+    const getImageURL = async (paths) => {
+        // Array to store promises for fetching download URLs
+        const imageURLPromises = paths.map(path => getDownloadURL(ref(storage, path)));
+    console.log(imageURLPromises)
+        // Wait for all promises to resolve
+        const imageURLs = await Promise.all(imageURLPromises);
+        
+        return imageURLs;
+    };
 
     return <FirebaseContext.Provider value={{
         isLoggedIn,
         signOut,
-        AddNewHotel
+        AddNewHotel,
+        listOfHotels,
+        getImageURL
     }} > {props.children} </FirebaseContext.Provider>
 };
