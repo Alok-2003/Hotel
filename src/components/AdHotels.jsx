@@ -23,29 +23,29 @@ const AdHotels = () => {
     ];
 
     return (
-        <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center items-center'>
-            <div className='w-9/12  justify-center items-center '>
-                <div className=" backdrop-blur-sm bg-white/50 rounded-3xl font-bold text-2xl  h-12 flex justify-between items-center px-4">
-                    {/* Image */}
+        <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center '>
+            <div className='w-10/12   mt-20 '>
+                <div className=" backdrop-blur-sm bg-white/50 rounded-3xl font-bold text-2xl  h-12 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
+                    {/* Image */} 
                     <h1> Hotel Name </h1>
                     <h1> Event:</h1>
                     <h1> Catering:</h1>
                     <h1> Location:</h1>
                     <h1> Contact:</h1>
-                    {/* Description */}
+                    <button className='bg-blue-500  px-2 py-1 rounded-xl' >Create</button>
 
                 </div>
                 {hotels.map((h, index) => (
 
                     <main key={index} className="   justify-center">
-                        <div className=" backdrop-blur-sm bg-white/50 rounded-3xl text-xl my-4 h-16 flex justify-between items-center px-4">
+                        <div className=" backdrop-blur-sm bg-white/50 rounded-3xl text-xl my-4 h-16 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
                             {/* Image */}
                             <h1> {h.name} </h1>
                             <h1> {h.event} </h1>
                             <h1> {h.meal} </h1>
                             <h1> {h.location} </h1>
                             <h1> {h.contact}</h1>
-                            {/* Description */}
+                            <button className='bg-teal-400   px-4 py-2 rounded-xl' >Edit</button>
 
                         </div>
                     </main>
