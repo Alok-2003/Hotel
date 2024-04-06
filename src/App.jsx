@@ -10,12 +10,12 @@ import Hotels from './components/Hotels';
 import Gatherings from './components/Gatherings';
 import React from 'react';
 import HotelView from './components/HotelView';
-import Profile from './components/Profile';
 import HSearch from './components/HSearch';
 import TCatering from './components/TCatering';
 import FForm from './components/FForm';
 import AdCreate from './components/AdCreate';
 import AdHotels from './components/AdHotels';
+import CreateProfile from './components/CreateProfile';
 function App() {
 
   return (
@@ -25,7 +25,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/login' element={<Login />} > </Route>
-          <Route path='/profile' element={<Profile />} > </Route>
+          <Route path='/CProfile' element={<CreateProfile />} > </Route>
           <Route path='/HSearch' element={<HSearch />} > </Route>
           <Route path='/requirement' element={<Requirement />} > </Route>
           <Route path='/gathering' element={<Gatherings />} > </Route>
