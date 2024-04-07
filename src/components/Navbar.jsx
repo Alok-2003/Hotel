@@ -21,16 +21,18 @@ const Nav = () => {
         <div className="lg:hidden block absolute top-16 w-full left-0 right-0 bg-slate-900">
             <ul className="text-centre text-xl px-8 py-0">
                 <Link to={"hotels"} spy={true} smooth={true} >
-                    <li className="my-3 py-3 border-b border-slate-800 hover:rounded">Hotel</li>
+                    <li className="my-3 py-3 border-b border-slate-800 hover:rounded">Admin</li>
                 </Link>
                 <Link spy={true} smooth={true} to="">
                     <li className="my-3 py-3 border-b border-slate-800 hover:rounded">About</li>
                 </Link>
                 {firebase.isLoggedIn ? (
-                    <li className="my-3 py-3 border-b border-slate-800 hover:rounded" onClick={handleLogout} >Logout</li>
+                    <Link to="/login" onClick={handleLogout} >
+                        <li className="" >Logout</li>
+                    </Link>
                 ) : (
-                    <Link spy={true} smooth={true} to="/login">
-                        <li className="my-3 py-3 border-b border-slate-800 hover:rounded">Login</li>
+                    <Link to="/login">
+                        <li className="">Login</li>
                     </Link>
                 )}
             </ul >
@@ -46,18 +48,18 @@ const Nav = () => {
                 <div className=" md:flex md:flex-1 items-center justify-end font-normal hidden">
                     <div className="flex-10">
                         <ul className="flex gap-8 mr-16 text-[20px]">
-                            <Link to={"hotels"} spy={false} smooth={true}  >
-                                <li className="">Hotel</li>
+                            <Link to={"admin_hotels"}   >
+                                <li className="">Admin</li>
                             </Link>
-                            <Link spy={false} smooth={true}  >
+                            <Link   >
                                 <li className="">About</li>
                             </Link >
                             {firebase.isLoggedIn ? (
-                                <Link  to="/login" onClick={handleLogout} >
+                                <Link to="/login" onClick={handleLogout} >
                                     <li className="" >Logout</li>
-                                </Link> 
+                                </Link>
                             ) : (
-                                <Link  to="/login">
+                                <Link to="/login">
                                     <li className="">Login</li>
                                 </Link>
                             )}

@@ -32,7 +32,9 @@ const AdHotels = () => {
                     <h1> Catering:</h1>
                     <h1> Location:</h1>
                     <h1> Contact:</h1>
+                    <Link to={"/admin_create"}>
                     <button className='bg-blue-500  px-2 py-1 rounded-xl' >Create</button>
+                    </Link>
 
                 </div>
                 {hotels.map((h, index) => (

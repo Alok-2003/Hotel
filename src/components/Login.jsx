@@ -28,6 +28,7 @@ const Login = () => {
         }
     }, [firebase, navigate]); 
 
+    // console.log(firebase.isLoggedIn)
 
     const sendOtp = async () => {
         try {
