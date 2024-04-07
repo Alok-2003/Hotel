@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { initializeApp } from "firebase/app";
-import { 
+import {
     getAuth,
     onAuthStateChanged,
     signOut
- } from "firebase/auth";
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
@@ -35,7 +35,7 @@ const storage = getStorage(app);
 
 
 export const FirebaseProvider = (props) => {
-    
+
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ export const FirebaseProvider = (props) => {
 
     const AddNewHotel = async (name, location, pincode, contact, email, event, meal, images) => {
         const imageUrls = [];
-            // Loop through each selected image
+        // Loop through each selected image
         for (const image of images) {
             const imageRef = ref(storage, `uploads/images/${Date.now()}-${image.name}`);
             const uploadResult = await uploadBytes(imageRef, image);
@@ -74,7 +74,13 @@ export const FirebaseProvider = (props) => {
             CreatorContact: user.phoneNumber,
         });
     };
-    
+    const CreateNewProfile = async (name, city, pincode, contact, email) => {
+        return await addDoc(collection(firestore, "Profiles"), {
+            name, city, pincode, contact, email,
+            CreatorContact: user.phoneNumber,
+        });
+    };
+
     // fullName, city, pincode, whatsappNo, email, eventType, meal, images
     // console.log(user)
 
@@ -85,10 +91,10 @@ export const FirebaseProvider = (props) => {
     const getImageURL = async (paths) => {
         // Array to store promises for fetching download URLs
         const imageURLPromises = paths.map(path => getDownloadURL(ref(storage, path)));
-    console.log(imageURLPromises)
+        console.log(imageURLPromises)
         // Wait for all promises to resolve
         const imageURLs = await Promise.all(imageURLPromises);
-        
+
         return imageURLs;
     };
 
@@ -97,6 +103,7 @@ export const FirebaseProvider = (props) => {
         signOut,
         AddNewHotel,
         listOfHotels,
-        getImageURL
+        getImageURL,
+        CreateNewProfile
     }} > {props.children} </FirebaseContext.Provider>
 };

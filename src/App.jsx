@@ -30,7 +30,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/login' element={<Login />} />
-        {firebase.isLoggedIn ? (
+        {/* {firebase.isLoggedIn ? ( */}
           <>
             <Route path='/CProfile' element={<CreateProfile />} > </Route>
             <Route path='/HSearch' element={<HSearch />} > </Route>
@@ -46,9 +46,9 @@ function App() {
             <Route path='/admin_create' element={<AdCreate />} > </Route>
             <Route path='/admin_hotels' element={<AdHotels />} > </Route>
           </>
-        ) : (
+        {/* ) : (
           <Route path='*' element={<Navigate to="/login" />} />
-        )}
+        )} */}
       </Routes>
       <Footer />
       {/* </Router> */}

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useFirebase } from '../context/Firebase';
 import { Link } from 'react-router-dom';
+import { toast, Toaster } from "react-hot-toast";
+
 
 const CreateProfile = () => {
+    const firebase = useFirebase();
+
     const [formData, setFormData] = useState({
         fullName: '',
         city: '',
@@ -18,14 +23,24 @@ const CreateProfile = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // You can handle form submission logic here
-        console.log(formData);
+        const { fullName, city, pincode, whatsappNo, email, eventType, meal, images } = formData;
+        await firebase.CreateNewProfile(fullName, city, pincode, whatsappNo, email);
+        toast.success("Profile Created Succesfully");
+        setFormData({
+            fullName: '',
+            city: '',
+            pincode: '',
+            whatsappNo: '',
+            email: '',
+        });
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('src/assets/2.jpg')] bg-cover">
+            <Toaster toastOptions={{ duration: 4000 }} />
+
             <div className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl shadow-lg w-1/3">
                 <h2 className="text-4xl font-bold mb-2 text-black">Create Profile</h2>
                 <form onSubmit={handleSubmit}>
@@ -51,9 +66,9 @@ const CreateProfile = () => {
                         <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
                         <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                     </div>
-                    <Link to={'/HSearch'}>
+                    {/* <Link to={'/HSearch'}> */}
                         <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
-                    </Link>
+                    {/* </Link> */}
                 </form>
             </div>
         </div>
