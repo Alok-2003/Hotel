@@ -81,11 +81,13 @@ export const FirebaseProvider = (props) => {
         });
     };
 
-    // fullName, city, pincode, whatsappNo, email, eventType, meal, images
     // console.log(user)
 
     const listOfHotels = () => {
         return getDocs(collection(firestore, "Hotels"))
+    };
+    const listOfClient = () => {
+        return getDocs(collection(firestore, "Profiles"))
     };
 
     const getImageURL = async (paths) => {
@@ -104,6 +106,7 @@ export const FirebaseProvider = (props) => {
         AddNewHotel,
         listOfHotels,
         getImageURL,
-        CreateNewProfile
+        CreateNewProfile,
+        listOfClient
     }} > {props.children} </FirebaseContext.Provider>
 };

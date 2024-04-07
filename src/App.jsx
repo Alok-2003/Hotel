@@ -17,6 +17,7 @@ import AdCreate from './components/AdCreate';
 import AdHotels from './components/AdHotels';
 import CreateProfile from './components/CreateProfile';
 import { useFirebase } from './context/Firebase';
+import CliProfile from './components/CliProfile';
 
 function App() {
   const firebase = useFirebase();
@@ -45,6 +46,7 @@ function App() {
             <Route path='/fform' element={<FForm />} > </Route>
             <Route path='/admin_create' element={<AdCreate />} > </Route>
             <Route path='/admin_hotels' element={<AdHotels />} > </Route>
+            <Route path='/Client_Profile' element={<CliProfile />} > </Route>
           </>
         {/* ) : (
           <Route path='*' element={<Navigate to="/login" />} />
