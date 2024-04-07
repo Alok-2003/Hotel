@@ -21,7 +21,7 @@ import CliProfile from './components/CliProfile';
 
 function App() {
   const firebase = useFirebase();
-  console.log(firebase.isLoggedIn)
+  // console.log(firebase.isLoggedIn)
 
 
   return (

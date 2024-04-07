@@ -23,14 +23,14 @@ const AdHotels = () => {
         <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center '>
             <div className='w-10/12   mt-20 '>
                 <div className=" backdrop-blur-sm bg-white/50 rounded-3xl font-bold text-2xl  h-12 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
-                    {/* Image */} 
+                    {/* Image */}
                     <h1> Hotel Name </h1>
                     <h1> Event:</h1>
                     <h1> Catering:</h1>
                     <h1> Location:</h1>
                     <h1> Contact:</h1>
                     <Link to={"/admin_create"}>
-                    <button className='bg-blue-500  px-2 py-1 rounded-xl' >Create</button>
+                        <button className='bg-blue-500  px-2 py-1 rounded-xl' >Create</button>
                     </Link>
 
                 </div>
@@ -49,7 +49,7 @@ const AdHotels = () => {
                         </div>
                     </main>
                 ))}
-                    <button className='bg-blue-500  px-2 py-1 rounded-xl' onClick={handliViewProfile} >Create</button>
+                <button className='bg-yellow-400  px-4 py-1 rounded-xl text-xl font-bold' onClick={handliViewProfile} >Client Profile</button>
 
             </div>
 

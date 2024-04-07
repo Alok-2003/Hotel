@@ -7,7 +7,7 @@ import OtpInput from "otp-input-react";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 // import { auth } from "../firebase.config";
-import {auth} from "../context/Firebase"
+import { auth } from "../context/Firebase"
 import { useFirebase } from '../context/Firebase';
 
 // import { CgSpinner } from "react-icons/cg";
@@ -21,14 +21,46 @@ const Login = () => {
     const [otp, setOtp] = useState("");
     const navigate = useNavigate();
     const firebase = useFirebase();
+    const [profiles, setprofile] = useState([]);
 
     useEffect(() => {
-        if (firebase.isLoggedIn) {
-                navigate("/HSearch");
+        firebase.listOfClient().then((profiles) => {
+            setprofile(profiles.docs.map(doc => doc.data()))
         }
-    }, [firebase, navigate]); 
+        )
+    }, []);
+    const creatorContacts = profiles.map(profile => profile.CreatorContact);
+    const cleanedContacts = creatorContacts.map(contact => contact.replace("+", ""));
 
-    // console.log(firebase.isLoggedIn)
+    console.log(creatorContacts)
+    console.log(cleanedContacts)
+
+
+    // useEffect(() => {
+    //     if (firebase.isLoggedIn) {
+    //         navigate("/HSearch");
+    //     }
+    // }, [firebase, navigate]);
+    useEffect(() => {
+        if (log) {
+            const timeout = setTimeout(() => {
+                // Check if user's profile exists and redirect accordingly
+                if (cleanedContacts.includes(phone)) {
+                    navigate("/HSearch");
+                    console.log("redirect Search")
+                } else {
+                    navigate("/CProfile");
+                    console.log("redirect to profile")
+                }
+            }, 3000);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [log, navigate, cleanedContacts, phone]);
+
+
+    console.log(firebase.isLoggedIn)
+    console.log(phone)
 
     const sendOtp = async () => {
         try {
@@ -60,72 +92,94 @@ const Login = () => {
         }
     }
 
-    useEffect(() => {
-        if (log) {
-            const timeout = setTimeout(() => {
-                navigate("/profile"); // Use navigate function to redirect
-            }, 3000);
+    // useEffect(() => {
+    //     if (log) {
+    //         const timeout = setTimeout(() => {
+    //             navigate("/profile"); // Use navigate function to redirect
+    //         }, 3000);
 
-            return () => clearTimeout(timeout);
-        }
-    }, [log, navigate]);
+    //         return () => clearTimeout(timeout);
+    //     }
+    // }, [log, navigate]);
+
+    // console.log(phone)
+
+    // useEffect(() => {
+    //     if (log) {
+    //         const timeout = setTimeout(() => {
+    //             // Check if user's profile exists and redirect accordingly
+    //             firebase.checkProfileExists(phone).then((profileExists) => {
+    //                 if (profileExists) {
+    //                     navigate("/HSearch");
+    //                 } else {
+    //                     navigate("/profile");
+    //                 }
+    //             });
+    //         }, 3000);
+
+    //         return () => clearTimeout(timeout);
+    //     }
+    // }, [log, navigate, firebase, phone]);
+
+
+
 
     // bg-emerald-500
     return (
         <>
-        <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('src/assets/background_img.png')] bg-cover">
-            <Toaster toastOptions={{ duration: 4000 }} />
-            <div className="backdrop-blur-sm bg-white/30 p-10 rounded-3xl">
-                <div className="flex justify-center items-center mb-4">
-                    <h1 className="text-5xl font-bold">Login</h1>
-                </div>
-
-                {log ? (
-                    <h1>Login Succes</h1>
-                ) : (
-                    <div>
-                        {showOTP ? (
-                            <>
-                                <div className="flex justify-center">
-
-                                    <label className="font-bold text-2xl text-black text-center my-2"> Enter your OTP </label>
-                                </div>
-
-                                <OtpInput
-                                    value={otp}
-                                    onChange={setOtp}
-                                    OTPLength={6}
-                                    otpType="number"
-                                    disabled={false}
-                                    autoFocus
-                                    className="opt-container  text-black my-4   "
-                                ></OtpInput>
-
-                                <button
-                                    className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white font-medium rounded text-xl mb-6"
-                                    onClick={verifyOtp}
-                                >Verify OTP</button>
-                            </>
-                        ) : (
-                            <>
-                                <div className="flex justify-center">
-                                    <label className="font-bold text-2xl text-black text-center my-2"> Enter your phone number </label>
-                                </div>
-                                <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
-
-                                <button
-                                    className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb-6"
-                                    onClick={sendOtp}
-                                >Send OTP
-                                </button>
-
-                                <div id="recaptcha" className="mb-6"></div>
-                            </>
-                        )}
+            <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('src/assets/background_img.png')] bg-cover">
+                <Toaster toastOptions={{ duration: 4000 }} />
+                <div className="backdrop-blur-sm bg-white/30 p-10 rounded-3xl">
+                    <div className="flex justify-center items-center mb-4">
+                        <h1 className="text-5xl font-bold">Login</h1>
                     </div>
-                )}
+
+                    {log ? (
+                        <h1>Login Succes</h1>
+                    ) : (
+                        <div>
+                            {showOTP ? (
+                                <>
+                                    <div className="flex justify-center">
+
+                                        <label className="font-bold text-2xl text-black text-center my-2"> Enter your OTP </label>
+                                    </div>
+
+                                    <OtpInput
+                                        value={otp}
+                                        onChange={setOtp}
+                                        OTPLength={6}
+                                        otpType="number"
+                                        disabled={false}
+                                        autoFocus
+                                        className="opt-container  text-black my-4   "
+                                    ></OtpInput>
+
+                                    <button
+                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white font-medium rounded text-xl mb-6"
+                                        onClick={verifyOtp}
+                                    >Verify OTP</button>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="flex justify-center">
+                                        <label className="font-bold text-2xl text-black text-center my-2"> Enter your phone number </label>
+                                    </div>
+                                    <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
+
+                                    <button
+                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb-6"
+                                        onClick={sendOtp}
+                                    >Send OTP
+                                    </button>
+
+                                    <div id="recaptcha" className="mb-6"></div>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
         </>
 
     );

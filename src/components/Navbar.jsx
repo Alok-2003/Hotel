@@ -27,7 +27,7 @@ const Nav = () => {
                     <li className="my-3 py-3 border-b border-slate-800 hover:rounded">About</li>
                 </Link>
                 {firebase.isLoggedIn ? (
-                    <Link to="/login" onClick={handleLogout} >
+                    <Link  onClick={handleLogout} >
                         <li className="" >Logout</li>
                     </Link>
                 ) : (

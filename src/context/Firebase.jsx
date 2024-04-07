@@ -39,7 +39,7 @@ export const FirebaseProvider = (props) => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
-    console.log(user)
+    // console.log(user)
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -100,6 +100,22 @@ export const FirebaseProvider = (props) => {
         return imageURLs;
     };
 
+    // const checkProfileExists = async (phoneNumber) => {
+    //     try {
+    //         // Query the Firestore collection "Profiles" for a document with the given phone number
+    //         const querySnapshot = await getDocs(query(collection(firestore, "Profiles"), where("phoneNumber", "==", phoneNumber))
+    //         );
+            
+    //         // Return true if any document matching the phone number is found, otherwise return false
+    //         return !querySnapshot.empty;
+    //     } catch (error) {
+    //         console.error("Error checking profile existence:", error);
+    //         return false;
+    //     }
+    // };
+    
+    
+
     return <FirebaseContext.Provider value={{
         isLoggedIn,
         signOut,
@@ -107,6 +123,6 @@ export const FirebaseProvider = (props) => {
         listOfHotels,
         getImageURL,
         CreateNewProfile,
-        listOfClient
+        listOfClient,
     }} > {props.children} </FirebaseContext.Provider>
 };
