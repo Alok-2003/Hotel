@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useFirebase } from '../context/Firebase';
+
+export let selectedCityGlobal = '';
 
 const HSearch = () => {
     const firebase = useFirebase();
+    const navigate = useNavigate();
+
     const [hotels, setHotels] = useState([]);
     const [selectedCity, setSelectedCity] = useState('');
     const cities = [
@@ -27,13 +32,17 @@ const HSearch = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (selectedCity) {
-            // Filter hotels based on the selected city
-            const filteredHotels = hotels.filter(hotels => hotels.location === selectedCity);
-            console.log(filteredHotels);
-            // You can now use filteredHotels for further processing or display
-        }
+        selectedCityGlobal = selectedCity; 
+        // if (selectedCity) {
+        //     const filteredHotels = hotels.filter(hotels => hotels.location === selectedCity);
+        //     console.log(filteredHotels);
+        // }
+        navigate("/requirement");
+
     };
+    // console.log(selectedCity)
+    // const filteredHotels = hotels.filter(hotels => hotels.location === selectedCity);
+    // console.log(filteredHotels);
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('src/assets/2.jpg')] bg-cover">
