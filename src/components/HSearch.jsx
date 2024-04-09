@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useFirebase } from '../context/Firebase';
 
 const HSearch = () => {
+    const firebase = useFirebase();
+    const [hotels, setHotels] = useState([]);
     const [selectedCity, setSelectedCity] = useState('');
     const cities = [
         'Agra', 'Ahmedabad', 'Ajmer', 'Allahabad', 'Amritsar', 'Aurangabad', 'Bangalore', 'Bhopal', 'Bhubaneswar', 'Chandigarh',
@@ -11,14 +14,25 @@ const HSearch = () => {
         'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam'
     ];
 
+    useEffect(() => {
+        firebase.listOfHotels().then((hotels) => setHotels(hotels.docs.map(doc => doc.data())));
+    }, []);
+
     const handleCityChange = (e) => {
         setSelectedCity(e.target.value);
     };
+    // const selectedCity = "Chandigarh";
+    // const filteredHotels = hotels.filter(hotels => hotels.location === selectedCity);
+    // console.log(filteredHotels);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can handle search logic here
-        console.log(selectedCity);
+        if (selectedCity) {
+            // Filter hotels based on the selected city
+            const filteredHotels = hotels.filter(hotels => hotels.location === selectedCity);
+            console.log(filteredHotels);
+            // You can now use filteredHotels for further processing or display
+        }
     };
 
     return (
@@ -34,9 +48,9 @@ const HSearch = () => {
                             ))}
                         </select>
                     </div>
-                    <Link to="/requirement">
-                        <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 text-lg">Selected</button>
-                    </Link>
+                    {/* <Link to="/requirement"> */}
+                    <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600 text-lg">Selected</button>
+                    {/* </Link> */}
                 </form>
             </div>
         </div>

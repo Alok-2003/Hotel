@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 const AdHotels = () => {
 
-    const firebase = useFirebase();
     const navigate = useNavigate();
+    const firebase = useFirebase();
     const [hotels, sethotel] = useState([]);
     useEffect(() => {
         firebase.listOfHotels().then((hotels) => sethotel(hotels.docs.map(doc => doc.data())));
