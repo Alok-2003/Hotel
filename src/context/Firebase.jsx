@@ -60,7 +60,7 @@ export const FirebaseProvider = (props) => {
         });
     };
 
-    const AddNewHotel = async (name, location, pincode, contact, email, event, meal, images) => {
+    const AddNewHotel = async (name, location, pincode, contact, email, event,Strength, meal, images) => {
         const imageUrls = [];
         // Loop through each selected image
         for (const image of images) {
@@ -69,7 +69,7 @@ export const FirebaseProvider = (props) => {
             imageUrls.push(uploadResult.ref.fullPath);
         }
         return await addDoc(collection(firestore, "Hotels"), {
-            name, location, pincode, contact, email, event, meal,
+            name, location, pincode, contact, email, event,Strength, meal,
             imageUrls,
             CreatorContact: user.phoneNumber,
         });

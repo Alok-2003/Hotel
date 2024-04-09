@@ -11,6 +11,7 @@ const AdCreate = () => {
         whatsappNo: '',
         email: '',
         eventType: '', // New field for type of event
+        eventStrength:"",
         meal: '', // New field for choose your meal
         images: null // New field for images
     });
@@ -25,6 +26,14 @@ const AdCreate = () => {
             [name]: value
         }));
     };
+    const handleChangeMeal = (e) => {
+        const { name } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: !prevFormData[name]  // Toggle the value of the checkbox
+        }));
+    };
+
     console.log(formData.meal)
     const handleMealChange = (e) => {
         const { value } = e.target;
@@ -37,7 +46,7 @@ const AdCreate = () => {
     const handleImageChange = (e) => {
         const files = e.target.files; // Get all selected files
         const imagesArray = Array.from(files); // Convert FileList to array
-    
+
         // Update state to store the array of selected images
         setFormData(prevState => ({
             ...prevState,
@@ -47,8 +56,8 @@ const AdCreate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { fullName, city, pincode, whatsappNo, email, eventType, meal, images } = formData;
-        await firebase.AddNewHotel(fullName, city, pincode, whatsappNo, email, eventType, meal, images);
+        const { fullName, city, pincode, whatsappNo, email, eventType,eventStrength, meal, images } = formData;
+        await firebase.AddNewHotel(fullName, city, pincode, whatsappNo, email, eventType,eventStrength, meal, images);
         toast.success("Hotel Created Succesfully");
         setFormData({
             fullName: '',
@@ -57,6 +66,7 @@ const AdCreate = () => {
             whatsappNo: '',
             email: '',
             eventType: '',
+            eventStrength: '',
             meal: '',
             images: null
         });
@@ -88,9 +98,18 @@ const AdCreate = () => {
                             </div>
                         </div>
                         <div className="flex justify-between">
-                            <div className="mb-4 w-full mr-0">
+                            <div className="mb-4 w-1/2 mr-2">
                                 <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
                                 <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
+                            </div>
+                            <div className="mb-4 w-1/2 ">
+                                <label htmlFor="eventStrength" className="block text-lg font-medium text-white">Event Gathering Strength</label>
+                                <select id="eventStrength" name="eventStrength" value={formData.eventStrength} onChange={handleChange} className="mt-1 p-2.5 border border-gray-300 rounded-md w-full text-lg">
+                                    <option value="">Select the Strength</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+                                </select>
                             </div>
                         </div>
                         <div className="flex justify-between">
@@ -121,11 +140,32 @@ const AdCreate = () => {
                                 </div>
                             </div>
 
+                            {/* {formData.meal === "Yes" && (
+                                <div className="mb-4 w-1/2 mx-2">
+                                    <label htmlFor="options" className="block text-lg font-medium text-black">Meal Options</label>
+                                    <div className='flex justify-evenly items-center gap-2 bg-white rounded-lg p-1.5 mt-1'>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input type="checkbox" name="breakfast" checked={formData.breakfast} onChange={handleChangeMeal} className="form-checkbox h-5 w-5 text-blue-600" />
+                                            <span className="ml-2 text-black">Breakfast</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input type="checkbox" name="lunch" checked={formData.lunch} onChange={handleChangeMeal} className="form-checkbox h-5 w-5 text-blue-600" />
+                                            <span className="ml-2 text-black">Lunch</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input type="checkbox" name="dinner" checked={formData.dinner} onChange={handleChangeMeal} className="form-checkbox h-5 w-5 text-blue-600" />
+                                            <span className="ml-2 text-black">Dinner</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            )} */}
+
+
+                        </div>
                             <div className="mb-4">
                                 <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label>
-                                <input type="file" id="images" name="images" accept="image/*" multiple  onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
+                                <input type="file" id="images" name="images" accept="image/*" multiple onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
-                        </div>
 
                         {/* <Link to={'/HSearch'}> */}
                         <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>

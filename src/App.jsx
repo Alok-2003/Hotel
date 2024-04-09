@@ -39,7 +39,7 @@ function App() {
             <Route path='/gathering' element={<Gatherings />} > </Route>
 
             <Route path='/catering' element={<Catering />} > </Route>
-            <Route path='/tcatering' element={<TCatering />} > </Route>
+            {/* <Route path='/tcatering' element={<TCatering />} > </Route> */}
             {/* <Route path='/verify' element={<Verify />} > </Route> */}
             <Route path='/hotels' element={<Hotels />} > </Route>
             <Route path='/hotelView' element={<HotelView />} > </Route>

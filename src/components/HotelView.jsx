@@ -53,7 +53,7 @@ const HotelView = () => {
         <div>
             {hotels.map((h, index) => (
                 <main key={index} className="  flex justify-center bg-[url('src/assets/building-night.jpg')] bg-cover ">
-                    <div className="md:w-10/12 backdrop-blur-sm bg-white/50 rounded-3xl my-16">
+                    <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 rounded-3xl my-16">
                         {/* Image */}
                         <div className="rounded-full container mx-auto   ">
                             {isSmallDisplay ? (
@@ -63,6 +63,7 @@ const HotelView = () => {
                                     ))}
                                 </Carousel>
                             ) : (
+                                // <ImageGrid className="md:h-48" />
                                 <ImageGrid className="md:h-48" />
                             )}
                         </div>

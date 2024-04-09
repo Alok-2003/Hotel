@@ -4,16 +4,16 @@ import { useFirebase } from '../context/Firebase'
 
 const ImageGrid = () => {
 
-  const firebase = useFirebase();
-  const [hotels, sethotel] = useState([]);
-  useEffect(() => {
-    firebase.listOfHotels().then((hotels) => sethotel(hotels.docs.map(doc => doc.data())));
-  }, []);
+  // const firebase = useFirebase();
+  // const [hotels, sethotel] = useState([]);
+  // useEffect(() => {
+  //   firebase.listOfHotels().then((hotels) => sethotel(hotels.docs.map(doc => doc.data())));
+  // }, []);
   
   // const [url, setURL] = useState(null);
-  const URL= hotels[0];
-  const url1=URL.imageUrls[0];
-  console.log(url1)
+  // const URL= hotels[0];
+  // const url1=URL.imageUrls[0];
+  // console.log(url1)
   // useEffect(() => {
   //   firebase.getImageURL(hotels[0].imageUrls[0]).then((url) => setURL(url));
   // }, []);
@@ -22,7 +22,7 @@ const ImageGrid = () => {
     <div className="grid grid-cols-2 gap-1 ">
       {/* Big Image */}
       <div>
-        <img src={url1} alt="Big" className="w-full  rounded-l-3xl " />
+        <img src={"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/07/d7/fb/the-grand-ballroom.jpg?w=1200&h=-1&s=1"} alt="Big" className="w-full  rounded-l-3xl " />
       </div>
       {/* Small Images */}
       <div className="grid grid-cols-2 gap-1  p-[0.75px]">
