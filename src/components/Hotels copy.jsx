@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useFirebase } from '../context/Firebase';
 import { selectedCityGlobal } from './HSearch';
-import { selectedEventGlobal } from './Requirement';
+import { selectedCardGlobal } from './Requirement';
 import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
 
@@ -13,28 +13,33 @@ const Hotels = () => {
     const firebase = useFirebase();
     const navigate = useNavigate();
     const [hotels, sethotel] = useState([]);
-    const city = selectedCityGlobal;
-    const event = selectedEventGlobal;
-    const gathering = selectedGatheringGlobal;
-    const catering = selectedCateringGlobal;
+    const selectedValues = [selectedCityGlobal, selectedCardGlobal, selectedGatheringGlobal, selectedCateringGlobal];
 
 
     useEffect(() => {
         firebase.listOfHotels().then((hotels) => sethotel(hotels.docs.map(doc => doc.data())));
     }, []);
 
-    const filterHotels = (hotels, city, card, gathering, catering) => {
+    // const filterHotels = (hotels, city, card, gathering, catering) => {
+    //     return hotels.filter(hotel => {
+    //         const isSelectedCity = !city || hotel.location === city;
+    //         const isSelectedCard = !card || hotel.event === card;
+    //         const isSelectedGathering = !gathering || hotel.Strength === gathering;
+    //         const isSelectedCatering = !catering || hotel.meal === catering;
+    //         return isSelectedCity && isSelectedCard && isSelectedGathering && isSelectedCatering;
+    //     });
+    // };
+    
+    // const filteredHotels = filterHotels(hotels, selectedCityGlobal, selectedCardGlobal, selectedGatheringGlobal, selectedCateringGlobal);
+    const filterHotels = (hotels, selectedValues) => {
         return hotels.filter(hotel => {
-            const isSelectedCity = !city || hotel.location === city;
-            const isSelectedCard = !card || hotel.event === card;
-            const isSelectedGathering = !gathering || hotel.Strength === gathering;
-            const isSelectedCatering = !catering || hotel.meal === catering;
-            return isSelectedCity && isSelectedCard && isSelectedGathering && isSelectedCatering;
+            return selectedValues.some(value => value === hotel.location || value === hotel.event || value === hotel.Strength || value === hotel.meal);
         });
     };
+    
+    const filteredHotels = filterHotels(hotels, selectedValues);
 
-    const filteredHotels = filterHotels(hotels, selectedCityGlobal, selectedEventGlobal, selectedGatheringGlobal, selectedCateringGlobal);
-
+    // Check if any hotels were found after filtering
     if (filteredHotels.length === 0) {
         // Render a message indicating that no hotels were found
         return (
@@ -44,7 +49,7 @@ const Hotels = () => {
         );
     }
 
-    // console.log(hotels, selectedCityGlobal, selectedCardGlobal, selectedGatheringGlobal, selectedCateringGlobal)
+    console.log(hotels, selectedCityGlobal, selectedCardGlobal, selectedGatheringGlobal, selectedCateringGlobal)
     return (
         <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center '>
             <div className='w-10/12   mt-20 '>

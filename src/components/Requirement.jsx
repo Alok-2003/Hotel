@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export let selectedCardGlobal = '';
+export let selectedEventGlobal = '';
 
 const Requirement = () => {
     const [selectedCard, setSelectedCard] = useState(null); // State to store the selected card
@@ -17,8 +17,8 @@ const Requirement = () => {
 
     const handleCardSelect = (card) => {
         setSelectedCard(card);
-        selectedCardGlobal = card.title; // Update selectedCardGlobal with the new value
-        console.log(selectedCardGlobal); // Log the selected card globally
+        selectedEventGlobal = card.title; // Update selectedEventGlobal with the new value
+        console.log(selectedEventGlobal); // Log the selected card globally
     };
 
     return (
