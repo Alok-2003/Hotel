@@ -12,17 +12,19 @@ import { selectedCateringGlobal } from './Catering';
 const Hotels = () => {
     const firebase = useFirebase();
     const navigate = useNavigate();
-    const [hotels, sethotel] = useState([]);
+    const [hotels, setHotels] = useState([]);
     const city = selectedCityGlobal;
     const event = selectedEventGlobal;
     const gathering = selectedGatheringGlobal;
     const catering = selectedCateringGlobal;
-
+    const [url, setURL] = useState(null);
 
     useEffect(() => {
-        firebase.listOfHotels().then((hotels) => sethotel(hotels.docs.map(doc => doc.data())));
+        firebase.listOfHotels().then((hotels) => setHotels(hotels.docs.map(doc => doc.data())));
     }, []);
 
+
+    // console.log(hotels[0].imageUrls[0])
     const filterHotels = (hotels, city, card, gathering, catering) => {
         return hotels.filter(hotel => {
             const isSelectedCity = !city || hotel.location === city;
@@ -34,43 +36,43 @@ const Hotels = () => {
     };
 
     const filteredHotels = filterHotels(hotels, selectedCityGlobal, selectedEventGlobal, selectedGatheringGlobal, selectedCateringGlobal);
+    // useEffect(() => {
+    //     if (filteredHotels.length > 0) {
+    //         firebase.getImageURL(filteredHotels[2].imageUrls[0]).then((url) => setURL(url));
+    //     }
+    // }, [filteredHotels]);
+    useEffect(() => {
+        if (filteredHotels.length > 0) {
+            Promise.all(filteredHotels.map(hotel => firebase.getImageURL(hotel.imageUrls[2])))
+                .then(urls => setURL(urls));
+        }
+    }, [filteredHotels]);
 
     if (filteredHotels.length === 0) {
         // Render a message indicating that no hotels were found
         return (
-            <div className="h-full flex justify-center items-center">
+            <div className="h-10 flex justify-center items-center">
                 <h1>No hotels found</h1>
             </div>
         );
     }
 
-    // console.log(hotels, selectedCityGlobal, selectedCardGlobal, selectedGatheringGlobal, selectedCateringGlobal)
+
     return (
-        <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center '>
-            <div className='w-10/12   mt-20 '>
-                <div className=" backdrop-blur-sm bg-white/50 rounded-3xl font-bold text-2xl  h-12 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
-                    {/* Image */}
-                    <h1> Hotel Name </h1>
-                    <h1> Event:</h1>
-                    <h1> Catering:</h1>
-                    <h1> Location:</h1>
-                    <h1> Contact:</h1>
-                    <Link to={"/admin_create"}>
-                        <button className='bg-blue-500  px-2 py-1 rounded-xl' >Create</button>
-                    </Link>
-                </div>
-                {filteredHotels.map((h, index) => (
-                    <main key={index} className="   justify-center">
-                        <div className=" backdrop-blur-sm bg-white/50 rounded-3xl text-xl my-4 h-16 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
+        <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center'>
+            <div className='w-11/12  mt-20 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4'>
+                {filteredHotels.map((hotel, index) => (
+                    <Link key={index} to={`/hotel/${hotel.name}`}>
+                        <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg ">
                             {/* Image */}
-                            <h1> {h.name} </h1>
-                            <h1> {h.event} </h1>
-                            <h1> {h.meal} </h1>
-                            <h1> {h.location} </h1>
-                            <h1> {h.contact}</h1>
-                            <button className='bg-teal-400   px-4 py-2 rounded-xl' >Edit</button>
+                            {/* <img src={url} alt={hotel.name} className="w-full h-64 object-cover" /> */}
+                            <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover" />
+                            {/* Hotel name */}
+                            <div className="my-1 mx-4">
+                                <div className="font-bold text-2xl ">{hotel.name}</div>
+                            </div>
                         </div>
-                    </main>
+                    </Link>
                 ))}
             </div>
         </div>

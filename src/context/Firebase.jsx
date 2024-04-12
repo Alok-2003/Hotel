@@ -90,29 +90,19 @@ export const FirebaseProvider = (props) => {
         return getDocs(collection(firestore, "Profiles"))
     };
 
-    const getImageURL = async (paths) => {
-        // Array to store promises for fetching download URLs
-        const imageURLPromises = paths.map(path => getDownloadURL(ref(storage, path)));
-        console.log(imageURLPromises)
-        // Wait for all promises to resolve
-        const imageURLs = await Promise.all(imageURLPromises);
+    // const getImageURL = async (paths) => {
+    //     // Array to store promises for fetching download URLs
+    //     const imageURLPromises = paths.map(path => getDownloadURL(ref(storage, path)));
+    //     console.log(imageURLPromises)
+    //     // Wait for all promises to resolve
+    //     const imageURLs = await Promise.all(imageURLPromises);
 
-        return imageURLs;
-    };
-
-    // const checkProfileExists = async (phoneNumber) => {
-    //     try {
-    //         // Query the Firestore collection "Profiles" for a document with the given phone number
-    //         const querySnapshot = await getDocs(query(collection(firestore, "Profiles"), where("phoneNumber", "==", phoneNumber))
-    //         );
-            
-    //         // Return true if any document matching the phone number is found, otherwise return false
-    //         return !querySnapshot.empty;
-    //     } catch (error) {
-    //         console.error("Error checking profile existence:", error);
-    //         return false;
-    //     }
+    //     return imageURLs;
     // };
+    const getImageURL = (path) =>{
+        return getDownloadURL(ref(storage,path));
+    }
+
     
     
 

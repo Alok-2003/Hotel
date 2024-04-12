@@ -11,13 +11,19 @@ const AdCreate = () => {
         whatsappNo: '',
         email: '',
         eventType: '', // New field for type of event
-        eventStrength:"",
+        eventStrength: "",
         meal: '', // New field for choose your meal
         images: null // New field for images
     });
 
     const firebase = useFirebase();
 
+    const [selectedCity, setSelectedCity] = useState('');
+    const cities = ['Agra', 'Ahmedabad', 'Ajmer', 'Allahabad', 'Amritsar', 'Aurangabad', 'Bangalore', 'Bhopal', 'Bhubaneswar', 'Chandigarh',
+    'Chennai', 'Coimbatore', 'Delhi', 'Faridabad', 'Ghaziabad', 'Goa', 'Gurgaon', 'Guwahati', 'Hyderabad', 'Indore',
+    'Jaipur', 'Jalandhar', 'Jammu', 'Jamnagar', 'Jamshedpur', 'Jodhpur', 'Kanpur', 'Kochi', 'Kolkata', 'Lucknow',
+    'Ludhiana', 'Madurai', 'Mangalore', 'Mumbai', 'Nagpur', 'Nashik', 'Noida', 'Patna', 'Pune', 'Rajkot',
+    'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam']; // Replace with your list of cities
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,6 +32,12 @@ const AdCreate = () => {
             [name]: value
         }));
     };
+
+    const handleCityChange = (e) => {
+        setSelectedCity(e.target.value);
+        handleChange(e); // Call handleChange to update the form data
+    };
+
     const handleChangeMeal = (e) => {
         const { name } = e.target;
         setFormData(prevFormData => ({
@@ -56,9 +68,9 @@ const AdCreate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { fullName, city, pincode, whatsappNo, email, eventType,eventStrength, meal, images } = formData;
-        await firebase.AddNewHotel(fullName, city, pincode, whatsappNo, email, eventType,eventStrength, meal, images);
-        toast.success("Hotel Created Succesfully");
+        const { fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images } = formData;
+        await firebase.AddNewHotel(fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images);
+        toast.success("Hotel Created Successfully");
         setFormData({
             fullName: '',
             city: '',
@@ -83,25 +95,32 @@ const AdCreate = () => {
                             <label htmlFor="fullName" className="block text-lg font-medium text-white">Hotel Name</label>
                             <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                         </div>
-                        <div className="flex justify-between">
-                            <div className="mb-4 w-full">
+                        <div className="mb-4 flex justify-between">
+                            <div className='w-1/2'>
                                 <label htmlFor="city" className="block text-lg font-medium text-white">Location</label>
-                                <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} placeholder="Enter link" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
-                            </div>
-                            <div className="mb-4 w-full mx-4">
+                                <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-[11px] border border-gray-300 rounded-md w-full">
+                                    <option value="">Name of cities</option>
+                                    {cities.map((city, index) => (
+                                        <option key={index} value={city}>{city}</option>
+                                    ))}
+                                </select>
+                            </div >
+                            <div className=" w-1/2">
                                 <label htmlFor="pincode" className="block text-lg font-medium text-white">Pincode</label>
                                 <input type="number" id="pincode" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Enter Pincode" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
-                            <div className="mb-4 w-full">
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="mb-4 w-1/2 ">
                                 <label htmlFor="whatsappNo" className="block text-lg font-medium text-white">Hotel Contact No</label>
                                 <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
-                        </div>
-                        <div className="flex justify-between">
                             <div className="mb-4 w-1/2 mr-2">
                                 <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
                                 <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
+                        </div>
+                        <div className="flex justify-between">
                             <div className="mb-4 w-1/2 ">
                                 <label htmlFor="eventStrength" className="block text-lg font-medium text-white">Event Gathering Strength</label>
                                 <select id="eventStrength" name="eventStrength" value={formData.eventStrength} onChange={handleChange} className="mt-1 p-2.5 border border-gray-300 rounded-md w-full text-lg">
@@ -111,8 +130,6 @@ const AdCreate = () => {
                                     <option value="Large">Large</option>
                                 </select>
                             </div>
-                        </div>
-                        <div className="flex justify-between">
                             <div className="mb-4 w-1/2 ">
                                 <label htmlFor="eventType" className="block text-lg font-medium text-white">Event Service Provided</label>
                                 <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className="mt-1 p-2.5 border border-gray-300 rounded-md w-full text-lg">
@@ -125,7 +142,12 @@ const AdCreate = () => {
                                     <option value="Anniversary">Anniversary</option>
                                 </select>
                             </div>
-
+                        </div>
+                        <div className="flex justify-between">
+                        <div className="mb-4">
+                            <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label>
+                            <input type="file" id="images" name="images" accept="image/*" multiple onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
+                        </div>
                             <div className="mb-4 w-1/2 mx-2">
                                 <label htmlFor="meal" className="block text-lg font-medium text-black">Catering Service</label>
                                 <div className='flex justify-evenly items-center gap-2 bg-white rounded-lg p-1.5 mt-1'>
@@ -139,37 +161,9 @@ const AdCreate = () => {
                                     </label>
                                 </div>
                             </div>
-
-                            {/* {formData.meal === "Yes" && (
-                                <div className="mb-4 w-1/2 mx-2">
-                                    <label htmlFor="options" className="block text-lg font-medium text-black">Meal Options</label>
-                                    <div className='flex justify-evenly items-center gap-2 bg-white rounded-lg p-1.5 mt-1'>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input type="checkbox" name="breakfast" checked={formData.breakfast} onChange={handleChangeMeal} className="form-checkbox h-5 w-5 text-blue-600" />
-                                            <span className="ml-2 text-black">Breakfast</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input type="checkbox" name="lunch" checked={formData.lunch} onChange={handleChangeMeal} className="form-checkbox h-5 w-5 text-blue-600" />
-                                            <span className="ml-2 text-black">Lunch</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input type="checkbox" name="dinner" checked={formData.dinner} onChange={handleChangeMeal} className="form-checkbox h-5 w-5 text-blue-600" />
-                                            <span className="ml-2 text-black">Dinner</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            )} */}
-
-
                         </div>
-                            <div className="mb-4">
-                                <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label>
-                                <input type="file" id="images" name="images" accept="image/*" multiple onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
-                            </div>
-
-                        {/* <Link to={'/HSearch'}> */}
+                        
                         <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
-                        {/* </Link> */}
                     </form>
                 </div>
             </div>
