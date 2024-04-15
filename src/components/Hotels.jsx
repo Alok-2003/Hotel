@@ -22,9 +22,7 @@ const Hotels = () => {
     useEffect(() => {
         firebase.listOfHotels().then((hotels) => setHotels(hotels.docs.map(doc => doc.data())));
     }, []);
-
-
-    // console.log(hotels[0].imageUrls[0])
+    // console.log(hotels)
     const filterHotels = (hotels, city, card, gathering, catering) => {
         return hotels.filter(hotel => {
             const isSelectedCity = !city || hotel.location === city;
@@ -36,11 +34,6 @@ const Hotels = () => {
     };
 
     const filteredHotels = filterHotels(hotels, selectedCityGlobal, selectedEventGlobal, selectedGatheringGlobal, selectedCateringGlobal);
-    // useEffect(() => {
-    //     if (filteredHotels.length > 0) {
-    //         firebase.getImageURL(filteredHotels[2].imageUrls[0]).then((url) => setURL(url));
-    //     }
-    // }, [filteredHotels]);
     useEffect(() => {
         if (filteredHotels.length > 0) {
             Promise.all(filteredHotels.map(hotel => firebase.getImageURL(hotel.imageUrls[2])))
@@ -56,23 +49,32 @@ const Hotels = () => {
             </div>
         );
     }
-
+    console.log(hotels)
 
     return (
         <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center'>
             <div className='w-11/12  mt-20 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4'>
                 {filteredHotels.map((hotel, index) => (
-                    <Link key={index} to={`/hotel/${hotel.name}`}>
+                    // <Link key={index} to={`/hotel/${hotel.name}`}>
+                    //     <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg ">
+                    //         {/* Image */}
+                    //         {/* <img src={url} alt={hotel.name} className="w-full h-64 object-cover" /> */}
+                    //         <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover" />
+                    //         {/* Hotel name */}
+                    //         <div className="my-1 mx-4">
+                    //             <div className="font-bold text-2xl ">{hotel.name}</div>
+                    //         </div>
+                    //     </div>
+                    // </Link>
+                    <Link key={index} to={`/hotelView/${hotel.id}`}>
                         <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg ">
-                            {/* Image */}
-                            {/* <img src={url} alt={hotel.name} className="w-full h-64 object-cover" /> */}
                             <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover" />
-                            {/* Hotel name */}
                             <div className="my-1 mx-4">
                                 <div className="font-bold text-2xl ">{hotel.name}</div>
                             </div>
                         </div>
                     </Link>
+
                 ))}
             </div>
         </div>

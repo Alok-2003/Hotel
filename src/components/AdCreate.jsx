@@ -69,7 +69,8 @@ const AdCreate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images } = formData;
-        await firebase.AddNewHotel(fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images);
+        const id = Date.now() + Math.floor(Math.random() * 1000);
+        await firebase.AddNewHotel(id,fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images);
         toast.success("Hotel Created Successfully");
         setFormData({
             fullName: '',

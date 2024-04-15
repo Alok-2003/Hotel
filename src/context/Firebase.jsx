@@ -6,7 +6,7 @@ import {
     signOut
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -60,7 +60,7 @@ export const FirebaseProvider = (props) => {
         });
     };
 
-    const AddNewHotel = async (name, location, pincode, contact, email, event,Strength, meal, images) => {
+    const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images) => {
         const imageUrls = [];
         // Loop through each selected image
         for (const image of images) {
@@ -69,7 +69,7 @@ export const FirebaseProvider = (props) => {
             imageUrls.push(uploadResult.ref.fullPath);
         }
         return await addDoc(collection(firestore, "Hotels"), {
-            name, location, pincode, contact, email, event,Strength, meal,
+            id, name, location, pincode, contact, email, event, Strength, meal,
             imageUrls,
             CreatorContact: user.phoneNumber,
         });
@@ -99,12 +99,34 @@ export const FirebaseProvider = (props) => {
 
     //     return imageURLs;
     // };
-    const getImageURL = (path) =>{
-        return getDownloadURL(ref(storage,path));
+    const getImageURL = (path) => {
+        return getDownloadURL(ref(storage, path));
     }
 
+    const getHotelById = async (hotelId) => {
+        try {
+            if (!hotelId) {
+                console.error("Hotel ID is undefined or null");
+                return null;
+            }
     
+            // Get the hotel document by its ID
+            const hotelDoc = doc(firestore, "Hotels", hotelId);
+            const hotelSnapshot = await getDoc(hotelDoc);
     
+            if (hotelSnapshot.exists()) {
+                // Return the data of the document if it exists
+                return hotelSnapshot.data();
+            } else {
+                console.log("No such document!");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error getting hotel document:", error);
+            throw error; // Throw the error for handling in the calling code
+        }
+    };
+
 
     return <FirebaseContext.Provider value={{
         isLoggedIn,
@@ -114,5 +136,6 @@ export const FirebaseProvider = (props) => {
         getImageURL,
         CreateNewProfile,
         listOfClient,
+        getHotelById
     }} > {props.children} </FirebaseContext.Provider>
 };

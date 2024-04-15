@@ -42,6 +42,7 @@ function App() {
             {/* <Route path='/tcatering' element={<TCatering />} > </Route> */}
             {/* <Route path='/verify' element={<Verify />} > </Route> */}
             <Route path='/hotels' element={<Hotels />} > </Route>
+            <Route path="/hotelView/:hotelId" element={<HotelView />} />
             <Route path='/hotelView' element={<HotelView />} > </Route>
             <Route path='/fform' element={<FForm />} > </Route>
             <Route path='/admin_create' element={<AdCreate />} > </Route>
