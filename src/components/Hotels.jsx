@@ -49,7 +49,7 @@ const Hotels = () => {
             </div>
         );
     }
-    console.log(hotels)
+    // console.log(hotels)
 
     return (
         <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center'>

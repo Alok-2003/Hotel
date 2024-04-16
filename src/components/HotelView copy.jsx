@@ -28,7 +28,6 @@ const HotelView = () => {
     // console.log(hotels)
 
     const [isSmallDisplay, setIsSmallDisplay] = useState(false);
-
     useEffect(() => {
         const handleResize = () => {
             setIsSmallDisplay(window.innerWidth < 768);
