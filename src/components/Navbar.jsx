@@ -14,7 +14,7 @@ const Nav = () => {
 
     const handleLogout = () => {
         firebase.signOut();
-        window.location.href = '/login'; // Redirect to login page after logout
+        window.location.href = '/'; // Redirect to login page after logout
     };
 
     const content = (
@@ -31,7 +31,7 @@ const Nav = () => {
                         <li className="" >Logout</li>
                     </Link>
                 ) : (
-                    <Link to="/login">
+                    <Link to="/">
                         <li className="">Login</li>
                     </Link>
                 )}
@@ -55,11 +55,11 @@ const Nav = () => {
                                 <li className="">About</li>
                             </Link >
                             {firebase.isLoggedIn ? (
-                                <Link to="/login" onClick={handleLogout} >
+                                <Link to="/" onClick={handleLogout} >
                                     <li className="" >Logout</li>
                                 </Link>
                             ) : (
-                                <Link to="/login">
+                                <Link to="/">
                                     <li className="">Login</li>
                                 </Link>
                             )}

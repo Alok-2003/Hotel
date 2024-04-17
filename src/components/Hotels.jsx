@@ -10,6 +10,11 @@ import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
 
 const Hotels = () => {
+
+    console.log(selectedCityGlobal)
+    console.log(selectedEventGlobal)
+    console.log(selectedGatheringGlobal)
+    console.log(selectedCateringGlobal)
     const firebase = useFirebase();
     const navigate = useNavigate();
     const [hotels, setHotels] = useState([]);
@@ -41,16 +46,23 @@ const Hotels = () => {
         }
     }, [filteredHotels]);
 
-    if (filteredHotels.length === 0) {
-        // Render a message indicating that no hotels were found
-        return (
-            <div className="h-10 flex justify-center items-center">
-                <h1>No hotels found</h1>
-            </div>
-        );
-    }
-    // console.log(hotels)
+    // console.log(filteredHotels)
+    // if (filteredHotels.length === 0) {
+    //     return (
+    //         <div className="h-10 flex justify-center items-center">
+    //             <h1>No hotel found</h1>
+    //         </div>
+    //     );
+    // }
+    // else {
+    //     return (
+    //         <div className="h-10 flex justify-center items-center">
+    //             <h1>No hotel found</h1>
+    //         </div>
+    //     );
+    // }
 
+    // console.log(hotels)
     return (
         <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center'>
             <div className='w-11/12  mt-20 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4'>

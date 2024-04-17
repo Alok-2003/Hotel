@@ -41,6 +41,7 @@ const HSearch = () => {
 
     };
     // console.log(selectedCity)
+    // console.log(selectedCityGlobal)
     // const filteredHotels = hotels.filter(hotels => hotels.location === selectedCity);
     // console.log(filteredHotels);
 

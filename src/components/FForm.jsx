@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { selectedCityGlobal } from './HSearch';
+import { selectedEventGlobal } from './Requirement';
+import { selectedGatheringGlobal } from './Gatherings';
+import { selectedCateringGlobal } from './Catering';
 
 const FForm = () => {
+    const [selectedCity, setSelectedCity] = useState('');
 
     const [formData, setFormData] = useState({
         fullName: '',
-        city: '',
+        city: selectedCityGlobal,
         pincode: '',
         whatsappNo: '',
         email: '',
-        eventType: '', // New field for type of event
-        gatheringStrength: '', // New field for gathering strength
+        eventType: selectedEventGlobal, // New field for type of event
+        gatheringStrength: selectedGatheringGlobal, // New field for gathering strength
         meal: [] // New field for choose your meal
     });
+
+    const handleCityChange = (e) => {
+        setSelectedCity(e.target.value);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,25 +31,32 @@ const FForm = () => {
         }));
     };
 
-    const handleMealChange = (e) => {
-        const { options } = e.target;
-        const selectedMeals = [];
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].selected) {
-                selectedMeals.push(options[i].value);
-            }
-        }
-        setFormData(prevState => ({
-            ...prevState,
-            meal: selectedMeals
-        }));
-    };
+    // const handleMealChange = (e) => {
+    //     const { options } = e.target;
+    //     const selectedMeals = [];
+    //     for (let i = 0; i < options.length; i++) {
+    //         if (options[i].selected) {
+    //             selectedMeals.push(options[i].value);
+    //         }
+    //     }
+    //     setFormData(prevState => ({
+    //         ...prevState,
+    //         meal: selectedMeals
+    //     }));
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // You can handle form submission logic here
         console.log(formData);
     };
+    const cities = [
+        'Agra', 'Ahmedabad', 'Ajmer', 'Allahabad', 'Amritsar', 'Aurangabad', 'Bangalore', 'Bhopal', 'Bhubaneswar', 'Chandigarh',
+        'Chennai', 'Coimbatore', 'Delhi', 'Faridabad', 'Ghaziabad', 'Goa', 'Gurgaon', 'Guwahati', 'Hyderabad', 'Indore',
+        'Jaipur', 'Jalandhar', 'Jammu', 'Jamnagar', 'Jamshedpur', 'Jodhpur', 'Kanpur', 'Kochi', 'Kolkata', 'Lucknow',
+        'Ludhiana', 'Madurai', 'Mangalore', 'Mumbai', 'Nagpur', 'Nashik', 'Noida', 'Patna', 'Pune', 'Rajkot',
+        'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam'
+    ];
 
     return (
         <div>
@@ -54,8 +70,13 @@ const FForm = () => {
                         </div>
                         <div className="flex justify-between">
                             <div className="mb-4 w-full">
-                                <label htmlFor="city" className="block text-lg font-medium text-white">City</label>
-                                <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} placeholder="Enter City" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
+                            <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label>
+                                <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-2 border border-gray-300 rounded-md w-full">
+                                    <option value="selectedCityGlobal">selectedCityGlobal</option>
+                                    {cities.map((city, index) => (
+                                        <option key={index} value={city}>{city}</option>
+                                    ))}
+                                </select>
                             </div>
                             <div className="mb-4 w-full mx-4">
                                 <label htmlFor="pincode" className="block text-lg font-medium text-white">Pincode</label>

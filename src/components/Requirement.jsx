@@ -17,6 +17,7 @@ const Requirement = () => {
 
     const handleCardSelect = (card) => {
         setSelectedCard(card);
+        console.log(card)
         selectedEventGlobal = card.title; // Update selectedEventGlobal with the new value
         console.log(selectedEventGlobal); // Log the selected card globally
     };

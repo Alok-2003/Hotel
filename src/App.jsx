@@ -18,6 +18,7 @@ import AdHotels from './components/AdHotels';
 import CreateProfile from './components/CreateProfile';
 import { useFirebase } from './context/Firebase';
 import CliProfile from './components/CliProfile';
+import AdInstrested from './components/AdIntrested';
 
 function App() {
   const firebase = useFirebase();
@@ -30,7 +31,7 @@ function App() {
       {/* <Router> */}
       <Nav />
       <Routes>
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
         {/* {firebase.isLoggedIn ? ( */}
           <>
             <Route path='/CProfile' element={<CreateProfile />} > </Route>
@@ -47,6 +48,7 @@ function App() {
             <Route path='/fform' element={<FForm />} > </Route>
             <Route path='/admin_create' element={<AdCreate />} > </Route>
             <Route path='/admin_hotels' element={<AdHotels />} > </Route>
+            <Route path='/client_intrested' element={<AdInstrested />} > </Route>
             <Route path='/Client_Profile' element={<CliProfile />} > </Route>
           </>
         {/* ) : (
