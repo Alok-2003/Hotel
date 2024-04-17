@@ -23,7 +23,7 @@ const Requirement = () => {
     };
 
     return (
-        <div className='md:min-h-[100vh]    flex justify-center items-center mb-6 md:mb-0 bg-[url("src/assets/Requirement.jpg")] bg-cover'>
+        <div className='md:min-h-[100vh]    flex justify-center items-center mb-6 md:mb-0 bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_7.jpg?alt=media&token=d7cbfd92-a0e0-4db2-888f-263507f38fdf")] bg-cover'>
             <div className=''>
                 <div className="flex justify-center  ">
                     <div className="flex font-bold font-[gilroy] text-white md:text-5xl text-3xl leading-8 h-6 mt-4 mb-8">What is your requirement</div>

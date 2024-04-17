@@ -71,7 +71,7 @@ const Gatherings = () => {
     console.log(selectedGatheringGlobal)
 
     return (
-        <div className='md:min-h-[100vh]   min-h-[86vh] flex justify-center items-center md:mb-0 mb-6 bg-[url("src/assets/1.jpg")] bg-cover'>
+        <div className='md:min-h-[100vh]   min-h-[86vh] flex justify-center items-center md:mb-0 mb-6 bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_1.jpg?alt=media&token=3d8d91eb-7773-4aa6-b1a7-f6b45604213c")] bg-cover'>
             <div className='w-4/5 '>
                 <div className="flex justify-center ">
                     <div className="flex font-bold text-white md:text-5xl leading-8  h-6 md:mt-8 md:mb-8 mt-20 mb-6 text-[26px]">Choose gathering strength</div>

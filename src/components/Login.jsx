@@ -127,7 +127,7 @@ const Login = () => {
     // bg-emerald-500
     return (
         <>
-            <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('src/assets/background_img.png')] bg-cover">
+            <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_5.png?alt=media&token=57abe584-558a-4ed2-82f1-cb6bdbf3ef0a')] bg-cover">
                 <Toaster toastOptions={{ duration: 4000 }} />
                 <div className="backdrop-blur-sm bg-white/30 p-10 rounded-3xl">
                     <div className="flex justify-center items-center mb-4">
