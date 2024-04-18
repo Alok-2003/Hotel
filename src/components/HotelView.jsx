@@ -97,12 +97,12 @@ const HotelView = () => {
                                 <span className='font-bold' >Wonderful</span>
                             </div>
 
-                            <a href="#" className="text-blue-500  mb-4 inline-block ">See all 101 reviews &gt;</a>
+                            <a href="#" className="text-blue-500 mb-2 md:mb-4 inline-block ">See all 101 reviews &gt;</a>
 
                             <div className="flex justify-center md:justify-normal ">
-                                <ul className="mb-4 grid grid-cols-2 gap-8 md:gap-28 ">
+                                <ul className="mb-4 grid grid-cols-2 gap-12 md:gap-28 text- ">
                                     <div>
-                                        <li className='flex items-center text- my-1'><span className="mr-2 text-2xl"><MdConnectingAirports /></span>Airport transfer</li>
+                                        <li className='flex items-center text- my-1'><span className="mr-2 text-xl"><MdConnectingAirports/></span>Airport transfer</li>
                                         <li className='flex items-center text- my-1'><span className="mr-2 text-xl"><TbAirConditioning /></span>Air conditioning</li>
                                         <li className='flex items-center text- my-1'><span className="mr-2 text-xl"><LuParkingCircle /></span>Free parking</li>
                                     </div>
@@ -119,7 +119,7 @@ const HotelView = () => {
 
                         <div className='rounded-full'>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.043813144539!2d76.78222047466204!3d30.745270785028293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a09098a47aa89%3A0xc0ef30e113006e91!2sTaj%20Chandigarh!5e0!3m2!1sen!2sin!4v1710182425959!5m2!1sen!2sin" width="330" height="250" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-                            <p className="text-gray-700 my-2 text-xl font-bold"> Check out the area </p>
+                            <p className="mt-4 md:mt-0 my-2 text-xl font-bold"> Check out the area </p>
                             <ul className="mb-2">
                                 {locations.map((location, index) => (
                                     <li key={index} className="flex items-center mb-1">
