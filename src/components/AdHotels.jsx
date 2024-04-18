@@ -20,9 +20,9 @@ const AdHotels = () => {
     };
 
     return (
-        <div className='h-full font-[gilroy] bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center '>
-            <div className='w-10/12   mt-20 '>
-                <div className=" backdrop-blur-sm bg-white/50 rounded-3xl font-bold text-2xl  h-12 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
+        <div className='h-full gilroyMed bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center '>
+            <div className='md:w-10/12 w-[95%]  mt-20 '>
+                <div className=" backdrop-blur-sm bg-white/50 rounded-lg md:rounded-3xl font-bold md:text-2xl text-[0.6rem] h-8 md:h-12 grid grid-cols-6 md:gap-4 justify-items-center items-center px-2 md:px-4">
                     {/* Image */}
                     <h1> Hotel Name </h1>
                     <h1> Event:</h1>
@@ -30,26 +30,25 @@ const AdHotels = () => {
                     <h1> Location:</h1>
                     <h1> Contact:</h1>
                     <Link to={"/admin_create"}>
-                        <button className='bg-blue-500  px-2 py-1 rounded-xl' >Create</button>
+                        <button className='bg-blue-500 px-1 md:px-2 md:py-1 rounded-xl' >Create</button>
                     </Link>
-
                 </div>
                 {hotels.map((h, index) => (
 
                     <main key={index} className="   justify-center">
-                        <div className=" backdrop-blur-sm bg-white/50 rounded-3xl text-xl my-4 h-16 grid grid-cols-6 gap-4 justify-items-center items-center px-4">
+                        <div className=" backdrop-blur-sm bg-white/50 rounded-lg md:rounded-3xl text-[0.6rem] md:text-xl my-4 h-10 md:h-16 grid grid-cols-6 md:gap-4 justify-items-center items-center px-2 md:px-4">
                             {/* Image */}
                             <h1> {h.name} </h1>
                             <h1> {h.event} </h1>
                             <h1> {h.meal} </h1>
                             <h1> {h.location} </h1>
                             <h1> {h.contact}</h1>
-                            <button className='bg-teal-400   px-4 py-2 rounded-xl' >Edit</button>
+                            <button className='bg-teal-400   px-2 md:px-2 md:py-1 rounded-xl' >Edit</button>
 
                         </div>
                     </main>
                 ))}
-                <button className='bg-yellow-400  px-4 py-1 rounded-xl text-xl font-bold' onClick={handliViewProfile} >Client Profile</button>
+                <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-1 md:py-1 rounded-xl md:text-xl text-sm font-bold' onClick={handliViewProfile} >Client Profile</button>
 
             </div>
 

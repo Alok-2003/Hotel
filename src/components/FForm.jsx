@@ -69,14 +69,14 @@ const FForm = () => {
     return (
         <div>
             <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('src/assets/2.jpg')] bg-cover">
-                <div className="backdrop-blur-sm bg-white/20 p-8 rounded-3xl shadow-lg w-2/3">
+                <div className="backdrop-blur-sm bg-white/20 md:p-8 p-4 rounded-3xl shadow-lg md:w-2/3 w-[85%] mb-8">
                     <h2 className="text-4xl font-bold mb-2 text-black">Verify details</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="fullName" className="block text-lg font-medium text-white">Full Name</label>
                             <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                         </div>
-                        <div className="flex justify-between">
+                        <div className="md:flex justify-between">
                             <div className="mb-4 w-full">
                                 <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label>
                                 <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-2 border border-gray-300 rounded-md w-full">
@@ -86,7 +86,7 @@ const FForm = () => {
                                     ))}
                                 </select>
                             </div>
-                            <div className="mb-4 w-full mx-4">
+                            <div className="mb-4 w-full md:mx-4">
                                 <label htmlFor="pincode" className="block text-lg font-medium text-white">Pincode</label>
                                 <input type="number" id="pincode" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Enter Pincode" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
@@ -95,19 +95,18 @@ const FForm = () => {
                                 <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
                         </div>
-                        <div className="flex justify-between">
-
-                            <div className="mb-4 w-1/2 mr-2">
+                        <div className="md:flex justify-between">
+                            <div className="mb-4 md:w-1/2 md:mr-2">
                                 <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
                                 <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
-                            <div className="mb-4 w-1/2 ml-2">
+                            <div className="mb-4 md:w-1/2 md:ml-2">
                                 <label htmlFor="gatheringStrength" className="block text-lg font-medium text-white">Gathering Strength</label>
                                 <input type="text" id="gatheringStrength" name="gatheringStrength" value={formData.gatheringStrength} onChange={handleChange} placeholder="Enter Gathering Strength" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
                         </div>
-                        <div className="flex justify-between">
-                            <div className="mb-4 w-1/2 mr-4">
+                        <div className="md:flex justify-between">
+                            <div className="mb-4 md:w-1/2 md:mr-4">
                                 <label htmlFor="eventType" className="block text-lg font-medium text-white">Type of Event</label>
                                 <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className="mt-1 p-2.5 border border-gray-300 rounded-md w-full text-lg">
                                     <option value="">Select Type of Event</option>
@@ -120,7 +119,7 @@ const FForm = () => {
                                 </select>
                             </div>
 
-                            <div className="mb-4 w-1/2">
+                            <div className="mb-4 md:w-1/2">
                                 <label htmlFor="meal" className="block text-lg font-medium text-white">Choose Your Meal</label>
                                 <select id="meal" name="meal" value={formData.meal} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg">
                                     <option value="No">No</option>
