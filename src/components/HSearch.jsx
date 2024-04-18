@@ -46,9 +46,9 @@ const HSearch = () => {
     // console.log(filteredHotels);
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_2.jpg?alt=media&token=0a342de3-713c-4e07-8a6f-0645aa3e7eb8')] bg-cover">
-            <div className="backdrop-blur-sm bg-white/30 p-8 py-10 rounded-3xl shadow-lg mb-40 w-3/12 ">
-                <h2 className="text-4xl font-bold mb-4 ">Select City</h2>
+        <div className="gilroyMed min-h-screen flex items-center justify-center bg-gray-100 bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_2.jpg?alt=media&token=0a342de3-713c-4e07-8a6f-0645aa3e7eb8')] bg-cover">
+            <div className="backdrop-blur-sm bg-white/30 p-8 py-10 rounded-3xl shadow-lg mb-40 md:w-3/12 ">
+                <h2 className="text-4xl  mb-4 ">Select City</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-2 border border-gray-300 rounded-md w-full">
