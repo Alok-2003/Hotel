@@ -22,14 +22,14 @@ body {
 }
 @font-face {
   font-family: gilroyBold;
-  src: url(../public/Gilroy-Bold.ttf);
+  src: url(/Gilroy-Bold.ttf);
 }
 .gilroyBold{
   font-family: gilroyBold;
 }
 @font-face {
   font-family: gilroyMed;
-  src: url(../public/Gilroy-Bold.ttf);
+  src: url(/Gilroy-Bold.ttf);
 }
 .gilroyMed{
   font-family: gilroyMed;

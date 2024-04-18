@@ -18,7 +18,7 @@ const Nav = () => {
     };
 
     const content = (
-        <div className="lg:hidden block absolute top-16 w-full left-0 right-0  bg-white/20">
+        <div className="lg:hidden block absolute top-16 w-full left-0 right-0 backdrop-blur-sm bg-black/50">
             <ul className="text-centre text-xl px-8 py-0 ">
                 <Link to={"hotels"} spy={true} smooth={true} >
                     <li className="my-2 py-2 border-b  " >Admin</li>
