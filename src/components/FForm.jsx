@@ -16,7 +16,8 @@ const FForm = () => {
         email: '',
         eventType: selectedEventGlobal, // New field for type of event
         gatheringStrength: selectedGatheringGlobal, // New field for gathering strength
-        meal: [] // New field for choose your meal
+        // meal: [] // New field for choose your meal
+        meal: selectedCateringGlobal // New field for choose your meal
     });
 
     const handleCityChange = (e) => {
@@ -57,6 +58,13 @@ const FForm = () => {
         'Ludhiana', 'Madurai', 'Mangalore', 'Mumbai', 'Nagpur', 'Nashik', 'Noida', 'Patna', 'Pune', 'Rajkot',
         'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam'
     ];
+    const handleChangeMeal = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value === "Yes" ? true : false
+        });
+    };
 
     return (
         <div>
@@ -70,9 +78,9 @@ const FForm = () => {
                         </div>
                         <div className="flex justify-between">
                             <div className="mb-4 w-full">
-                            <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label>
+                                <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label>
                                 <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-2 border border-gray-300 rounded-md w-full">
-                                    <option value="selectedCityGlobal">selectedCityGlobal</option>
+                                    <option value="city">city</option>
                                     {cities.map((city, index) => (
                                         <option key={index} value={city}>{city}</option>
                                     ))}
@@ -114,7 +122,12 @@ const FForm = () => {
 
                             <div className="mb-4 w-1/2">
                                 <label htmlFor="meal" className="block text-lg font-medium text-white">Choose Your Meal</label>
-                                <div className='flex justify-between items-center gap-2 bg-white rounded-lg p-2'>
+                                <select id="meal" name="meal" value={formData.meal} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+
+                                {/* <div className='flex justify-between items-center gap-2 bg-white rounded-lg p-2'>
                                     <label className="inline-flex items-center mt-2">
                                         <input type="radio" name="meal" value="Breakfast" checked={formData.meal === "Breakfast"} onChange={handleChange} className="form-radio h-5 w-5 text-blue-600" /><span className="ml-2 text-black">Breakfast</span>
                                     </label>
@@ -124,7 +137,7 @@ const FForm = () => {
                                     <label className="inline-flex items-center mt-2">
                                         <input type="radio" name="meal" value="Dinner" checked={formData.meal === "Dinner"} onChange={handleChange} className="form-radio h-5 w-5 text-blue-600" /><span className="ml-2 text-black">Dinner</span>
                                     </label>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
