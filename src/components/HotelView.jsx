@@ -55,8 +55,8 @@ const HotelView = () => {
 
     return (
         <>
-            <div className='  flex justify-center bg-[url("src/assets/building-night.jpg")] bg-cover '>
-                <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 rounded-3xl my-16">
+            <div className=' gilroyMed flex justify-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover '>
+                <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl my-16">
                     {/* Image */}
                     <div className="rounded-full container mx-auto   ">
                         {/* {isSmallDisplay ? ( */}
@@ -87,7 +87,7 @@ const HotelView = () => {
                     </div>
 
                     {/* Description */}
-                    <div className="max-w-xl mx-auto bg-white p-4 rounded-3xl shadow-lg md:max-w-full md:m-2 md:flex md:justify-between">
+                    <div className="max-w-xl mx-auto bg-white p-4 md:rounded-3xl shadow-lg md:max-w-full md:m-2 md:flex md:justify-between">
                         <div className='md:'>
                             <h2 className="text-xl font-bold md:text-4xl">{hotel[0].name}</h2>
                             <p className="text-gray-700 mb-4 md:text-xl font-semibold">{hotel[0].contact}</p>

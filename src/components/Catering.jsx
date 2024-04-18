@@ -25,11 +25,11 @@ const Catering = () => {
 console.log(selectedCateringGlobal);
     return (
         <>
-            <div className='flex justify-center items-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_4.jpg?alt=media&token=e1c8039b-f043-4a9f-81d7-7f30e9be0233")] bg-cover'>
+            <div className='h-[100vh] gilroyMed flex justify-center items-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_4.jpg?alt=media&token=e1c8039b-f043-4a9f-81d7-7f30e9be0233")] bg-cover'>
                 <div className='md:min-h-[100vh]  flex justify-center items-center w-5/6  '>
                     <div className=''>
                         <div className="flex justify-center">
-                            <div className="flex font-bold text-white md:text-5xl text-2xl leading-8  h-6  md:mb-12 ">Do you want catering in house</div>
+                            <div className="flex font-bold text-white md:text-5xl text-[2rem] leading-8  h-6 mb-6 md:mb-12 ">Do you want catering</div>
                         </div>
                         <div className="h-[60vh] grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2 ">
                             {/* 1st */}

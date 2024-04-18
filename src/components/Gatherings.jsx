@@ -74,13 +74,13 @@ const Gatherings = () => {
         <div className='md:min-h-[100vh]  gilroyMed min-h-[86vh]  flex justify-center items-center md:mb-0  mb-6 bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_1.jpg?alt=media&token=3d8d91eb-7773-4aa6-b1a7-f6b45604213c")] bg-cover'>
             <div className='md:w-4/5 '>
                 <div className="flex justify-center ">
-                    <div className="flex font-bold text-white md:text-5xl leading-8  h-6 mt-20 md:mt-8 mb-2 md:mb-8  text-[1.8rem]">Choose gathering strength</div>
+                    <div className="flex font-bold text-white md:text-5xl leading-8  h-6 mt-20 md:mt-8 mb- md:mb-8  text-[1.8rem]">Choose gathering strength</div>
                 </div>
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 m-4">
                     {/* Mapping over the cards array */}
                     {cards.map((card, index) => (
                         <div key={index} className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg" onClick={() => handleCardSelect(card)}>
-                            <div className="h-[30vh]">
+                            <div className="h-[30vh] md:h-[60vh]">
                                 <img className="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src={card.image} alt={card.title} />
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
