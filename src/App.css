@@ -20,6 +20,21 @@ body {
   /* background-repeat: no-repeat; */
   /* background-size: cover; */
 }
+@font-face {
+  font-family: gilroyBold;
+  src: url(../public/Gilroy-Bold.ttf);
+}
+.gilroyBold{
+  font-family: gilroyBold;
+}
+@font-face {
+  font-family: gilroyMed;
+  src: url(../public/Gilroy-Bold.ttf);
+}
+.gilroyMed{
+  font-family: gilroyMed;
+}
+
 .react-tel-input .form-control {
   @apply !w-full py-6 !text-base;
 }

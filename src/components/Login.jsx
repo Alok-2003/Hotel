@@ -127,11 +127,11 @@ const Login = () => {
     // bg-emerald-500
     return (
         <>
-            <div className="font-['gilroy'] flex justify-center items-center h-full bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_5.png?alt=media&token=57abe584-558a-4ed2-82f1-cb6bdbf3ef0a')] bg-cover">
+            <div className="gilroyBold  flex justify-center items-center h-full bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_5.png?alt=media&token=57abe584-558a-4ed2-82f1-cb6bdbf3ef0a')] bg-cover">
                 <Toaster toastOptions={{ duration: 4000 }} />
-                <div className="backdrop-blur-sm bg-white/30 p-10 rounded-3xl">
-                    <div className="flex justify-center items-center mb-4">
-                        <h1 className="text-5xl font-bold">Login</h1>
+                <div className="backdrop-blur-sm bg-white/30 py-8 p-4 md:p-10 rounded-3xl">
+                    <div className="flex justify-center items-center mb-3">
+                        <h1 className="md:text-5xl text-[2.5rem] font-bold">Login</h1>
                     </div>
 
                     {log ? (
@@ -163,7 +163,7 @@ const Login = () => {
                             ) : (
                                 <>
                                     <div className="flex justify-center">
-                                        <label className="font-bold text-2xl text-black text-center my-2"> Enter your phone number </label>
+                                        <label className="text-2xl text-black text-center my-2 "> Enter your phone number </label>
                                     </div>
                                     <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
 
