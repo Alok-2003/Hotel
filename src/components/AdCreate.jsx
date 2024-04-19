@@ -20,10 +20,10 @@ const AdCreate = () => {
 
     const [selectedCity, setSelectedCity] = useState('');
     const cities = ['Agra', 'Ahmedabad', 'Ajmer', 'Allahabad', 'Amritsar', 'Aurangabad', 'Bangalore', 'Bhopal', 'Bhubaneswar', 'Chandigarh',
-    'Chennai', 'Coimbatore', 'Delhi', 'Faridabad', 'Ghaziabad', 'Goa', 'Gurgaon', 'Guwahati', 'Hyderabad', 'Indore',
-    'Jaipur', 'Jalandhar', 'Jammu', 'Jamnagar', 'Jamshedpur', 'Jodhpur', 'Kanpur', 'Kochi', 'Kolkata', 'Lucknow',
-    'Ludhiana', 'Madurai', 'Mangalore', 'Mumbai', 'Nagpur', 'Nashik', 'Noida', 'Patna', 'Pune', 'Rajkot',
-    'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam']; // Replace with your list of cities
+        'Chennai', 'Coimbatore', 'Delhi', 'Faridabad', 'Ghaziabad', 'Goa', 'Gurgaon', 'Guwahati', 'Hyderabad', 'Indore',
+        'Jaipur', 'Jalandhar', 'Jammu', 'Jamnagar', 'Jamshedpur', 'Jodhpur', 'Kanpur', 'Kochi', 'Kolkata', 'Lucknow',
+        'Ludhiana', 'Madurai', 'Mangalore', 'Mumbai', 'Nagpur', 'Nashik', 'Noida', 'Patna', 'Pune', 'Rajkot',
+        'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam']; // Replace with your list of cities
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -70,7 +70,7 @@ const AdCreate = () => {
         e.preventDefault();
         const { fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images } = formData;
         const id = Date.now() + Math.floor(Math.random() * 1000);
-        await firebase.AddNewHotel(id,fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images);
+        await firebase.AddNewHotel(id, fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images);
         toast.success("Hotel Created Successfully");
         setFormData({
             fullName: '',
@@ -93,8 +93,22 @@ const AdCreate = () => {
                     <h2 className="text-4xl font-bold mb-2 text-black">New Hotel Listing</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
-                            <label htmlFor="fullName" className="block text-lg font-medium text-white">Hotel Name</label>
-                            <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
+                            {/* <label htmlFor="fullName" className="block text-lg font-medium text-white">Hotel Name</label>
+                            <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" /> */}
+                            <div class="input flex flex-col static">
+                                <label
+                                    for="input"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-4 ml-[7px] px-[3px]  w-fit  backdrop-blur-sm bg-white/40"
+                                >Hotel Name</label
+                                >
+                                <input
+                                    type="text" id="fullName" 
+                                    name="fullName"
+                                    placeholder="Enter Full Name"
+                                    class="border-black input px-[10px] py-[11px] text-lg  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/50"
+                                />
+                            </div>
+
                         </div>
                         <div className="mb-4 flex justify-between">
                             <div className='w-1/2'>
@@ -145,10 +159,10 @@ const AdCreate = () => {
                             </div>
                         </div>
                         <div className="flex justify-between">
-                        <div className="mb-4">
-                            <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label>
-                            <input type="file" id="images" name="images" accept="image/*" multiple onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
-                        </div>
+                            <div className="mb-4">
+                                <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label>
+                                <input type="file" id="images" name="images" accept="image/*" multiple onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
+                            </div>
                             <div className="mb-4 w-1/2 mx-2">
                                 <label htmlFor="meal" className="block text-lg font-medium text-black">Catering Service</label>
                                 <div className='flex justify-evenly items-center gap-2 bg-white rounded-lg p-1.5 mt-1'>
@@ -163,7 +177,7 @@ const AdCreate = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
                     </form>
                 </div>
