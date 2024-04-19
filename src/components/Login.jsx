@@ -156,7 +156,7 @@ const Login = () => {
                                     ></OtpInput>
 
                                     <button
-                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white font-medium rounded text-xl mb-6"
+                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white font-medium rounded text-xl mb-6 hover:bg-emerald-900/70"
                                         onClick={verifyOtp}
                                     >Verify OTP</button>
                                 </>
@@ -168,7 +168,7 @@ const Login = () => {
                                     <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
 
                                     <button
-                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb-6"
+                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb-6 hover:bg-emerald-900/70"
                                         onClick={sendOtp}
                                     >Send OTP
                                     </button>
