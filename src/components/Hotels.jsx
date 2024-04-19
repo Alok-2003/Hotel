@@ -64,7 +64,7 @@ const Hotels = () => {
 
     // console.log(hotels)
     return (
-        <div className='h-screen md:h-full font-[gilroy] bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center'>
+        <div className='h-screen md:h-full font-[gilroy] bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center '>
             <div className='w-11/12 h-min mt-20 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4'>
                 {filteredHotels.map((hotel, index) => (
                     // <Link key={index} to={`/hotel/${hotel.name}`}>
@@ -79,8 +79,8 @@ const Hotels = () => {
                     //     </div>
                     // </Link>
                     <Link key={index} to={`/hotelView/${hotel.id}`}>
-                        <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg ">
-                            <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover" />
+                        <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg hover:opacity-80 ">
+                            <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover  " />
                             <div className="my-1 mx-4">
                                 <div className="font-bold text-2xl ">{hotel.name}</div>
                             </div>
