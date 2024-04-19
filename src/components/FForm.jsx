@@ -68,9 +68,9 @@ const FForm = () => {
 
     return (
         <div>
-            <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('src/assets/2.jpg')] bg-cover">
-                <div className="backdrop-blur-sm bg-white/20 md:p-8 p-4 rounded-3xl shadow-lg md:w-2/3 w-[85%] mb-8">
-                    <h2 className="text-4xl font-bold mb-2 text-black">Verify details</h2>
+            <div className="gilroyMed min-h-screen flex items-center justify-center bg-gray-100 bg-[url('/Background/BG_2.jpg')] bg-cover">
+                <div className="backdrop-blur-sm bg-white/20 md:p-8 p-4 rounded-3xl shadow-lg md:w-2/3 w-[85%] mt-14 md:mb-8 mb-12">
+                    <h2 className="text-4xl font-bold mb-2 text-white">Verify details</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="fullName" className="block text-lg font-medium text-white">Full Name</label>

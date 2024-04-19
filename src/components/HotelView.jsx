@@ -56,7 +56,7 @@ const HotelView = () => {
     return (
         <>
             <div className=' gilroyMed flex justify-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover '>
-                <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl my-16">
+                <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl mt-16 mb-14">
                     {/* Image */}
                     <div className="rounded-full container mx-auto   ">
                         {/* {isSmallDisplay ? ( */}
@@ -136,13 +136,13 @@ const HotelView = () => {
                     </div>
                 </div>
             </div>
-            <Link to={'/fform'} className="fixed bottom-0 right-6  ">
+            <Link to={'/fform'} className="fixed md:-bottom-6 -bottom-3 right-5  gilroyMed ">
                 {/* <button className="bg-green-500 hover:bg-blue-700 text-white text-xl py-4 px-4 rounded-full hover:scale-110  cursor-pointer animate-bounce">
                     Interested
                 </button> */}
                 <div class="w-full h-40 flex items-center justify-center cursor-pointer">
                     <div
-                        class="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold shadow text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 dark:bg-gray-700 dark:text-white dark:hover:text-gray-200 dark:shadow-none group"
+                        class="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold shadow text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:text-gray-200 dark:shadow-none group"
                     >
                         <span
                             class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-600 group-hover:h-full"
@@ -184,9 +184,9 @@ const HotelView = () => {
                             </svg>
                         </span>
                         <span
-                            class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white dark:group-hover:text-gray-200"
-                        >Intrested</span
-                        >
+                            class="md:font-['gilroy']  relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white dark:group-hover:text-gray-200 md:font-bold md:text-xl"
+                        >Intrested
+                        </span>
                     </div>
                 </div>
             </Link>
