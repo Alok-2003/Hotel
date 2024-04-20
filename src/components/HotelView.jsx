@@ -43,12 +43,12 @@ const HotelView = () => {
     }, [firebase, hotelId]);
     console.log(slides)
 
-    // if (!hotel) {
-    //     // Render a loading state or handle when hotel is not found
-    //     return (
-    //         <div>hello loading...</div>
-    //     );
-    // }
+    if (!hotel) {
+        // Render a loading state or handle when hotel is not found
+        return (
+            <div>hello loading...</div>
+        );
+    }
 
     // const slides = hotel[0].imageUrls;
     // console.log(slides)
