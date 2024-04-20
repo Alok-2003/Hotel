@@ -43,12 +43,12 @@ const HotelView = () => {
     }, [firebase, hotelId]);
     console.log(slides)
 
-    if (!hotel) {
-        // Render a loading state or handle when hotel is not found
-        return (
-            <div>hello loading...</div>
-        );
-    }
+    // if (!hotel) {
+    //     // Render a loading state or handle when hotel is not found
+    //     return (
+    //         <div>hello loading...</div>
+    //     );
+    // }
 
     // const slides = hotel[0].imageUrls;
     // console.log(slides)
@@ -57,9 +57,7 @@ const HotelView = () => {
         <>
             <div className=' gilroyMed flex justify-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover '>
                 <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl mt-16 mb-14">
-                    {/* Image */}
                     <div className="rounded-full container mx-auto   ">
-                        {/* {isSmallDisplay ? ( */}
                         <div className=' lg:hidden ' >
                             <Carousel className="" >
                                 {slides.map((s) => (
@@ -67,7 +65,6 @@ const HotelView = () => {
                                 ))}
                             </Carousel>
                         </div>
-                        {/* // ) : ( */}
                         <div className='hidden lg:block ' >
                             <div className="grid grid-cols-2 gap-1 ">
                                 {/* Big Image */}
