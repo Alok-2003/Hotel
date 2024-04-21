@@ -130,7 +130,7 @@ const Login = () => {
             <div className="gilroyBold  flex justify-center items-center h-full bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_5.png?alt=media&token=57abe584-558a-4ed2-82f1-cb6bdbf3ef0a')] bg-cover">
                 <Toaster toastOptions={{ duration: 4000 }} />
                 <div className="backdrop-blur-sm bg-white/30 py-8 p-4 md:p-10 rounded-3xl">
-                    <div className="flex justify-center items-center mb-3">
+                    <div className="flex justify-center items-center md:mb-3">
                         <h1 className="md:text-5xl text-[2.5rem] font-bold">Login</h1>
                     </div>
 
@@ -168,17 +168,26 @@ const Login = () => {
                                     <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
 
                                     <button
-                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb-6 hover:bg-emerald-900/70"
+                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb- hover:bg-emerald-900/70"
                                         onClick={sendOtp}
                                     >Send OTP
                                     </button>
 
-                                    <div id="recaptcha" className="mb-6"></div>
+                                    <div id="recaptcha" className="mb-4"></div>
                                 </>
                             )}
                         </div>
                     )}
+                    <div className="flex justify-center items-center">
+                    <button onClick={firebase.signinWithGoogle} className="w-80  md:font-['gilroy] bg-white text-black/80 border border-gray-300 rounded-md p-1 flex items-center justify-center text-xl md:text-2xl my-2">
+                        <div className="flex items-center">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/webcraft-b6ba7.appspot.com/o/google.png?alt=media&token=e5d9b6f8-a355-4db0-a108-3e50c4e68b30" alt="Google Logo" className="w-12 h-12 mr-2" />
+                            Login in with Google
+                        </div>
+                    </button>
+                    </div>
                 </div>
+
             </div>
         </>
 

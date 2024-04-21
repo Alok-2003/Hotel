@@ -76,7 +76,7 @@ const FForm = () => {
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="mb-2 ">
                                 {/* <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label> */}
-                                <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-xl text-white mt-1 p-2 border border-gray-300 rounded-md w-full bg-transparent">
+                                <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-xl text-white mt-1 p-2 border border-gray-300 rounded-md w-full bg-gray-900/50">
                                     <option value="city">city</option>
                                     {cities.map((city, index) => (
                                         <option key={index} value={city}>{city}</option>
@@ -85,7 +85,7 @@ const FForm = () => {
                             </div>
                             <div className="mb-2 ">
                                 {/* <label htmlFor="eventType" className="block text-lg font-medium text-white">Type of Event</label> */}
-                                <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-xl text-white bg-transparent">
+                                <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-xl text-white bg-gray-900/50">
                                     <option value="">Select Type of Event</option>
                                     <option value="Marriage">Marriage</option>
                                     <option value="Birthday Party">Birthday Party</option>
@@ -98,7 +98,7 @@ const FForm = () => {
 
                             <div className="mb-2 ">
                                 {/* <label htmlFor="meal" className="block text-lg font-medium text-white">Choose Your Meal</label> */}
-                                <select id="meal" name="meal" value={formData.meal} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-xl text-white bg-transparent">
+                                <select id="meal" name="meal" value={formData.meal} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-xl text-white bg-gray-900/50">
                                     <option value="">Meal</option>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
@@ -125,7 +125,7 @@ const FForm = () => {
                                 <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div> */}
                         </div>
-                        <div className="grid md:grid-cols-2 gap-4">
+                        <div className="grid md:grid-cols-2 md:gap-4">
                             <div class="flex items-center justify-center">
                                 <div class="relative w-full mt-2">
                                     <input
@@ -142,8 +142,8 @@ const FForm = () => {
                                     )}
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center">
-                                <div class="relative w-full mt-2">
+                            <div class="flex items-center justify-center mt-2 md:mt-0">
+                                <div class="relative w-full ">
                                     <input
                                         type="text" id="gatheringStrength" name="gatheringStrength" value={formData.gatheringStrength} onChange={handleChange}
                                         class="w-full text-3xl border-b border-gray-300 py-1 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit"
@@ -226,7 +226,27 @@ const FForm = () => {
                         </div>
 
                         <Link to={'/HSearch'}>
-                            <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
+                            {/* <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button> */}
+                            <button
+                                type="submit"
+                                class="overflow-hidden relative w-32 p-2 h-12 bg-white text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
+                            >
+                                Submit
+                                <span
+                                    class="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
+                                ></span>
+                                <span
+                                    class="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
+                                ></span>
+                                <span
+                                    class="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
+                                ></span>
+                                <span
+                                    class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-8 z-10"
+                                >Submit</span
+                                >
+                            </button>
+
                         </Link>
                     </form>
                 </div>

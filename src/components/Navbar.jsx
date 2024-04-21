@@ -41,11 +41,11 @@ const Nav = () => {
 
     return (
         <nav className="z-50 ">
-            <div className="gilroyBold h-16 flex justify-between z-50 text-white md:px-8 px-4 py-4  fixed w-full  ">
-                <div className="flex items-center flex-1">
+            <div className="gilroyBold md:font-['gilroy] h-16 flex justify-between z-50 text-white md:px-8 px-4 py-4  fixed w-full  ">
+                <div className="md:font-['gilroy] flex items-center flex-1">
                     <span className="text-3xl font-bold "> Hotel Hub</span>
                 </div>
-                <div className=" gilroyMed md:flex md:flex-1 items-center justify-end font-thin hidden">
+                <div className=" font-[gilroy] md:flex md:flex-1 items-center justify-end font-thin hidden">
                     <div className="flex">
                         <ul className="flex gap-8 mr- text-[20px]">
                             <Link to={"admin_hotels"}   >
