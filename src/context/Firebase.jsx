@@ -3,7 +3,9 @@ import { initializeApp } from "firebase/app";
 import {
     getAuth,
     onAuthStateChanged,
-    signOut
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc } from "firebase/firestore";
@@ -31,7 +33,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const firestore = getFirestore(app);
 const storage = getStorage(app);
-
+const googleProvider = new GoogleAuthProvider();
 
 
 export const FirebaseProvider = (props) => {
@@ -59,6 +61,8 @@ export const FirebaseProvider = (props) => {
             console.error('Error signing out:', error);
         });
     };
+
+    const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
 
     const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images) => {
         const imageUrls = [];
@@ -131,6 +135,7 @@ export const FirebaseProvider = (props) => {
     return <FirebaseContext.Provider value={{
         isLoggedIn,
         signOut,
+        signinWithGoogle,
         AddNewHotel,
         listOfHotels,
         getImageURL,
