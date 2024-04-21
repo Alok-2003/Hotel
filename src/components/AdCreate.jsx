@@ -97,22 +97,27 @@ const AdCreate = () => {
                             <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" /> */}
                             <div class="input flex flex-col static">
                                 <label
-                                    for="input"
-                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-4 ml-[7px] px-[3px]  w-fit  backdrop-blur-sm bg-white/40"
+                                    for="fullName"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-4 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
                                 >Hotel Name</label
                                 >
                                 <input
-                                    type="text" id="fullName" 
+                                    type="text" id="fullName"
                                     name="fullName"
                                     placeholder="Enter Full Name"
-                                    class="border-black input px-[10px] py-[11px] text-lg  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/50"
+                                    class="border- input px-[10px] py-[11px] text-lg  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/50"
                                 />
                             </div>
 
                         </div>
-                        <div className="mb-4 flex justify-between">
-                            <div className='w-1/2'>
-                                <label htmlFor="city" className="block text-lg font-medium text-white">Location</label>
+                        <div className="mb-4 md:grid grid-cols-2 gap-4">
+                            <div className=''>
+                                <label
+                                    for="city"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Location</label
+                                >
+                                {/* <label htmlFor="city" className="block text-lg font-medium text-white">Location</label> */}
                                 <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-[11px] border border-gray-300 rounded-md w-full">
                                     <option value="">Name of cities</option>
                                     {cities.map((city, index) => (
@@ -120,24 +125,44 @@ const AdCreate = () => {
                                     ))}
                                 </select>
                             </div >
-                            <div className=" w-1/2">
-                                <label htmlFor="pincode" className="block text-lg font-medium text-white">Pincode</label>
+                            <div className=" ">
+                                <label
+                                    for="pincode"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Pincode
+                                </label>
+                                {/* <label htmlFor="pincode" className="block text-lg font-medium text-white">Pincode</label> */}
                                 <input type="number" id="pincode" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Enter Pincode" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
                         </div>
-                        <div className="flex justify-between">
-                            <div className="mb-4 w-1/2 ">
-                                <label htmlFor="whatsappNo" className="block text-lg font-medium text-white">Hotel Contact No</label>
+                        <div className="md:grid grid-cols-2 gap-4">
+                            <div className="mb-4  ">
+                                <label
+                                    for="whatsappNo"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Hotel Contact No
+                                </label>
+                                {/* <label htmlFor="whatsappNo" className="block text-lg font-medium text-white">Hotel Contact No</label> */}
                                 <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
-                            <div className="mb-4 w-1/2 mr-2">
-                                <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
+                            <div className="mb-4 ">
+                                <label
+                                    for="email"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Email
+                                </label>
+                                {/* <label htmlFor="email" className="block text-lg font-medium text-white">Email</label> */}
                                 <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
                             </div>
                         </div>
-                        <div className="flex justify-between">
-                            <div className="mb-4 w-1/2 ">
-                                <label htmlFor="eventStrength" className="block text-lg font-medium text-white">Event Gathering Strength</label>
+                        <div className="md:grid grid-cols-2 gap-4">
+                            <div className="mb-4  ">
+                                <label
+                                    for="eventStrength"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Event Gathering
+                                </label>
+                                {/* <label htmlFor="eventStrength" className="block text-lg font-medium text-white">Event Gathering Strength</label> */}
                                 <select id="eventStrength" name="eventStrength" value={formData.eventStrength} onChange={handleChange} className="mt-1 p-2.5 border border-gray-300 rounded-md w-full text-lg">
                                     <option value="">Select the Strength</option>
                                     <option value="Small">Small</option>
@@ -145,8 +170,13 @@ const AdCreate = () => {
                                     <option value="Large">Large</option>
                                 </select>
                             </div>
-                            <div className="mb-4 w-1/2 ">
-                                <label htmlFor="eventType" className="block text-lg font-medium text-white">Event Service Provided</label>
+                            <div className="mb-4  ">
+                                <label
+                                    for="eventType"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Event Service Provided
+                                </label>
+                                {/* <label htmlFor="eventType" className="block text-lg font-medium text-white">Event Service Provided</label> */}
                                 <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className="mt-1 p-2.5 border border-gray-300 rounded-md w-full text-lg">
                                     <option value="">Select Type of Event</option>
                                     <option value="Marriage">Marriage</option>
@@ -158,13 +188,34 @@ const AdCreate = () => {
                                 </select>
                             </div>
                         </div>
-                        <div className="flex justify-between">
-                            <div className="mb-4">
-                                <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label>
-                                <input type="file" id="images" name="images" accept="image/*" multiple onChange={handleImageChange} className="mt-1 px-1.5 py-1 border border-gray-300 rounded-md w-full text-lg" />
+                        <div className="md:grid grid-cols-2 gap-4">
+                            <div className="mb-4 ">
+                                <label
+                                    for="images"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Upload Images
+                                </label>
+                                {/* <label htmlFor="images" className="block text-lg font-medium text-white">Upload Images</label> */}
+                                <div className="flex justify-center items-center w-full bg-white  rounded-md">
+                                    <input
+                                        type="file"
+                                        id="images"
+                                        name="images"
+                                        accept="image/*"
+                                        multiple
+                                        onChange={handleImageChange}
+                                        className="mt-1 px-1.5 py-1  rounded-md text-lg w-full" // Change width to a smaller fraction for centering
+                                    />
+                                </div>
+
                             </div>
-                            <div className="mb-4 w-1/2 mx-2">
-                                <label htmlFor="meal" className="block text-lg font-medium text-black">Catering Service</label>
+                            <div className="mb-4  ">
+                                <label
+                                    for="meal"
+                                    class="text-black text-[1.3rem] rounded-xl font-semibold relative top-5 ml-[0px] px-[5px]  w-fit  backdrop-blur-sm bg-white/100"
+                                >Catering Service
+                                </label>
+                                {/* <label htmlFor="meal" className="block text-lg font-medium text-black">Catering Service</label> */}
                                 <div className='flex justify-evenly items-center gap-2 bg-white rounded-lg p-1.5 mt-1'>
                                     <label className="inline-flex items-center mt-2">
                                         <input type="radio" name="meal" value="Yes" checked={formData.meal === "Yes"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />

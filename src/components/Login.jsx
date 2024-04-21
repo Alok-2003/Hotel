@@ -141,7 +141,6 @@ const Login = () => {
                             {showOTP ? (
                                 <>
                                     <div className="flex justify-center">
-
                                         <label className="font-bold text-2xl text-black text-center my-2"> Enter your OTP </label>
                                     </div>
 
