@@ -41,22 +41,7 @@ const Login = () => {
     //         navigate("/HSearch");
     //     }
     // }, [firebase, navigate]);
-    useEffect(() => {
-        if (log) {
-            const timeout = setTimeout(() => {
-                // Check if user's profile exists and redirect accordingly
-                if (cleanedContacts.includes(phone)) {
-                    navigate("/HSearch");
-                    console.log("redirect Search")
-                } else {
-                    navigate("/CProfile");
-                    console.log("redirect to profile")
-                }
-            }, 3000);
 
-            return () => clearTimeout(timeout);
-        }
-    }, [log, navigate, cleanedContacts, phone]);
 
 
     console.log(firebase.isLoggedIn)
@@ -91,7 +76,22 @@ const Login = () => {
             console.error(err);
         }
     }
+    useEffect(() => {
+        if (log) {
+            const timeout = setTimeout(() => {
+                // Check if user's profile exists and redirect accordingly
+                if (cleanedContacts.includes(phone)) {
+                    navigate("/HSearch");
+                    console.log("redirect Search")
+                } else {
+                    navigate("/CProfile");
+                    console.log("redirect to profile")
+                }
+            }, 3000);
 
+            return () => clearTimeout(timeout);
+        }
+    }, [log, navigate, cleanedContacts, phone]);
     // useEffect(() => {
     //     if (log) {
     //         const timeout = setTimeout(() => {
@@ -167,7 +167,7 @@ const Login = () => {
                                     <PhoneInput country={"in"} value={phone} onChange={setPhone} className="mb-6" />
 
                                     <button
-                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb- hover:bg-emerald-900/70"
+                                        className="bg-emerald-700 w-80 flex  items-center justify-center py-2.5 text-white rounded text-xl mb- hover:bg-emerald-900/70 mb-4"
                                         onClick={sendOtp}
                                     >Send OTP
                                     </button>
@@ -175,16 +175,18 @@ const Login = () => {
                                     <div id="recaptcha" className="mb-4"></div>
                                 </>
                             )}
+                            <div className="flex justify-center items-center">
+                                <button onClick={firebase.signinWithGoogle} className="w-80  md:font-['gilroy] bg-white text-black/80 border border-gray-300 rounded-md p-1 flex items-center justify-center text-xl md:text-2xl my-2">
+                                    <div className="flex items-center">
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/webcraft-b6ba7.appspot.com/o/google.png?alt=media&token=e5d9b6f8-a355-4db0-a108-3e50c4e68b30" alt="Google Logo" className="w-12 h-12 mr-2" />
+                                        Login in with Google
+                                    </div>
+                                </button>
+                            </div>
                         </div>
+
                     )}
-                    <div className="flex justify-center items-center">
-                    <button onClick={firebase.signinWithGoogle} className="w-80  md:font-['gilroy] bg-white text-black/80 border border-gray-300 rounded-md p-1 flex items-center justify-center text-xl md:text-2xl my-2">
-                        <div className="flex items-center">
-                            <img src="https://firebasestorage.googleapis.com/v0/b/webcraft-b6ba7.appspot.com/o/google.png?alt=media&token=e5d9b6f8-a355-4db0-a108-3e50c4e68b30" alt="Google Logo" className="w-12 h-12 mr-2" />
-                            Login in with Google
-                        </div>
-                    </button>
-                    </div>
+
                 </div>
 
             </div>

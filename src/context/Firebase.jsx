@@ -64,7 +64,7 @@ export const FirebaseProvider = (props) => {
 
     const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
 
-    const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images) => {
+    const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images, rooms, bedSizeOrCapacity, roomRates, facilities) => {
         const imageUrls = [];
         // Loop through each selected image
         for (const image of images) {
@@ -73,11 +73,25 @@ export const FirebaseProvider = (props) => {
             imageUrls.push(uploadResult.ref.fullPath);
         }
         return await addDoc(collection(firestore, "Hotels"), {
-            id, name, location, pincode, contact, email, event, Strength, meal,
+            id,
+            name,
+            location,
+            pincode,
+            contact,
+            email,
+            event,
+            Strength,
+            meal,
             imageUrls,
+            rooms,
+            bedSizeOrCapacity,
+            roomRates,
+            facilities,
             CreatorContact: user.phoneNumber,
         });
     };
+    
+
     const CreateNewProfile = async (name, city, pincode, contact, email) => {
         return await addDoc(collection(firestore, "Profiles"), {
             name, city, pincode, contact, email,
