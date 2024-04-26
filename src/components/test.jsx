@@ -1,125 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const Test = () => {
-  return (
-    <div className="max-w-lg mx-auto bg-gradient-to-r from-white to-blue-50 rounded-xl shadow-md p-8">
-      <div className="text-center font-bold text-2xl text-blue-600 mb-6">Sign In</div>
-      <form className="space-y-4">
-        <input
-          required
-          className="input-style"
-          type="email"
-          name="email"
-          id="email"
-          placeholder="E-mail"
-        />
-        <input
-          required
-          className="input-style"
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-        <span className="block text-center text-sm text-blue-500">
-          <a href="#">Forgot Password ?</a>
-        </span>
-        <button className="btn-login">Sign In</button>
-      </form>
-      <div className="text-center mt-6">
-        <span className="block font-semibold text-sm text-blue-600 mb-1">Or Sign in with</span>
-        <div className="flex justify-center space-x-4">
-          <button className="social-btn-google">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 14a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 21v-2a4 4 0 014-4h14a4 4 0 014 4v2"
-              />
-            </svg>
-          </button>
-          <button className="social-btn-apple">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 14a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 21v-2a4 4 0 014-4h14a4 4 0 014 4v2"
-              />
-            </svg>
-          </button>
-          <button className="social-btn-twitter">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 14a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 21v-2a4 4 0 014-4h14a4 4 0 014 4v2"
-              />
-            </svg>
-          </button>
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+    // Dummy data for questions and options
+    const questions = [
+        "Event Gathering?",
+        "Type of event?",
+        "Provide Catering?"
+    ];
+    const options = [
+        ["Small", "Medium", "Large"],
+        ["Marriage ", "Birthday", "Party", "PersonalS","Meeting"],
+        ["Yes", "No"]
+    ];
+
+    const handleOptionSelect = (option) => {
+        const updatedSelectedOptions = [...selectedOptions];
+        updatedSelectedOptions[currentQuestion] = option;
+        setSelectedOptions(updatedSelectedOptions);
+
+        // Move to the next question
+        if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+        } else {
+            // All questions answered, do something with the selected options
+            console.log("Selected options:", selectedOptions);
+            // Reset state for next quiz session
+            setCurrentQuestion(0);
+            setSelectedOptions([]);
+        }
+    };
+
+    return (
+        <div className="w-full h-full flex justify-center items-center bg-black">
+          <div className="w-8/12 mt-16 mx-auto p-6 bg-white rounded-lg shadow-md relative">
+            <TransitionGroup>
+                <CSSTransition key={currentQuestion} timeout={300} classNames="slide">
+                    <h2 className="text-2xl font-semibold mb-4">{questions[currentQuestion]}</h2>
+                </CSSTransition>
+            </TransitionGroup>
+            <div className="flex justify-between flex-wrap gap-4">
+                {options[currentQuestion].map((option, index) => (
+                    <div key={index} className="bg-gray-200 p-4 rounded-md cursor-pointer relative" onClick={() => handleOptionSelect(option)}>
+                        <p>{option}</p>
+                        {selectedOptions[currentQuestion] === option && <span className="absolute top-2 right-2 text-green-500">&#10003;</span>}
+                    </div>
+                ))}
+            </div>
         </div>
-      </div>
-      <span className="block text-center text-xs text-blue-500 mt-6">
-        <a href="#">Learn user licence agreement</a>
-      </span>
-    </div>
-  );
-};
+        </div>
+    );
+}
 
 export default Test;

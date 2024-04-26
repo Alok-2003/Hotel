@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Import useParams hook
+import { useNavigate, useParams } from 'react-router-dom'; // Import useParams hook
 import { useFirebase } from '../context/Firebase';
 import Carousel from './Carousel';
 import ImageGrid from './ImageGrid';
@@ -11,11 +11,15 @@ import { MdRestaurant } from "react-icons/md";
 import { MdLocalBar } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
+export let IntrestedHotel='';
+
 const HotelView = () => {
     const { hotelId } = useParams(); // Retrieve hotelId from URL parameter
     const firebase = useFirebase();
     const [hotel, setHotel] = useState(null); // State to store the selected hotel
     const [isSmallDisplay, setIsSmallDisplay] = useState(false);
+    const navigate = useNavigate();
+
     const locations = [
         { icon: <FaHospital />, name: 'Fortis Escorts Heart Institute', distance: '3 min drive' },
         { icon: <FaTrain />, name: 'New Delhi Hazrat Nizamuddin Station', distance: '10 min drive' },
@@ -41,14 +45,19 @@ const HotelView = () => {
             }
         });
     }, [firebase, hotelId]);
-    console.log(slides)
+    // console.log(slides)
 
     if (!hotel) {
-        // Render a loading state or handle when hotel is not found
         return (
             <div>hello loading...</div>
         );
     }
+
+    const handleIntrested = () => {
+     IntrestedHotel= hotel[0].name;
+        console.log(IntrestedHotel)
+        navigate('/fform');
+    };
 
     // const slides = hotel[0].imageUrls;
     // console.log(slides)
@@ -133,11 +142,13 @@ const HotelView = () => {
                     </div>
                 </div>
             </div>
-            <Link to={'/fform'} className="fixed md:-bottom-6 -bottom-3 right-5  gilroyMed ">
-                {/* <button className="bg-green-500 hover:bg-blue-700 text-white text-xl py-4 px-4 rounded-full hover:scale-110  cursor-pointer animate-bounce">
+            {/* <Link to={'/fform'}  className="fixed md:-bottom-6 -bottom-3 right-5  gilroyMed "> */}
+
+            {/* <button className="bg-green-500 hover:bg-blue-700 text-white text-xl py-4 px-4 rounded-full hover:scale-110  cursor-pointer animate-bounce">
                     Interested
                 </button> */}
-                <div class="w-full h-40 flex items-center justify-center cursor-pointer">
+            <div className="fixed md:-bottom-6 -bottom-3 right-5  gilroyMed " >
+                <div onClick={handleIntrested} class="w-full h-40 flex items-center justify-center cursor-pointer">
                     <div
                         class="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold shadow text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:text-gray-200 dark:shadow-none group"
                     >
@@ -186,7 +197,8 @@ const HotelView = () => {
                         </span>
                     </div>
                 </div>
-            </Link>
+            </div>
+            {/* </Link> */}
         </>
     );
 };

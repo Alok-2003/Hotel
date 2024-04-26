@@ -4,6 +4,7 @@ import { selectedCityGlobal } from './HSearch';
 import { selectedEventGlobal } from './Requirement';
 import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
+import { IntrestedHotel } from './HotelView';
 
 const FForm = () => {
     const [selectedCity, setSelectedCity] = useState('');
@@ -72,11 +73,11 @@ const FForm = () => {
                 <div className="backdrop-blur-sm bg-gray-700/10 md:p-8 p-4 rounded-3xl shadow-lg md:w-2/3 w-[85%] mt-14 md:mb-8 mb-12">
                     <h2 className="text-4xl font-bold mb-3 text-white underline  underline-offset-2">Verify details</h2>
                     <form onSubmit={handleSubmit}>
-                        <h2 className="text-2xl font-bold mb-2 text-white">Hotel Name</h2>
+                        <h2 className="text-2xl font-bold mb-2 text-white">{IntrestedHotel}</h2>
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="mb-2 ">
                                 {/* <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label> */}
-                                <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-xl text-white mt-1 p-2 border border-gray-300 rounded-md w-full bg-gray-900/50">
+                                <select id="city" name="city" value={formData.city} onChange={handleCityChange} className="text-xl text-white mt-1 p-2 border border-gray-300 rounded-md w-full bg-gray-900/50">
                                     <option value="city">city</option>
                                     {cities.map((city, index) => (
                                         <option key={index} value={city}>{city}</option>

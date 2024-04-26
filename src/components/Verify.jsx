@@ -1,30 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const Verify = () => {
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+
+    // Dummy data for questions and options
+    const questions = [
+        "Question 1: What is your favorite color?",
+        "Question 2: What is your favorite animal?",
+        "Question 3: What is your favorite food?"
+    ];
+    const options = [
+        ["Red", "Blue", "Green", "Yellow"],
+        ["Dog", "Cat", "Bird", "Fish"],
+        ["Pizza", "Burger", "Pasta", "Sushi"]
+    ];
+
+    const handleOptionSelect = (option) => {
+        const updatedSelectedOptions = [...selectedOptions];
+        updatedSelectedOptions[currentQuestion] = option;
+        setSelectedOptions(updatedSelectedOptions);
+    };
+
+    const handleNextQuestion = () => {
+        if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+        } else {
+            // All questions answered, do something with the selected options
+            console.log("Selected options:", selectedOptions);
+            // Reset state for next quiz session
+            setCurrentQuestion(0);
+            setSelectedOptions([]);
+        }
+    };
+
     return (
-        <>
-            <div className='min-h-[83vh] flex justify-center items-center'>
-                <div className=" w-4/5 mx-2  svelte-1l8159u">
-                    <div className="flex justify-center">
-                        <div className="flex font-bold text-gray-600 text-3xl leading-8  h-6 mt-8 mb-4">Enter your E-mail / WhatsApp number</div>
+        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl font-semibold mb-4">{questions[currentQuestion]}</h2>
+            <div className="grid grid-cols-2 gap-4">
+                {options[currentQuestion].map((option, index) => (
+                    <div key={index} className="bg-gray-200 p-4 rounded-md cursor-pointer" onClick={() => handleOptionSelect(option)}>
+                        <p>{option}</p>
+                        {selectedOptions[currentQuestion] === option && <span className="absolute top-2 right-2 text-green-500">&#10003;</span>}
                     </div>
-                    <div className="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
-                        <input placeholder="jhon@.com" className="p-1 px-2 appearance-none outline-none w-full text-gray-800" />
-                    </div>
-                    <div className="flex justify-center">
-                        <a href="/hotels" className="relative inline-block text-lg group mt-3">
-                            <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-                                <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-                                <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-                                <span className="relative">Submit</span>
-                            </span>
-                            <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
-                        </a>
-                    </div>
-                </div>
+                ))}
             </div>
-        </>
-    )
+            <button onClick={handleNextQuestion} className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Next</button>
+        </div>
+    );
 }
 
-export default Verify
+export default Verify;
