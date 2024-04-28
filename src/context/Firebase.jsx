@@ -64,6 +64,12 @@ export const FirebaseProvider = (props) => {
 
     const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
 
+    const getCurrentUser = () => {
+        // Clean the phoneNumber of the currentUser if it exists
+        const cleanedPhoneNumber = user ? user.phoneNumber.replace("+91", "") : null;
+        return { ...user, phoneNumber: cleanedPhoneNumber };
+    };
+
     const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images, rooms, bedSizeOrCapacity, roomRates, facilities) => {
         const imageUrls = [];
         // Loop through each selected image
@@ -98,15 +104,18 @@ export const FirebaseProvider = (props) => {
             CreatorContact: user.phoneNumber,
         });
     };
+    
+    
+    const listOfClient = () => {
+        return getDocs(collection(firestore, "Profiles"))
+    };
 
     // console.log(user)
 
     const listOfHotels = () => {
         return getDocs(collection(firestore, "Hotels"))
     };
-    const listOfClient = () => {
-        return getDocs(collection(firestore, "Profiles"))
-    };
+    
 
     // const getImageURL = async (paths) => {
     //     // Array to store promises for fetching download URLs
@@ -155,6 +164,7 @@ export const FirebaseProvider = (props) => {
         getImageURL,
         CreateNewProfile,
         listOfClient,
-        getHotelById
+        getHotelById,
+        getCurrentUser
     }} > {props.children} </FirebaseContext.Provider>
 };

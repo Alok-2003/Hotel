@@ -92,34 +92,25 @@ const Login = () => {
             return () => clearTimeout(timeout);
         }
     }, [log, navigate, cleanedContacts, phone]);
-    // useEffect(() => {
-    //     if (log) {
-    //         const timeout = setTimeout(() => {
-    //             navigate("/profile"); // Use navigate function to redirect
-    //         }, 3000);
-
-    //         return () => clearTimeout(timeout);
-    //     }
-    // }, [log, navigate]);
-
+   
     // console.log(phone)
 
-    // useEffect(() => {
-    //     if (log) {
-    //         const timeout = setTimeout(() => {
-    //             // Check if user's profile exists and redirect accordingly
-    //             firebase.checkProfileExists(phone).then((profileExists) => {
-    //                 if (profileExists) {
-    //                     navigate("/HSearch");
-    //                 } else {
-    //                     navigate("/profile");
-    //                 }
-    //             });
-    //         }, 3000);
+    useEffect(() => {
+        if (log) {
+            const timeout = setTimeout(() => {
+                // Check if user's profile exists and redirect accordingly
+                firebase.checkProfileExists(phone).then((profileExists) => {
+                    if (profileExists) {
+                        navigate("/HSearch");
+                    } else {
+                        navigate("/profile");
+                    }
+                });
+            }, 3000);
 
-    //         return () => clearTimeout(timeout);
-    //     }
-    // }, [log, navigate, firebase, phone]);
+            return () => clearTimeout(timeout);
+        }
+    }, [log, navigate, firebase, phone]);
 
 
 

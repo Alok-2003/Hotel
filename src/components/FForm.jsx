@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { selectedCityGlobal } from './HSearch';
 import { selectedEventGlobal } from './Requirement';
 import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
 import { IntrestedHotel } from './HotelView';
+import { useFirebase } from '../context/Firebase';
 
 const FForm = () => {
+    const { getCurrentUser } = useFirebase();
+    const currentUser = getCurrentUser();
+
+    // Now you can use currentUser to access the current user details
+    console.log(currentUser.phoneNumber);
     const [selectedCity, setSelectedCity] = useState('');
 
     const [formData, setFormData] = useState({
@@ -15,10 +21,9 @@ const FForm = () => {
         pincode: '',
         whatsappNo: '',
         email: '',
-        eventType: selectedEventGlobal, // New field for type of event
-        gatheringStrength: selectedGatheringGlobal, // New field for gathering strength
-        // meal: [] // New field for choose your meal
-        meal: selectedCateringGlobal // New field for choose your meal
+        eventType: selectedEventGlobal,
+        gatheringStrength: selectedGatheringGlobal,
+        meal: selectedCateringGlobal
     });
 
     const handleCityChange = (e) => {
@@ -33,25 +38,11 @@ const FForm = () => {
         }));
     };
 
-    // const handleMealChange = (e) => {
-    //     const { options } = e.target;
-    //     const selectedMeals = [];
-    //     for (let i = 0; i < options.length; i++) {
-    //         if (options[i].selected) {
-    //             selectedMeals.push(options[i].value);
-    //         }
-    //     }
-    //     setFormData(prevState => ({
-    //         ...prevState,
-    //         meal: selectedMeals
-    //     }));
-    // };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can handle form submission logic here
         console.log(formData);
     };
+
     const cities = [
         'Agra', 'Ahmedabad', 'Ajmer', 'Allahabad', 'Amritsar', 'Aurangabad', 'Bangalore', 'Bhopal', 'Bhubaneswar', 'Chandigarh',
         'Chennai', 'Coimbatore', 'Delhi', 'Faridabad', 'Ghaziabad', 'Goa', 'Gurgaon', 'Guwahati', 'Hyderabad', 'Indore',
@@ -59,13 +50,6 @@ const FForm = () => {
         'Ludhiana', 'Madurai', 'Mangalore', 'Mumbai', 'Nagpur', 'Nashik', 'Noida', 'Patna', 'Pune', 'Rajkot',
         'Ranchi', 'Srinagar', 'Surat', 'Thane', 'Thiruvananthapuram', 'Udaipur', 'Vadodara', 'Varanasi', 'Vijayawada', 'Visakhapatnam'
     ];
-    const handleChangeMeal = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value === "Yes" ? true : false
-        });
-    };
 
     return (
         <div>
@@ -76,7 +60,6 @@ const FForm = () => {
                         <h2 className="text-2xl font-bold mb-2 text-white">{IntrestedHotel}</h2>
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="mb-2 ">
-                                {/* <label htmlFor="fullName" className="block text-lg font-medium text-white">City</label> */}
                                 <select id="city" name="city" value={formData.city} onChange={handleCityChange} className="text-xl text-white mt-1 p-2 border border-gray-300 rounded-md w-full bg-gray-900/50">
                                     <option value="city">city</option>
                                     {cities.map((city, index) => (
@@ -85,7 +68,6 @@ const FForm = () => {
                                 </select>
                             </div>
                             <div className="mb-2 ">
-                                {/* <label htmlFor="eventType" className="block text-lg font-medium text-white">Type of Event</label> */}
                                 <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-xl text-white bg-gray-900/50">
                                     <option value="">Select Type of Event</option>
                                     <option value="Marriage">Marriage</option>
@@ -98,33 +80,12 @@ const FForm = () => {
                             </div>
 
                             <div className="mb-2 ">
-                                {/* <label htmlFor="meal" className="block text-lg font-medium text-white">Choose Your Meal</label> */}
                                 <select id="meal" name="meal" value={formData.meal} onChange={handleChange} className="mt-1 p-2 border border-gray-300 rounded-md w-full text-xl text-white bg-gray-900/50">
                                     <option value="">Meal</option>
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
                             </div>
-
-                            {/* <div className='flex justify-between items-center gap-2 bg-white rounded-lg p-2'>
-                                    <label className="inline-flex items-center mt-2">
-                                        <input type="radio" name="meal" value="Breakfast" checked={formData.meal === "Breakfast"} onChange={handleChange} className="form-radio h-5 w-5 text-blue-600" /><span className="ml-2 text-black">Breakfast</span>
-                                    </label>
-                                    <label className="inline-flex items-center mt-2">
-                                        <input type="radio" name="meal" value="Lunch" checked={formData.meal === "Lunch"} onChange={handleChange} className="form-radio h-5 w-5 text-blue-600" /><span className="ml-2 text-black">Lunch</span>
-                                    </label>
-                                    <label className="inline-flex items-center mt-2">
-                                        <input type="radio" name="meal" value="Dinner" checked={formData.meal === "Dinner"} onChange={handleChange} className="form-radio h-5 w-5 text-blue-600" /><span className="ml-2 text-black">Dinner</span>
-                                    </label>
-                                </div> */}
-                            {/* <div className="mb-4 w-full md:mx-4">
-                                <label htmlFor="pincode" className="block text-lg font-medium text-white">Pincode</label>
-                                <input type="number" id="pincode" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Enter Pincode" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
-                            </div> */}
-                            {/* <div className="mb-4 w-full">
-                                <label htmlFor="whatsappNo" className="block text-lg font-medium text-white">WhatsApp No</label>
-                                <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
-                            </div> */}
                         </div>
                         <div className="grid md:grid-cols-2 md:gap-4">
                             <div class="flex items-center justify-center">
@@ -133,7 +94,7 @@ const FForm = () => {
                                         type="email" id="email" name="email" value={formData.email} onChange={handleChange}
                                         class="w-full text-3xl border-b border-gray-300 py-1 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit"
                                     />
-                                    {!formData.email && ( // Render label only if formData.fullName is empty
+                                    {!formData.email && (
                                         <label
                                             htmlFor="email"
                                             class="absolute left-0 top-2 cursor-text peer-focus:text-lg text-2xl peer-focus:-top-4 transition-all peer-focus:text-black text-white"
@@ -149,7 +110,7 @@ const FForm = () => {
                                         type="text" id="gatheringStrength" name="gatheringStrength" value={formData.gatheringStrength} onChange={handleChange}
                                         class="w-full text-3xl border-b border-gray-300 py-1 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit"
                                     />
-                                    {!formData.gatheringStrength && ( // Render label only if formData.fullName is empty
+                                    {!formData.gatheringStrength && (
                                         <label
                                             htmlFor="gatheringStrength"
                                             class="absolute left-0 top-2 cursor-text peer-focus:text-lg text-2xl peer-focus:-top-4 transition-all peer-focus:text-black text-white"
@@ -159,14 +120,6 @@ const FForm = () => {
                                     )}
                                 </div>
                             </div>
-                            {/* <div className="mb-4 md:w-1/2 md:mr-2">
-                                    <label htmlFor="email" className="block text-lg font-medium text-white">Email</label>
-                                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter Email" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
-                                </div> */}
-                            {/* <div className="mb-4 md:w-1/2 md:ml-2">
-                                    <label htmlFor="gatheringStrength" className="block text-lg font-medium text-white">Gathering Strength</label>
-                                    <input type="text" id="gatheringStrength" name="gatheringStrength" value={formData.gatheringStrength} onChange={handleChange} placeholder="Enter Gathering Strength" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" />
-                                </div> */}
                         </div>
 
                         <div class="flex items-center justify-center mb-2">
@@ -179,7 +132,7 @@ const FForm = () => {
                                     onChange={handleChange}
                                     class="w-full text-3xl border-b border-gray-300 py-1 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit"
                                 />
-                                {!formData.fullName && ( // Render label only if formData.fullName is empty
+                                {!formData.fullName && (
                                     <label
                                         htmlFor="fullName"
                                         class="absolute left-0 top-2 cursor-text peer-focus:text-lg text-2xl peer-focus:-top-4 transition-all peer-focus:text-black text-white"
@@ -189,8 +142,6 @@ const FForm = () => {
                                 )}
                             </div>
                         </div>
-                        {/* <label htmlFor="fullName" className="block text-lg font-medium text-white">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Enter Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full text-lg" /> */}
                         <div className="grid md:grid-cols-2 gap-4 mb-4">
                             <div class="flex items-center justify-center">
                                 <div class="relative w-full ">
@@ -198,7 +149,7 @@ const FForm = () => {
                                         type="number" id="pincode" name="pincode" value={formData.pincode} onChange={handleChange}
                                         class="w-full text-3xl border-b border-gray-300 py-1 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit"
                                     />
-                                    {!formData.pincode && ( // Render label only if formData.fullName is empty
+                                    {!formData.pincode && (
                                         <label
                                             htmlFor="pincode"
                                             class="absolute left-0 top-2 cursor-text peer-focus:text-lg text-2xl peer-focus:-top-4 transition-all peer-focus:text-black text-white"
@@ -214,7 +165,7 @@ const FForm = () => {
                                         type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange}
                                         class="w-full text-3xl border-b border-gray-300 py-1 focus:border-b-2 focus:border-black transition-colors focus:outline-none peer bg-inherit"
                                     />
-                                    {!formData.whatsappNo && ( // Render label only if formData.fullName is empty
+                                    {!formData.whatsappNo && (
                                         <label
                                             htmlFor="whatsappNo"
                                             class="absolute left-0 top-2 cursor-text peer-focus:text-lg text-2xl peer-focus:-top-4 transition-all peer-focus:text-black text-white"
@@ -227,7 +178,6 @@ const FForm = () => {
                         </div>
 
                         <Link to={'/HSearch'}>
-                            {/* <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button> */}
                             <button
                                 type="submit"
                                 class="overflow-hidden relative w-32 p-2 h-12 bg-white text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
