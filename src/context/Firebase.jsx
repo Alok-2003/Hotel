@@ -154,11 +154,15 @@ export const FirebaseProvider = (props) => {
         }
     };
 
-    const IntrestedClient = async (name, city, pincode, contact, email,event,catering, Gathering) => {
+    const IntrestedClientForm = async (hotelname,name, city, pincode, contact, email,event,catering, Gathering) => {
         return await addDoc(collection(firestore, "Intrested"), {
-            name, city, pincode, contact, email,event,catering, Gathering,
+            hotelname,name, city, pincode, contact, email,event,catering, Gathering,
             CreatorContact: user.phoneNumber,
         });
+    };
+
+    const IntrestedClientData = () => {
+        return getDocs(collection(firestore, "Intrested"))
     };
 
     return <FirebaseContext.Provider value={{
@@ -172,6 +176,7 @@ export const FirebaseProvider = (props) => {
         listOfClient,
         getHotelById,
         getCurrentUser,
-        IntrestedClient
+        IntrestedClientForm,
+        IntrestedClientData
     }} > {props.children} </FirebaseContext.Provider>
 };

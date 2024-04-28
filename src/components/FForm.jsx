@@ -6,16 +6,18 @@ import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
 import { IntrestedHotel } from './HotelView';
 import { useFirebase } from '../context/Firebase';
+import { toast, Toaster } from "react-hot-toast";
 
 const FForm = () => {
     const firebase = useFirebase();
     const { getCurrentUser } = useFirebase();
     const currentUser = getCurrentUser();
-    const currentPhoneNumber= currentUser.phoneNumber;
+    const currentPhoneNumber = currentUser.phoneNumber;
     const [profile, setProfile] = useState([]);
 
 
     const [formData, setFormData] = useState({
+        Hotelname: IntrestedHotel,
         fullName: '',
         city: selectedCityGlobal,
         pincode: '',
@@ -62,7 +64,8 @@ const FForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await firebase.IntrestedClient(
+            await firebase.IntrestedClientForm(
+                formData.Hotelname,
                 formData.fullName,
                 formData.city,
                 formData.pincode,
@@ -72,9 +75,11 @@ const FForm = () => {
                 formData.meal,
                 formData.gatheringStrength
             );
-            console.log("Data submitted successfully!");
+            toast.success("Data Submitted Succesfully ");
+            // console.log("Data submitted successfully!");
         } catch (error) {
-            console.error("Error submitting data:", error);
+            toast.error("Error submitting data. Please try again later.");
+            // console.error("Error submitting data:", error);
         }
     };
 
@@ -89,10 +94,11 @@ const FForm = () => {
     return (
         <div>
             <div className="gilroyMed min-h-screen flex items-center justify-center bg-gray-100 bg-[url('/Background/BG_2.jpg')] bg-cover">
+            <Toaster toastOptions={{ duration: 4000 }} />
                 <div className="backdrop-blur-sm bg-gray-700/10 md:p-8 p-4 rounded-3xl shadow-lg md:w-2/3 w-[85%] mt-14 md:mb-8 mb-12">
                     <h2 className="text-4xl font-bold mb-3 text-white underline  underline-offset-2">Verify details</h2>
                     <form onSubmit={handleSubmit}>
-                        <h2 className="text-2xl font-bold mb-2 text-white">{IntrestedHotel}</h2>
+                        <h2 className="text-2xl font-bold mb-2 text-white">{formData.Hotelname}</h2>
                         <div className="grid md:grid-cols-3 gap-4">
                             <div className="mb-2 ">
                                 <select id="city" name="city" value={formData.city} onChange={handleCityChange} className="text-xl text-white mt-1 p-2 border border-gray-300 rounded-md w-full bg-gray-900/50">
@@ -213,25 +219,25 @@ const FForm = () => {
                         </div>
 
                         {/* <Link to={'/HSearch'}> */}
-                            <button
-                                type="submit"
-                                class="overflow-hidden relative w-32 p-2 h-12 bg-white text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
+                        <button
+                            type="submit"
+                            class="overflow-hidden relative w-32 p-2 h-12 bg-white text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
+                        >
+                            Submit
+                            <span
+                                class="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
+                            ></span>
+                            <span
+                                class="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
+                            ></span>
+                            <span
+                                class="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
+                            ></span>
+                            <span
+                                class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-8 z-10"
+                            >Submit</span
                             >
-                                Submit
-                                <span
-                                    class="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
-                                ></span>
-                                <span
-                                    class="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
-                                ></span>
-                                <span
-                                    class="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
-                                ></span>
-                                <span
-                                    class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-8 z-10"
-                                >Submit</span
-                                >
-                            </button>
+                        </button>
 
                         {/* </Link> */}
                     </form>

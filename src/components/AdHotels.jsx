@@ -18,6 +18,10 @@ const AdHotels = () => {
         // Redirect to Client_Profile
         navigate("/Client_Profile");
     };
+    const handliViewIntrested = () => {
+        // Redirect to Client_Profile
+        navigate("/Intrested_Client");
+    };
 
     return (
         <div className='h-full gilroyMed bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center '>
@@ -49,6 +53,7 @@ const AdHotels = () => {
                     </main>
                 ))}
                 <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-1 md:py-1 rounded-xl md:text-xl text-sm font-bold' onClick={handliViewProfile} >Client Profile</button>
+                <button className='bg-green-400 hover:bg-green-400/60 md:px-4 px-1 md:py-1 rounded-xl md:text-xl text-sm font-bold' onClick={handliViewIntrested} >Client Profile</button>
 
             </div>
 
