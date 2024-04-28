@@ -53,7 +53,7 @@ const AdHotels = () => {
                     </main>
                 ))}
                 <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-1 md:py-1 rounded-xl md:text-xl text-sm font-bold' onClick={handliViewProfile} >Client Profile</button>
-                <button className='bg-green-400 hover:bg-green-400/60 md:px-4 px-1 md:py-1 rounded-xl md:text-xl text-sm font-bold' onClick={handliViewIntrested} >Client Profile</button>
+                <button className='bg-green-400 hover:bg-green-400/60 md:px-4 px-1 md:py-1 rounded-xl md:text-xl text-sm font-bold' onClick={handliViewIntrested} >Client Intrested</button>
 
             </div>
 
