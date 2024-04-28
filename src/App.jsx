@@ -20,6 +20,7 @@ import { useFirebase } from './context/Firebase';
 import CliProfile from './components/CliProfile';
 import AdInstrested from './components/AdIntrested';
 import Test from './components/test';
+import IntrestedClient from './components/IntrestedClient';
 function App() {
   const firebase = useFirebase();
   // console.log(firebase.isLoggedIn)
@@ -50,6 +51,7 @@ function App() {
             <Route path='/admin_hotels' element={<AdHotels />} > </Route>
             <Route path='/client_intrested' element={<AdInstrested />} > </Route>
             <Route path='/Client_Profile' element={<CliProfile />} > </Route>
+            <Route path='/Intrested_Client' element={<IntrestedClient />} > </Route>
             <Route path='/test' element={<Test />} > </Route>
           </>
         {/* ) : (

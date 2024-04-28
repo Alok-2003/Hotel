@@ -154,9 +154,9 @@ export const FirebaseProvider = (props) => {
         }
     };
 
-    const IntrestedClient = async (name, city, pincode, contact, email) => {
+    const IntrestedClient = async (name, city, pincode, contact, email,event,catering, Gathering) => {
         return await addDoc(collection(firestore, "Intrested"), {
-            name, city, pincode, contact, email,
+            name, city, pincode, contact, email,event,catering, Gathering,
             CreatorContact: user.phoneNumber,
         });
     };

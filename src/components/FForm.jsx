@@ -59,9 +59,23 @@ const FForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        try {
+            await firebase.IntrestedClient(
+                formData.fullName,
+                formData.city,
+                formData.pincode,
+                formData.whatsappNo,
+                formData.email,
+                formData.eventType,
+                formData.meal,
+                formData.gatheringStrength
+            );
+            console.log("Data submitted successfully!");
+        } catch (error) {
+            console.error("Error submitting data:", error);
+        }
     };
 
     const cities = [
@@ -198,7 +212,7 @@ const FForm = () => {
                             </div>
                         </div>
 
-                        <Link to={'/HSearch'}>
+                        {/* <Link to={'/HSearch'}> */}
                             <button
                                 type="submit"
                                 class="overflow-hidden relative w-32 p-2 h-12 bg-white text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
@@ -219,7 +233,7 @@ const FForm = () => {
                                 >
                             </button>
 
-                        </Link>
+                        {/* </Link> */}
                     </form>
                 </div>
             </div>
