@@ -8,12 +8,12 @@ import { IntrestedHotel } from './HotelView';
 import { useFirebase } from '../context/Firebase';
 
 const FForm = () => {
+    const firebase = useFirebase();
     const { getCurrentUser } = useFirebase();
     const currentUser = getCurrentUser();
+    const currentPhoneNumber= currentUser.phoneNumber;
+    const [profile, setProfile] = useState([]);
 
-    // Now you can use currentUser to access the current user details
-    console.log(currentUser.phoneNumber);
-    const [selectedCity, setSelectedCity] = useState('');
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -25,6 +25,27 @@ const FForm = () => {
         gatheringStrength: selectedGatheringGlobal,
         meal: selectedCateringGlobal
     });
+
+    useEffect(() => {
+        firebase.listOfClient().then((profiles) => {
+            // Filter the profiles based on the currentUser's phoneNumber
+            const filteredProfile = profiles.docs
+                .map(doc => doc.data())
+                .filter(profile => profile.contact === currentPhoneNumber);
+            setProfile(filteredProfile);
+            // console.log(filteredProfile);
+            if (filteredProfile.length > 0) {
+                const firstProfile = filteredProfile[0]; // Assuming only one profile is fetched
+                setFormData({
+                    ...formData,
+                    fullName: firstProfile.name,
+                    pincode: firstProfile.pincode,
+                    whatsappNo: firstProfile.contact,
+                    email: firstProfile.email,
+                });
+            }
+        });
+    }, [firebase, currentPhoneNumber]);
 
     const handleCityChange = (e) => {
         setSelectedCity(e.target.value);

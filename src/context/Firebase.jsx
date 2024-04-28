@@ -154,6 +154,12 @@ export const FirebaseProvider = (props) => {
         }
     };
 
+    const IntrestedClient = async (name, city, pincode, contact, email) => {
+        return await addDoc(collection(firestore, "Intrested"), {
+            name, city, pincode, contact, email,
+            CreatorContact: user.phoneNumber,
+        });
+    };
 
     return <FirebaseContext.Provider value={{
         isLoggedIn,
@@ -165,6 +171,7 @@ export const FirebaseProvider = (props) => {
         CreateNewProfile,
         listOfClient,
         getHotelById,
-        getCurrentUser
+        getCurrentUser,
+        IntrestedClient
     }} > {props.children} </FirebaseContext.Provider>
 };

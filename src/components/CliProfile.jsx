@@ -13,6 +13,7 @@ const CliProfile = () => {
             setprofile(profiles.docs.map(doc => doc.data()))
         }
     )}, []);
+    console.log(profiles)
 
     const creatorContacts = profiles.map(profile => profile.CreatorContact);
     console.log(creatorContacts)
