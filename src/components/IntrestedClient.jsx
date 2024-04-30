@@ -9,7 +9,7 @@ const IntrestedClient = () => {
         firebase.IntrestedClientData().then((Intrested) => setIntrested(Intrested.docs.map(doc => doc.data())));
     }, []);
     return (
-        <div className='h-full font-[gilroy] bg-[url("src/assets/building-night.jpg")] bg-cover flex justify-center '>
+        <div className='h-full font-[gilroy] bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center '>
             <div className='w-10/12   mt-20 '>
             <div className="grid grid-cols-4 gap-4 justify-items-center items-center px-4">
                     {/* Display fetched profiles */}
