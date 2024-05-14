@@ -38,7 +38,7 @@ const CreateProfile = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('src/assets/2.jpg')] bg-cover">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_2.jpg?alt=media&token=0a342de3-713c-4e07-8a6f-0645aa3e7eb8')] bg-cover">
             <Toaster toastOptions={{ duration: 4000 }} />
 
             <div className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl shadow-lg w-1/3">
