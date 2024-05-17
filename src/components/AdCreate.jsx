@@ -23,6 +23,9 @@ const AdCreate = () => {
         restaurant: false,
         freeParking: false,
         bar: false,
+        audioVisual: '',
+        invitationService: '',
+        photographyService: '',
         facilities: [] // Initialize facilities as an empty array
     });
 
@@ -39,10 +42,10 @@ const AdCreate = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
+        setFormData({
+            ...formData,
             [name]: value
-        }));
+        });
     };
 
     const handleCityChange = (e) => {
@@ -60,11 +63,11 @@ const AdCreate = () => {
 
     console.log(formData.meal)
     const handleMealChange = (e) => {
-        const { value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            meal: value
-        }));
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     };
 
     const handleImageChange = (e) => {
@@ -78,12 +81,12 @@ const AdCreate = () => {
         }));
     };
     const handleFacilitiesChange = (e) => {
-        const { value } = e.target;
-        setFormData(prevState => ({
+        const { value, checked } = e.target;
+        setFormData((prevState) => ({
             ...prevState,
-            facilities: prevState.facilities.includes(value)
-                ? prevState.facilities.filter(facility => facility !== value)
-                : [...prevState.facilities, value]
+            facilities: checked
+                ? [...prevState.facilities, value]
+                : prevState.facilities.filter((facility) => facility !== value)
         }));
     };
 
@@ -168,26 +171,7 @@ const AdCreate = () => {
                                 />
 
                             </div>
-                            {/* <div className="">
-                                <label
-                                    htmlFor="roomType"
-                                    class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                >
-                                    Room Type
-                                </label>
-                                <select
-                                    id="roomType"
-                                    name="roomType"
-                                    value={formData.roomType}
-                                    onChange={handleChange}
-                                    className=" px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg  bg-white hover:border-black hover:border-2"
-                                >
-                                    <option value="">Select Room Type</option>
-                                    <option value="Standard">Standard</option>
-                                    <option value="Deluxe">Deluxe</option>
-                                    <option value="Suite">Suite</option>
-                                </select>
-                            </div> */}
+
 
                         </div>
                         {/* Location city , Pincode, Location URL */}
@@ -259,7 +243,7 @@ const AdCreate = () => {
 
                         {/* Switch button  */}
                         <div className="w-full flex justify-between items-center">
-                            <h1 className='text-2xl font-bold'>Switch between Rooms and events</h1>
+                            <h1 className='text-[1.7rem] font-bold'>Switch between Rooms and events</h1>
                             <label className="relative inline-flex items-center cursor-pointer">
                                 <input
                                     className="sr-only peer"
@@ -267,7 +251,7 @@ const AdCreate = () => {
                                     checked={isChecked}
                                     onChange={() => setIsChecked(!isChecked)} // Add this handler
                                 />
-                                <div className="peer rounded-full outline-none duration-100 after:duration-500 w-28 h-10 bg-gray-300 peer-focus:outline-none peer-focus:ring- hover:outline-gray-500 after:content-['R'] after:absolute after:outline-none after:rounded-full after:h-7 after:w-7 after:bg-white after:top-1.5 after:left-2 after:flex after:justify-center after:items-center after:text-black/70 after:font-bold peer-checked:after:translate-x-16 peer-checked:after:content-['E'] peer-checked:after:border-white">
+                                <div className="peer rounded-full outline-none duration-100 after:duration-500 w-28 h-10 bg-gray-300 peer-focus:outline-none peer-focus:ring- hover:outline-gray-500 after:content-['R'] after:absolute after:outline-none after:rounded-full after:h-7 after:w-7 after:bg-white after:top-1.5 after:left-2 after:flex after:justify-center after:items-center after:text-black/80 after:font-bold peer-checked:after:translate-x-16 peer-checked:after:content-['E'] peer-checked:after:border-white">
                                 </div>
                             </label>
                         </div>
@@ -276,14 +260,20 @@ const AdCreate = () => {
                             <div>
                                 {/* Content for "E" */}
                                 <div className="md:mb-0 md:grid grid-cols-3 gap-4 h-[72px]">
-                                    <div className="  ">
+                                    <div>
                                         <label
-                                            for="eventType"
+                                            htmlFor="eventType"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                        >Event Service Provided
+                                        >
+                                            Event Service Provided
                                         </label>
-                                        {/* <label htmlFor="eventType" className="block text-lg font-medium text-white">Event Service Provided</label> */}
-                                        <select id="eventType" name="eventType" value={formData.eventType} onChange={handleChange} className=" px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg  bg-white hover:border-black hover:border-2">
+                                        <select
+                                            id="eventType"
+                                            name="eventType"
+                                            value={formData.eventType}
+                                            onChange={handleChange}
+                                            className="px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg bg-white hover:border-black hover:border-2"
+                                        >
                                             <option value="">Select Type of Event</option>
                                             <option value="Marriage">Marriage</option>
                                             <option value="Birthday Party">Birthday Party</option>
@@ -293,106 +283,169 @@ const AdCreate = () => {
                                             <option value="Anniversary">Anniversary</option>
                                         </select>
                                     </div>
-                                    <div className="">
+                                    <div>
                                         <label
-                                            for="eventStrength"
+                                            htmlFor="eventStrength"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                        >Event Gathering
+                                        >
+                                            Event Gathering
                                         </label>
-                                        {/* <label htmlFor="eventStrength" className="block text-lg font-medium text-white">Event Gathering Strength</label> */}
-                                        <select id="eventStrength" name="eventStrength" value={formData.eventStrength} onChange={handleChange} className=" px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg  bg-white hover:border-black hover:border-2">
+                                        <select
+                                            id="eventStrength"
+                                            name="eventStrength"
+                                            value={formData.eventStrength}
+                                            onChange={handleChange}
+                                            className="px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg bg-white hover:border-black hover:border-2"
+                                        >
                                             <option value="">Select the Strength</option>
                                             <option value="Small">Small</option>
                                             <option value="Medium">Medium</option>
                                             <option value="Large">Large</option>
                                         </select>
                                     </div>
-
-                                    <div className="mb-4  ">
+                                    <div className="mb-4">
                                         <label
-                                            for="meal"
+                                            htmlFor="meal"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                        >Catering Service
+                                        >
+                                            Catering Service
                                         </label>
                                         <div className='flex justify-evenly items-center gap-2 rounded-lg px-[10px] py-[6px] border border-gray-300 w-full text-lg'>
-                                            <label className="inline-flex items-center mt-2 ">
-                                                <input type="radio" name="meal" value="Yes" checked={formData.meal === "Yes"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                            <label className="inline-flex items-center mt-2">
+                                                <input
+                                                    type="radio"
+                                                    name="meal"
+                                                    value="Yes"
+                                                    checked={formData.meal === "Yes"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">Yes</span>
                                             </label>
                                             <label className="inline-flex items-center mt-2">
-                                                <input type="radio" name="meal" value="No" checked={formData.meal === "No"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                                <input
+                                                    type="radio"
+                                                    name="meal"
+                                                    value="No"
+                                                    checked={formData.meal === "No"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">No</span>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="md:mb-0 md:grid grid-cols-3 gap-4 h-[72px]">
-                                <div className="">
+                                    <div>
                                         <label
-                                            for="meal"
+                                            htmlFor="audioVisual"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                        >Audio-visual Equipment 
+                                        >
+                                            Audio-visual Equipment
                                         </label>
                                         <div className='flex justify-evenly items-center gap-2 rounded-lg px-[10px] py-[6px] border border-gray-300 w-full text-lg'>
-                                            <label className="inline-flex items-center mt-2 ">
-                                                <input type="radio" name="meal" value="Yes" checked={formData.meal === "Yes"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                            <label className="inline-flex items-center mt-2">
+                                                <input
+                                                    type="radio"
+                                                    name="audioVisual"
+                                                    value="Yes"
+                                                    checked={formData.audioVisual === "Yes"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">Yes</span>
                                             </label>
                                             <label className="inline-flex items-center mt-2">
-                                                <input type="radio" name="meal" value="No" checked={formData.meal === "No"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                                <input
+                                                    type="radio"
+                                                    name="audioVisual"
+                                                    value="No"
+                                                    checked={formData.audioVisual === "No"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">No</span>
                                             </label>
                                         </div>
                                     </div>
-                                    <div className="">
+                                    <div>
                                         <label
-                                            for="meal"
+                                            htmlFor="invitationService"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                        >Invitation Service
+                                        >
+                                            Invitation Service
                                         </label>
                                         <div className='flex justify-evenly items-center gap-2 rounded-lg px-[10px] py-[6px] border border-gray-300 w-full text-lg'>
-                                            <label className="inline-flex items-center mt-2 ">
-                                                <input type="radio" name="meal" value="Yes" checked={formData.meal === "Yes"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                            <label className="inline-flex items-center mt-2">
+                                                <input
+                                                    type="radio"
+                                                    name="invitationService"
+                                                    value="Yes"
+                                                    checked={formData.invitationService === "Yes"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">Yes</span>
                                             </label>
                                             <label className="inline-flex items-center mt-2">
-                                                <input type="radio" name="meal" value="No" checked={formData.meal === "No"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                                <input
+                                                    type="radio"
+                                                    name="invitationService"
+                                                    value="No"
+                                                    checked={formData.invitationService === "No"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">No</span>
                                             </label>
                                         </div>
                                     </div>
-
-                                    <div className="">
+                                    <div>
                                         <label
-                                            for="meal"
+                                            htmlFor="photographyService"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                        >Photography Service
+                                        >
+                                            Photography Service
                                         </label>
                                         <div className='flex justify-evenly items-center gap-2 rounded-lg px-[10px] py-[6px] border border-gray-300 w-full text-lg'>
-                                            <label className="inline-flex items-center mt-2 ">
-                                                <input type="radio" name="meal" value="Yes" checked={formData.meal === "Yes"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                            <label className="inline-flex items-center mt-2">
+                                                <input
+                                                    type="radio"
+                                                    name="photographyService"
+                                                    value="Yes"
+                                                    checked={formData.photographyService === "Yes"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">Yes</span>
                                             </label>
                                             <label className="inline-flex items-center mt-2">
-                                                <input type="radio" name="meal" value="No" checked={formData.meal === "No"} onChange={handleMealChange} className="form-radio h-5 w-5 text-blue-600" />
+                                                <input
+                                                    type="radio"
+                                                    name="photographyService"
+                                                    value="No"
+                                                    checked={formData.photographyService === "No"}
+                                                    onChange={handleMealChange}
+                                                    className="form-radio h-5 w-5 text-blue-600"
+                                                />
                                                 <span className="ml-2 text-black">No</span>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="mb-4">
                                     <label
                                         htmlFor="facilities"
-                                        class="text-gray-500 text-[1.4rem] font-semibold relative top-5 ml-[9px] px-[3px] bg-white w-fit"
+                                        className="text-gray-500 text-[1.4rem] font-semibold relative top-5 ml-[9px] px-[3px] bg-white w-fit"
                                     >
                                         Facilities Provided by the Hotel
                                     </label>
-                                    <div className="flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white  border-[2px] border-gray-200">
+                                    <div className="flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
-                                                name="freeWifi"
+                                                name="facilities"
                                                 value="Free Wifi"
                                                 checked={formData.facilities.includes("Free Wifi")}
                                                 onChange={handleFacilitiesChange}
@@ -403,7 +456,7 @@ const AdCreate = () => {
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
-                                                name="ac"
+                                                name="facilities"
                                                 value="AC"
                                                 checked={formData.facilities.includes("AC")}
                                                 onChange={handleFacilitiesChange}
@@ -414,7 +467,7 @@ const AdCreate = () => {
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
-                                                name="restaurant"
+                                                name="facilities"
                                                 value="Restaurant"
                                                 checked={formData.facilities.includes("Restaurant")}
                                                 onChange={handleFacilitiesChange}
@@ -425,7 +478,7 @@ const AdCreate = () => {
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
-                                                name="freeParking"
+                                                name="facilities"
                                                 value="Free Parking"
                                                 checked={formData.facilities.includes("Free Parking")}
                                                 onChange={handleFacilitiesChange}
@@ -436,7 +489,7 @@ const AdCreate = () => {
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
-                                                name="bar"
+                                                name="facilities"
                                                 value="Bar"
                                                 checked={formData.facilities.includes("Bar")}
                                                 onChange={handleFacilitiesChange}
@@ -448,10 +501,32 @@ const AdCreate = () => {
                                     </div>
                                 </div>
                             </div>
+
                         ) : (
+                            // Rooms
                             <div>
-                                <div className="md:grid grid-cols-3 gap-4">
-                                    <div className="mb-4">
+                                <div className="md:grid grid-cols-3 gap-4 gap-y-0">
+                                    <div className="">
+                                        <label
+                                            htmlFor="roomType"
+                                            class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                        >
+                                            Room Type
+                                        </label>
+                                        <select
+                                            id="roomType"
+                                            name="roomType"
+                                            value={formData.roomType}
+                                            onChange={handleChange}
+                                            className=" px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg  bg-white hover:border-black hover:border-2"
+                                        >
+                                            <option value="">Select Room Type</option>
+                                            <option value="Standard">Standard</option>
+                                            <option value="Deluxe">Deluxe</option>
+                                            <option value="Suite">Suite</option>
+                                        </select>
+                                    </div>
+                                    <div className="">
                                         <label
                                             htmlFor="rooms"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
@@ -465,13 +540,30 @@ const AdCreate = () => {
                                             value={formData.rooms}
                                             onChange={handleChange}
                                             placeholder="Enter Number of Rooms"
-                                            class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
+                                            className="hover:border-black input px-[10px] py-[7px] text-[1.4rem] border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
                                         />
                                     </div>
-                                    <div className="mb-4">
+                                    <div className="">
+                                        <label
+                                            htmlFor="rooms"
+                                            className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                        >
+                                            Rooms Area
+                                        </label>
+                                        <input
+                                            type="number"
+                                            id="rooms"
+                                            name="rooms"
+                                            value={formData.rooms}
+                                            onChange={handleChange}
+                                            placeholder="Enter Number of Rooms"
+                                            className="hover:border-black input px-[10px] py-[7px] text-[1.4rem] border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
+                                        />
+                                    </div>
+                                    <div className="">
                                         <label
                                             htmlFor="bedSizeOrCapacity"
-                                            class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                            className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
                                         >
                                             Bed Size or Capacity
                                         </label>
@@ -480,7 +572,7 @@ const AdCreate = () => {
                                             name="bedSizeOrCapacity"
                                             value={formData.bedSizeOrCapacity}
                                             onChange={handleChange}
-                                            className=" px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg  bg-white hover:border-black hover:border-2"
+                                            className="px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg bg-white hover:border-black hover:border-2"
                                         >
                                             <option value="">Select Bed Size or Capacity</option>
                                             <option value="Single Bed">Single Bed</option>
@@ -489,10 +581,10 @@ const AdCreate = () => {
                                             <option value="King Size Bed">King Size Bed</option>
                                         </select>
                                     </div>
-                                    <div className="mb-4">
+                                    <div className="">
                                         <label
                                             htmlFor="roomRates"
-                                            class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                            className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
                                         >
                                             Rates of Room per Night
                                         </label>
@@ -503,13 +595,154 @@ const AdCreate = () => {
                                             value={formData.roomRates}
                                             onChange={handleChange}
                                             placeholder="Enter Rates per Night"
-                                            class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
+                                            className="hover:border-black input px-[10px] py-[7px] text-[1.4rem] border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
                                         />
                                     </div>
+                                    <div className="">
+                                        <label
+                                            htmlFor="roomView"
+                                            className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                        >
+                                            Room View
+                                        </label>
+                                        <select
+                                            id="roomView"
+                                            name="roomView"
+                                            value={formData.roomView}
+                                            onChange={handleChange}
+                                            className="px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg bg-white hover:border-black hover:border-2"
+                                        >
+                                            <option value="">Select Room View</option>
+                                            <option value="Ocean View">Ocean View</option>
+                                            <option value="City View">City View</option>
+                                            <option value="Mountain View">Mountain View</option>
+                                            <option value="Garden View">Garden View</option>
+                                            <option value="Lake View">Lake View</option>
+                                            <option value="River View">River View</option>
+                                            <option value="Pool View">Pool View</option>
+                                            <option value="Park View">Park View</option>
+                                            <option value="Harbor View">Harbor View</option>
+                                            <option value="Desert View">Desert View</option>
+                                            <option value="Forest View">Forest View</option>
+                                            <option value="Golf Course View">Golf Course View</option>
+                                        </select>
+                                    </div>
+                                    <div className="">
+                                        <label
+                                            htmlFor="numGuests"
+                                            className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                        >
+                                            Number of Guests Allowed
+                                        </label>
+                                        <select
+                                            id="numGuests"
+                                            name="numGuests"
+                                            value={formData.numGuests}
+                                            onChange={handleChange}
+                                            className="px-[10px] py-[13px] border border-gray-300 rounded-md w-full text-lg bg-white hover:border-black hover:border-2"
+                                        >
+                                            <option value="">Select Number of Guests</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                        </select>
+                                    </div>
+                                </div>
 
 
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="facilities"
+                                        className="text-gray-500 text-[1.4rem] font-semibold relative top-5 ml-[9px] px-[3px] bg-white w-fit"
+                                    >
+                                        Facilities Provided by the Hotel
+                                    </label>
+                                    <div className="flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="Free Wifi"
+                                                checked={formData.facilities.includes("Free Wifi")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">Free Wifi</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="AC"
+                                                checked={formData.facilities.includes("AC")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">AC</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="Restaurant"
+                                                checked={formData.facilities.includes("Restaurant")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">Restaurant</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="Free Parking"
+                                                checked={formData.facilities.includes("Free Parking")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">Free Parking</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="Bar"
+                                                checked={formData.facilities.includes("Bar")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">Bar</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="Bar"
+                                                checked={formData.facilities.includes("Bar")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">Laundry Service</span>
+                                        </label>
+                                        <label className="inline-flex items-center mt-2">
+                                            <input
+                                                type="checkbox"
+                                                name="facilities"
+                                                value="Bar"
+                                                checked={formData.facilities.includes("Bar")}
+                                                onChange={handleFacilitiesChange}
+                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                            />
+                                            <span className="ml-2 text-black">Gyser</span>
+                                        </label>
+                                        {/* You can add more facilities checkboxes as needed */}
+                                    </div>
                                 </div>
                             </div>
+
                         )}
 
 
