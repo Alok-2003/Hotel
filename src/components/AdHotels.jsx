@@ -73,10 +73,13 @@ const AdHotels = () => {
                         </div>
                     </main>
                 ))}
-                <div className="flex justify-around mt-4 mb-12">
+                <div className="flex justify-around items-center gap-2 mt-4 mb-12">
                     <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-4 py-2 md:py-1 rounded-xl md:text-xl text-lg font-bold' onClick={handleViewProfile}>
                         Client Profile
                     </button>
+                    <Link to={"/admin_create"}>
+                        <h1 className='bg-blue-400 md:hidden hover:bg-blue-400/60 md:px-4 px-4 py-6 md:py-1 rounded-xl md:text-xl text-lg font-boldbg-blue-400  ' >Create</h1>
+                    </Link>
                     <button className='bg-green-400 hover:bg-green-400/60 md:px-4 px-4 py-2 md:py-1 rounded-xl md:text-xl text-lg font-bold' onClick={handleViewInterested}>
                         Client Interested
                     </button>

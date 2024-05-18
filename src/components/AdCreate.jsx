@@ -248,7 +248,7 @@ const AdCreate = () => {
                                     checked={isChecked}
                                     onChange={() => setIsChecked(!isChecked)} // Add this handler
                                 />
-                                <div className="peer rounded-full outline-none duration-100 after:duration-500 w-28 h-10 bg-gray-300 peer-focus:outline-none peer-focus:ring- hover:outline-gray-500 after:content-['R'] after:absolute after:outline-none after:rounded-full after:h-7 after:w-7 after:bg-white after:top-1.5 after:left-2 after:flex after:justify-center after:items-center after:text-black/80 after:font-bold peer-checked:after:translate-x-16 peer-checked:after:content-['E'] peer-checked:after:border-white">
+                                <div className="peer rounded-full outline-none duration-100 after:duration-500 w-20  h-10 bg-gray-300 peer-focus:outline-none peer-focus:ring- hover:outline-gray-500 after:content-['R'] after:absolute after:outline-none after:rounded-full after:h-7 after:w-7 after:bg-white after:top-1.5 after:left-2 after:flex after:justify-center after:items-center after:text-black/80 after:font-bold peer-checked:after:translate-x-10 peer-checked:after:content-['E'] peer-checked:after:border-white">
                                 </div>
                             </label>
                         </div>
