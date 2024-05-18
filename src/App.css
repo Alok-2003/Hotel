@@ -34,6 +34,13 @@ body {
 .gilroyMed{
   font-family: gilroyMed;
 }
+@font-face {
+  font-family: gilroyThin;
+  src: url(/Gilroy-Thin.ttf);
+}
+.gilroyThin{
+  font-family: gilroyThin;
+}
 
 .react-tel-input .form-control {
   @apply !w-full py-6 !text-base;

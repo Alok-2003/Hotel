@@ -41,7 +41,7 @@ const Nav = () => {
 
     return (
         <nav className="z-50 ">
-            <div className=" md:font-['gilroy] h-16 flex justify-between z-50 text-white md:px-8 px-4 py-4  fixed w-full  ">
+            <div className="gilroyMed md:font-['gilroy] h-16 flex justify-between z-50 text-white md:px-8 px-4 py-4  fixed w-full  ">
                 <div className="md:font-['gilroy] flex items-center flex-1">
                     <span className="text-3xl md:font-bold  "> Hotel Hub</span>
                 </div>
