@@ -434,6 +434,17 @@ const AdCreate = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className='input flex flex-col' >
+                                <label
+                                    for="fullName"
+                                    class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                >Do you have any specific theme</label
+                                >
+                                <input
+                                    type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Write "
+                                    class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
+                                />
+                            </div>
                                 <div className="mb-4">
                                     <label
                                         htmlFor="facilities"
