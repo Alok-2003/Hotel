@@ -134,11 +134,11 @@ const AdCreate = () => {
         <div>
             <Toaster toastOptions={{ duration: 4000 }} />
             <div className="min-h-screen flex items-center justify-center bg-black  bg-cover">
-                <div className="mt-16 backdrop-blur-sm bg-white/100 p-8 rounded-3xl shadow-lg w-[96%] md:w-10/12 md:mb-14">
-                    <h2 className="text-4xl font-bold mb-2 text-black">New Hotel Listing</h2>
+                <div className="mt-16 backdrop-blur-sm bg-white/100 px-3 py-4 rounded-3xl shadow-lg w-[96%] md:w-10/12 md:mb-14">
+                    <h2 className="text-4xl font-bold text-black">New Hotel Listing</h2>
                     <form onSubmit={handleSubmit}>
                         {/* Hotel Name and hotel type */}
-                        <div className="mb-4 md:grid grid-cols-2 gap-4 h-[72px]">
+                        <div className="md:mb-4  md:grid md:grid-cols-2 grid-cols-1 md:gap-4 md:h-[72px]">
                             <div className='input flex flex-col' >
                                 <label
                                     for="fullName"
@@ -150,9 +150,6 @@ const AdCreate = () => {
                                     class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
                                 />
                             </div>
-
-
-
                             <div className="">
                                 <label
                                     htmlFor="locationUrl"
@@ -175,7 +172,7 @@ const AdCreate = () => {
 
                         </div>
                         {/* Location city , Pincode, Location URL */}
-                        <div className="mb-4 md:grid grid-cols-3 gap-4 h-[72px]">
+                        <div className=" md:mb-4 grid md:grid-cols-3 grid-cols-1 md:gap-4 md:h-[72px]">
                             <div className=''>
                                 <label
                                     for="city"
@@ -220,8 +217,8 @@ const AdCreate = () => {
                             </div>
                         </div>
                         {/* Hotel Contact Email */}
-                        <div className="md:grid grid-cols-2 gap-4 ">
-                            <div className="mb-4  ">
+                        <div className=" grid md:grid-cols-2 grid-cols-1 md:gap-4 ">
+                            <div className=" ">
                                 <label
                                     for="whatsappNo"
                                     class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
@@ -230,7 +227,7 @@ const AdCreate = () => {
                                 {/* <label htmlFor="whatsappNo" className="block text-lg font-medium text-white">Hotel Contact No</label> */}
                                 <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25" />
                             </div>
-                            <div className="mb-4 ">
+                            <div className="">
                                 <label
                                     for="email"
                                     class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
@@ -242,8 +239,8 @@ const AdCreate = () => {
                         </div>
 
                         {/* Switch button  */}
-                        <div className="w-full flex justify-between items-center">
-                            <h1 className='text-[1.7rem] font-bold'>Switch between Rooms and events</h1>
+                        <div className="w-full flex justify-between items-center mt-4 md:mt-4">
+                            <h1 className=' text-lg md:text-[1.7rem] font-bold'>Switch between Rooms and events</h1>
                             <label className="relative inline-flex items-center cursor-pointer">
                                 <input
                                     className="sr-only peer"
@@ -259,7 +256,7 @@ const AdCreate = () => {
                         {isChecked ? (
                             <div>
                                 {/* Content for "E" */}
-                                <div className="md:mb-0 md:grid grid-cols-3 gap-4 h-[72px]">
+                                <div className="md:mb-0 md:grid grid-cols-3 md:gap-4 md:h-[72px]">
                                     <div>
                                         <label
                                             htmlFor="eventType"
@@ -303,7 +300,7 @@ const AdCreate = () => {
                                             <option value="Large">Large</option>
                                         </select>
                                     </div>
-                                    <div className="mb-4">
+                                    <div className="">
                                         <label
                                             htmlFor="meal"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
@@ -336,7 +333,7 @@ const AdCreate = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="md:mb-0 md:grid grid-cols-3 gap-4 h-[72px]">
+                                <div className="md:mb-0 md:grid grid-cols-3 md:gap-4 md:h-[72px]">
                                     <div>
                                         <label
                                             htmlFor="audioVisual"
@@ -452,7 +449,7 @@ const AdCreate = () => {
                                     >
                                         Facilities Provided by the Hotel
                                     </label>
-                                    <div className="flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
+                                    <div className="md:flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
@@ -671,7 +668,7 @@ const AdCreate = () => {
                                     >
                                         Facilities Provided by the Hotel
                                     </label>
-                                    <div className="flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
+                                    <div className="md:flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
                                         <label className="inline-flex items-center mt-2">
                                             <input
                                                 type="checkbox"
