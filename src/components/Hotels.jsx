@@ -80,9 +80,9 @@ const Hotels = () => {
                     // </Link>
                     <Link key={index} to={`/hotelView/${hotel.id}`}>
                         <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg hover:opacity-80 ">
-                            <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover  " />
+                            <img src={url && url[index]} alt={hotel.fullName} className="w-full h-52 object-cover  " />
                             <div className="my-1 mx-4">
-                                <div className="font-bold text-2xl ">{hotel.name}</div>
+                                <div className="font-bold text-2xl ">{hotel.fullName}</div>
                             </div>
                         </div>
                     </Link>

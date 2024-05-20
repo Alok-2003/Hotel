@@ -61,11 +61,11 @@ const AdHotels = () => {
                                     <span>No Image</span>
                                 </div>
                             )}
-                            <h1 className='gilroyMed md:gilroyThin text-2xl  mt-2' >{h.name}</h1>
+                            <h1 className='gilroyMed md:gilroyThin text-2xl  mt-2' >{h.fullName}</h1>
                             {/* <h1>{h.event}</h1> */}
                             {/* <h1>{h.meal}</h1> */}
-                            <h1 className='text-xl font-bold' >{h.location}</h1>
-                            <h1 className='text-xl font-bold' >{h.contact}</h1>
+                            <h1 className='text-xl font-bold' >{h.city}</h1>
+                            <h1 className='text-xl font-bold' >{h.whatsappNo}</h1>
                             <div className='grid grid-cols-2 md:grid-cols-1 gap-4' >
                                 <button className='gilroyMed bg-teal-400 px- py-2 md:px-3 md:py-1 text-lg rounded-xl'>Edit</button>
                                 <button className='gilroyMed bg-blue-400 px- py-2 md:px-3 md:py-1 text-lg rounded-xl'>Delete</button>
