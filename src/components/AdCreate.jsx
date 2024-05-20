@@ -7,29 +7,30 @@ const AdCreate = () => {
     const [isChecked, setIsChecked] = useState(false);
     const [formData, setFormData] = useState({
         fullName: '',
+        locationUrl: '',
         city: '',
         pincode: '',
+        images: null,
         whatsappNo: '',
         email: '',
+        // Event 
         eventType: '',
         eventStrength: '',
         meal: '',
-        images: null,
-        rooms: '',
-        bedSizeOrCapacity: '',
-        roomRates: '',
-        freeWifi: false,
-        ac: false,
-        restaurant: false,
-        freeParking: false,
-        bar: false,
         audioVisual: '',
         invitationService: '',
         photographyService: '',
-        facilities: [] // Initialize facilities as an empty array
+        specificTheme: '',
+        EventFacilities: [], // Initialize as an array
+        // Rooms
+        roomType: "",
+        roomsAvail: '',
+        roomsArea: '',
+        bedSizeOrCapacity: '',
+        roomRates: '',
+        roomView: '',
+        numGuests: '',
     });
-
-
 
     const firebase = useFirebase();
 
@@ -61,7 +62,6 @@ const AdCreate = () => {
         }));
     };
 
-    console.log(formData.meal)
     const handleMealChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -80,62 +80,101 @@ const AdCreate = () => {
             images: imagesArray
         }));
     };
+
     const handleFacilitiesChange = (e) => {
         const { value, checked } = e.target;
-        setFormData((prevState) => ({
-            ...prevState,
-            facilities: checked
-                ? [...prevState.facilities, value]
-                : prevState.facilities.filter((facility) => facility !== value)
-        }));
+        const updatedFacilities = new Set(formData.EventFacilities);
+
+        if (checked) {
+            updatedFacilities.add(value);
+        } else {
+            updatedFacilities.delete(value);
+        }
+
+        setFormData({
+            ...formData,
+            EventFacilities: Array.from(updatedFacilities),
+        });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images, rooms, bedSizeOrCapacity, roomRates, freeWifi, ac, restaurant, freeParking, bar } = formData;
-        const id = Date.now() + Math.floor(Math.random() * 1000);
 
-        // Create an object for facilities based on the selected checkboxes
-        const facilities = [];
-        if (freeWifi) facilities.push("Free Wifi");
-        if (ac) facilities.push("AC");
-        if (restaurant) facilities.push("Restaurant");
-        if (freeParking) facilities.push("Free Parking");
-        if (bar) facilities.push("Bar");
-        // Pass all the data to the AddNewHotel function
-        await firebase.AddNewHotel(id, fullName, city, pincode, whatsappNo, email, eventType, eventStrength, meal, images, rooms, bedSizeOrCapacity, roomRates, facilities);
+    const {
+        fullName, locationUrl, city, pincode, images, whatsappNo, email,
+        eventType, eventStrength, meal, audioVisual, invitationService, photographyService, specificTheme, EventFacilities,
+        roomType, roomsAvail, roomsArea, bedSizeOrCapacity, roomRates, roomView, numGuests
+    } = formData;
+
+    // Set default values for missing fields to prevent undefined errors
+    const id = Date.now() + Math.floor(Math.random() * 1000);
+    const defaultFormData = {
+        fullName: fullName || '',
+        locationUrl: locationUrl || '',
+        city: city || '',
+        pincode: pincode || '',
+        images: images || [],
+        whatsappNo: whatsappNo || '',
+        email: email || '',
+        eventType: eventType || '',
+        eventStrength: eventStrength || '',
+        meal: meal || '',
+        audioVisual: audioVisual || '',
+        invitationService: invitationService || '',
+        photographyService: photographyService || '',
+        specificTheme: specificTheme || '',
+        EventFacilities: EventFacilities || [],
+        roomType: roomType || '',
+        roomsAvail: roomsAvail || '',
+        roomsArea: roomsArea || '',
+        bedSizeOrCapacity: bedSizeOrCapacity || '',
+        roomRates: roomRates || '',
+        roomView: roomView || '',
+        numGuests: numGuests || '',
+    };
+
+    await firebase.AddNewHotel(
+        id, defaultFormData.fullName, defaultFormData.locationUrl, defaultFormData.city, defaultFormData.pincode, defaultFormData.images, defaultFormData.whatsappNo, defaultFormData.email,
+        defaultFormData.eventType, defaultFormData.eventStrength, defaultFormData.meal, defaultFormData.audioVisual, defaultFormData.invitationService, defaultFormData.photographyService, defaultFormData.specificTheme, defaultFormData.EventFacilities,
+        defaultFormData.roomType, defaultFormData.roomsAvail, defaultFormData.roomsArea, defaultFormData.bedSizeOrCapacity, defaultFormData.roomRates, defaultFormData.roomView, defaultFormData.numGuests
+    );
 
         toast.success("Hotel Created Successfully");
-        // Clear the form data after submission
         setFormData({
             fullName: '',
+            locationUrl: '',
             city: '',
             pincode: '',
+            images: null,
             whatsappNo: '',
             email: '',
             eventType: '',
             eventStrength: '',
             meal: '',
-            images: null,
-            rooms: '',
+            audioVisual: '',
+            invitationService: '',
+            photographyService: '',
+            specificTheme: '',
+            EventFacilities: [],
+            roomType: "",
+            roomsAvail: '',
+            roomsArea: '',
             bedSizeOrCapacity: '',
             roomRates: '',
-            freeWifi: false,
-            ac: false,
-            restaurant: false,
-            freeParking: false,
-            bar: false
+            roomView: '',
+            numGuests: '',
         });
     };
+
 
 
 
     return (
         <div>
             <Toaster toastOptions={{ duration: 4000 }} />
-            <div className="min-h-screen flex items-center justify-center bg-black  bg-cover">
-                <div className="mt-16 backdrop-blur-sm bg-white/100 px-3 py-4 rounded-3xl shadow-lg w-[96%] md:w-10/12 md:mb-14">
-                    <h2 className="text-4xl font-bold text-black">New Hotel Listing</h2>
+            <div className="min-h-screen gilroyMed lg:font-['gilroy'] flex items-center justify-center bg-black  bg-cover">
+                <div className="mt-16 backdrop-blur-sm bg-white/100 px-3 lg:px-4 py-4 rounded-3xl shadow-lg w-[96%] md:w-[90%] md:mb-14">
+                    <h2 className="text-4xl lg:font-bold text-black">New Hotel Listing</h2>
                     <form onSubmit={handleSubmit}>
                         {/* Hotel Name and hotel type */}
                         <div className="md:mb-4  md:grid md:grid-cols-2 grid-cols-1 md:gap-4 md:h-[72px]">
@@ -224,7 +263,6 @@ const AdCreate = () => {
                                     class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
                                 >Hotel Contact No
                                 </label>
-                                {/* <label htmlFor="whatsappNo" className="block text-lg font-medium text-white">Hotel Contact No</label> */}
                                 <input type="text" id="whatsappNo" name="whatsappNo" value={formData.whatsappNo} onChange={handleChange} placeholder="Enter WhatsApp No" class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25" />
                             </div>
                             <div className="">
@@ -254,8 +292,8 @@ const AdCreate = () => {
                         </div>
 
                         {isChecked ? (
+                            // Content for Event
                             <div>
-                                {/* Content for "E" */}
                                 <div className="md:mb-0 md:grid grid-cols-3 md:gap-4 md:h-[72px]">
                                     <div>
                                         <label
@@ -432,16 +470,17 @@ const AdCreate = () => {
                                     </div>
                                 </div>
                                 <div className='input flex flex-col' >
-                                <label
-                                    for="fullName"
-                                    class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
-                                >Do you have any specific theme</label
-                                >
-                                <input
-                                    type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Write "
-                                    class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
-                                />
-                            </div>
+                                    <label
+                                        for="specificTheme"
+                                        class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                    >Do you have any specific theme</label
+                                    >
+                                    <input
+                                        type="text" id="specificTheme" name="specificTheme" value={formData.specificTheme} onChange={handleChange} placeholder="Write "
+                                        class="hover:border-black input px-[10px] py-[7px] text-[1.4rem]  border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
+                                    />
+                                </div>
+                                {/* Facilities */}
                                 <div className="mb-4">
                                     <label
                                         htmlFor="facilities"
@@ -450,62 +489,19 @@ const AdCreate = () => {
                                         Facilities Provided by the Hotel
                                     </label>
                                     <div className="md:flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Free Wifi"
-                                                checked={formData.facilities.includes("Free Wifi")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Free Wifi</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="AC"
-                                                checked={formData.facilities.includes("AC")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">AC</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Restaurant"
-                                                checked={formData.facilities.includes("Restaurant")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Restaurant</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Free Parking"
-                                                checked={formData.facilities.includes("Free Parking")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Free Parking</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Bar"
-                                                checked={formData.facilities.includes("Bar")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Bar</span>
-                                        </label>
-                                        {/* You can add more facilities checkboxes as needed */}
+                                        {["Free Wifi", "AC", "Restaurant", "Free Parking", "Bar"].map((facility) => (
+                                            <label key={facility} className="inline-flex items-center mt-2">
+                                                <input
+                                                    type="checkbox"
+                                                    name="facilities"
+                                                    value={facility}
+                                                    checked={formData.EventFacilities && formData.EventFacilities.includes(facility)}
+                                                    onChange={handleFacilitiesChange}
+                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                />
+                                                <span className="ml-2 text-black">{facility}</span>
+                                            </label>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
@@ -517,7 +513,7 @@ const AdCreate = () => {
                                     <div className="">
                                         <label
                                             htmlFor="roomType"
-                                            class="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
+                                            className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
                                         >
                                             Room Type
                                         </label>
@@ -536,16 +532,16 @@ const AdCreate = () => {
                                     </div>
                                     <div className="">
                                         <label
-                                            htmlFor="rooms"
+                                            htmlFor="roomsAvail"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
                                         >
                                             Rooms Available
                                         </label>
                                         <input
                                             type="number"
-                                            id="rooms"
-                                            name="rooms"
-                                            value={formData.rooms}
+                                            id="roomsAvail"
+                                            name="roomsAvail"
+                                            value={formData.roomsAvail}
                                             onChange={handleChange}
                                             placeholder="Enter Number of Rooms"
                                             className="hover:border-black input px-[10px] py-[7px] text-[1.4rem] border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
@@ -553,18 +549,18 @@ const AdCreate = () => {
                                     </div>
                                     <div className="">
                                         <label
-                                            htmlFor="rooms"
+                                            htmlFor="roomsArea"
                                             className="text-gray-500 text-[1.4rem] font-semibold relative top-4 ml-[9px] px-[3px] bg-white w-fit"
                                         >
                                             Rooms Area
                                         </label>
                                         <input
                                             type="number"
-                                            id="rooms"
-                                            name="rooms"
-                                            value={formData.rooms}
+                                            id="roomsArea"
+                                            name="roomsArea"
+                                            value={formData.roomsArea}
                                             onChange={handleChange}
-                                            placeholder="Enter Number of Rooms"
+                                            placeholder="Enter Room Area"
                                             className="hover:border-black input px-[10px] py-[7px] text-[1.4rem] border-2 rounded-[5px] w-full focus:outline-none placeholder:text-black/25"
                                         />
                                     </div>
@@ -669,97 +665,24 @@ const AdCreate = () => {
                                         Facilities Provided by the Hotel
                                     </label>
                                     <div className="md:flex justify-evenly text-xl items-center gap-2 rounded-lg p-1.5 mt-1 bg-white border-[2px] border-gray-200">
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Free Wifi"
-                                                checked={formData.facilities.includes("Free Wifi")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Free Wifi</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="AC"
-                                                checked={formData.facilities.includes("AC")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">AC</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Restaurant"
-                                                checked={formData.facilities.includes("Restaurant")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Restaurant</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Free Parking"
-                                                checked={formData.facilities.includes("Free Parking")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Free Parking</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Bar"
-                                                checked={formData.facilities.includes("Bar")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Bar</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Bar"
-                                                checked={formData.facilities.includes("Bar")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Laundry Service</span>
-                                        </label>
-                                        <label className="inline-flex items-center mt-2">
-                                            <input
-                                                type="checkbox"
-                                                name="facilities"
-                                                value="Bar"
-                                                checked={formData.facilities.includes("Bar")}
-                                                onChange={handleFacilitiesChange}
-                                                className="form-checkbox h-5 w-5 text-blue-600"
-                                            />
-                                            <span className="ml-2 text-black">Gyser</span>
-                                        </label>
-                                        {/* You can add more facilities checkboxes as needed */}
+                                        {["Free Wifi", "AC", "Restaurant", "Free Parking", "Bar"].map((facility) => (
+                                            <label key={facility} className="inline-flex items-center mt-2">
+                                                <input
+                                                    type="checkbox"
+                                                    name="facilities"
+                                                    value={facility}
+                                                    checked={formData.EventFacilities && formData.EventFacilities.includes(facility)}
+                                                    onChange={handleFacilitiesChange}
+                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                />
+                                                <span className="ml-2 text-black">{facility}</span>
+                                            </label>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
 
                         )}
-
-
-                        {/* Facilities */}
-                        <div>
-
-
-                        </div>
-
                         <button type="submit" className="bg-blue-900 text-white py-2 px-4 rounded-md hover:bg-blue-600">Submit</button>
                     </form>
                 </div>

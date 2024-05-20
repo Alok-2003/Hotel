@@ -70,7 +70,10 @@ export const FirebaseProvider = (props) => {
         return { ...user, phoneNumber: cleanedPhoneNumber };
     };
 
-    const AddNewHotel = async (id, name, location, pincode, contact, email, event, Strength, meal, images, rooms, bedSizeOrCapacity, roomRates, facilities) => {
+    const AddNewHotel = async (
+        id, fullName, locationUrl, city, pincode, images, whatsappNo, email,
+        eventType, eventStrength, meal, audioVisual, invitationService, photographyService, specificTheme, EventFacilities,
+        roomType, roomsAvail, roomsArea, bedSizeOrCapacity, roomRates, roomView, numGuests) => {
         const imageUrls = [];
         // Loop through each selected image
         for (const image of images) {
@@ -78,25 +81,22 @@ export const FirebaseProvider = (props) => {
             const uploadResult = await uploadBytes(imageRef, image);
             imageUrls.push(uploadResult.ref.fullPath);
         }
-        return await addDoc(collection(firestore, "Hotels"), {
-            id,
-            name,
-            location,
-            pincode,
-            contact,
-            email,
-            event,
-            Strength,
-            meal,
-            imageUrls,
-            rooms,
-            bedSizeOrCapacity,
-            roomRates,
-            facilities,
+
+        const newHotelData = {
+            id, fullName, locationUrl, city, pincode, imageUrls, whatsappNo, email,
+            eventType, eventStrength, meal, audioVisual, invitationService, photographyService, specificTheme, EventFacilities,
+            roomType, roomsAvail, roomsArea, bedSizeOrCapacity, roomRates, roomView, numGuests,
             CreatorContact: user.phoneNumber,
-        });
+        };
+
+        // Remove undefined or empty fields
+        const cleanedHotelData = Object.fromEntries(
+            Object.entries(newHotelData).filter(([_, v]) => v !== undefined && v !== null && v !== '')
+        );
+
+        return await addDoc(collection(firestore, "Hotels"), cleanedHotelData);
     };
-    
+
 
     const CreateNewProfile = async (name, city, pincode, contact, email) => {
         return await addDoc(collection(firestore, "Profiles"), {
@@ -104,8 +104,8 @@ export const FirebaseProvider = (props) => {
             CreatorContact: user.phoneNumber,
         });
     };
-    
-    
+
+
     const listOfClient = () => {
         return getDocs(collection(firestore, "Profiles"))
     };
@@ -115,7 +115,7 @@ export const FirebaseProvider = (props) => {
     const listOfHotels = () => {
         return getDocs(collection(firestore, "Hotels"))
     };
-    
+
 
     // const getImageURL = async (paths) => {
     //     // Array to store promises for fetching download URLs
@@ -136,11 +136,11 @@ export const FirebaseProvider = (props) => {
                 console.error("Hotel ID is undefined or null");
                 return null;
             }
-    
+
             // Get the hotel document by its ID
             const hotelDoc = doc(firestore, "Hotels", hotelId);
             const hotelSnapshot = await getDoc(hotelDoc);
-    
+
             if (hotelSnapshot.exists()) {
                 // Return the data of the document if it exists
                 return hotelSnapshot.data();
@@ -154,9 +154,9 @@ export const FirebaseProvider = (props) => {
         }
     };
 
-    const IntrestedClientForm = async (hotelname,name, city, pincode, contact, email,event,catering, Gathering) => {
+    const IntrestedClientForm = async (hotelname, name, city, pincode, contact, email, event, catering, Gathering) => {
         return await addDoc(collection(firestore, "Intrested"), {
-            hotelname,name, city, pincode, contact, email,event,catering, Gathering,
+            hotelname, name, city, pincode, contact, email, event, catering, Gathering,
             CreatorContact: user.phoneNumber,
         });
     };
