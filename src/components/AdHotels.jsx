@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useFirebase } from '../context/Firebase';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import Footer from './Footer';
 const AdHotels = () => {
     const navigate = useNavigate();
     const firebase = useFirebase();
@@ -36,20 +37,11 @@ const AdHotels = () => {
     };
 
     const [open, setOpen] = useState(true);
-    const Menus = [
-        { title: "Dashboard", src: "Chart_fill" },
-        { title: "Intrested Client", src: "Chat" },
-        { title: "Client Profile", src: "User"},
-        { title: "Hotels ", src: "Calendar" },
-        // { title: "Search", src: "Search" },
-        // { title: "Analytics", src: "Chart" },
-        // { title: "Files ", src: "Folder", gap: true },
-        // { title: "Setting", src: "Setting" },
-    ];
+    
     return (
         <div className='md:h-fit bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center'>
             <div className="flex w-full">
-            <Sidebar open={open} setOpen={setOpen} Menus={Menus} />
+                <Sidebar open={open} setOpen={setOpen} />
                 {/* Main content */}
                 <div
                     className={`transition-all duration-300 ${open ? "ml-64 mr-4" : "ml-24 "
@@ -90,7 +82,7 @@ const AdHotels = () => {
                             </div>
                         </main>
                     ))}
-                    <div className="flex justify-around items-center gap-2 mt-4 mb-12">
+                    <div className="flex justify-around items-center gap-2 mt-4 mb-">
                         <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-4 py-2 md:py-1 rounded-xl md:text-xl text-lg font-bold' onClick={handleViewProfile}>
                             Client Profile
                         </button>
@@ -101,9 +93,9 @@ const AdHotels = () => {
                             Client Interested
                         </button>
                     </div>
+                    <Footer />
                 </div>
             </div>
-
 
         </div>
     );

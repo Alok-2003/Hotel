@@ -41,7 +41,7 @@ const Nav = () => {
 
     return (
         <nav className=" ">
-            <div className="gilroyMed z-50 bg-gray-500 md:font-['gilroy] h-16 flex justify-between  text-white md:px-8 px-4 py-4  fixed w-full  ">
+            <div className="gilroyMed z-50 bg-gray-500/80 backdrop-blur-sm md:font-['gilroy] h-16 flex justify-between  text-white md:px-8 px-4 py-4  fixed w-full  ">
                 <div className="md:font-['gilroy] flex items-center flex-1">
                     <span className="text-3xl md:font-bold  "> Hotel Hub</span>
                 </div>
