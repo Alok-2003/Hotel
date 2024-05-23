@@ -36,18 +36,44 @@ const AdHotels = () => {
         navigate("/Intrested_Client");
     };
 
-    const [open, setOpen] = useState(true);
-    
+    const [open, setOpen] = useState(false);
+
     return (
         <div className='md:h-fit bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center'>
             <div className="flex w-full">
                 <Sidebar open={open} setOpen={setOpen} />
                 {/* Main content */}
                 <div
-                    className={`transition-all duration-300 ${open ? "ml-64 mr-4" : "ml-24 "
+                    className={`transition-all duration-300 ${open ? "md:ml-64 ml-56 mr-4  w-[40%] md:w-[95%]" : "ml-24 mr-2"
                         } md:w-11/12  w-[95%] mt-14 md:mt-20 `}
                 >
-                    <div className="sm:gilroyMed hidden   font-bold ackdrop-blur-sm bg-white/70 rounded-lg md:rounded-t-3xl  md:text-[1.4rem] text-[0.6rem] h-8 md:h-12 md:grid grid-cols-5 md:gap-4 justify-items-center items-center px-2 md:px-4 text-zinc-700">
+                    <div className="md:flex justify-between md:gap-6  mt-4 lg:mt-0 lg:mb-4 ">
+                        <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">
+                            <img src="./hotels.png" alt="" className='w-16 md:w-14 md:h-16 h-16 ml-2 pt-2' />
+                            <div className="">
+
+                                <h1 className='ml-2 mt-2' >No of hotels Listed</h1>
+                                <h1 className='ml-2 text-3xl' >7</h1>
+                            </div>
+                        </div>
+                        <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">
+                            <img src="./hotels.png" alt="" className='w-16 md:w-14 md:h-16 h-16 ml-2 pt-2' />
+                            <div className="">
+
+                                <h1 className='ml-2 mt-2' >No of client intrested</h1>
+                                <h1 className='ml-2 text-3xl' >2</h1>
+                            </div>
+                        </div>
+                        <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">
+                            <img src="./hotels.png" alt="" className='w-16 md:w-14 md:h-16 h-16 ml-2 pt-2' />
+                            <div className="">
+
+                                <h1 className='ml-2 mt-2' >No of hotels booked</h1>
+                                <h1 className='ml-2 text-3xl' >4</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="sm:gilroyMed hidden   font-bold backdrop-blur-sm bg-white/70 rounded-lg md:rounded-t-3xl  md:text-[1.4rem] text-[0.6rem] h-8 md:h-12 md:grid grid-cols-5 md:gap-4 justify-items-center items-center px-2 md:px-4 text-zinc-700">
                         <h1>Image</h1>
                         <h1>Hotel Name</h1>
                         {/* <h1>Event</h1> */}
@@ -82,7 +108,7 @@ const AdHotels = () => {
                             </div>
                         </main>
                     ))}
-                    <div className="flex justify-around items-center gap-2 mt-4 mb-">
+                    <div className="md:flex justify-around items-center gap-2 mt-4 mb-">
                         <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-4 py-2 md:py-1 rounded-xl md:text-xl text-lg font-bold' onClick={handleViewProfile}>
                             Client Profile
                         </button>

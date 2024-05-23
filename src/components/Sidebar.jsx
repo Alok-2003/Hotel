@@ -15,18 +15,18 @@ const Sidebar = ({ open, setOpen }) => {
     ];
     return (
         <div
-            className={`${open ? "w-60" : "w-20"
+            className={`${open ? "md:w-60   " : "w-20 "
                 } mt-16 bg-dark-purple h-screen p-5 pt-8 fixed duration-300 bg-gray-500/80 backdrop-blur-sm`}
         >
             <img
-                src="public/control.png"
+                src="/control.png"
                 className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple border-2 rounded-full ${!open && "rotate-180"
                     }`}
                 onClick={() => setOpen(!open)}
             />
             <div className="flex gap-x-4 items-center">
                 <img
-                    src="public/H.png"
+                    src="/H.png"
                     className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
                 />
                 <h1
@@ -43,7 +43,7 @@ const Sidebar = ({ open, setOpen }) => {
                         className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-md items-center gap-x-4 ${Menu.gap ? "mt-9" : "mt-2"
                             } ${index === 0 && "bg-light-white"}`}
                     >
-                        <img src={`./public/${Menu.src}.png`} className='h-[px] w-[px]' />
+                        <img src={`./${Menu.src}.png`} className='h-[px] w-[px]' />
                         <span className={`${!open && "hidden"} origin- hover:text-black hover:text-lg duration-200`}>
                             {Menu.title}
                         </span>
