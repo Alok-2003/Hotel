@@ -6,10 +6,10 @@ const Sidebar = ({ open, setOpen }) => {
 
     const Menus = [
         { title: "Dashboard", src: "dashboard", url: "admin_hotels" },
-        { title: "Client Interested", src: "interest", url: "" },
-        { title: "Client Profile", src: "profile", url: "Client_Table" },
         { title: "Hotels", src: "hotel", url: "Hotel_table" },
+        { title: "Client Interested", src: "interest", url: "Intrested_table" },
         { title: "Create Listing", src: "listing", url: "admin_create" },
+        { title: "Client Profile", src: "profile", url: "Client_Table" },
     ];
 
     const handleNavigation = (path) => {

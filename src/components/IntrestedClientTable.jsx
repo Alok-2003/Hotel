@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import DataTable from 'react-data-table-component';
+import React, { useState, useEffect } from 'react';
 import { useFirebase } from '../context/Firebase';
-import { FaSearch } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import { FaSearch } from 'react-icons/fa';
+import DataTable from 'react-data-table-component';
 
-const ClientTable = () => {
+const IntrestedClientTable = () => {
     const firebase = useFirebase();
-    const [profiles, setProfiles] = useState([]);
+    const [intrestedClients, setIntrestedClients] = useState([]);
     const [records, setRecords] = useState([]);
-    const navigate = useNavigate();
     const [open, setOpen] = useState(false); // State for sidebar open/close
+
+    useEffect(() => {
+        firebase.IntrestedClientData().then((Intrested) => {
+            const clientsData = Intrested.docs.map((doc, index) => ({
+                id: index + 1, // Add serial number
+                ...doc.data()
+            }));
+            setIntrestedClients(clientsData);
+            setRecords(clientsData); // Initialize records with the fetched data
+        });
+    }, [firebase]);
 
     const columns = [
         {
@@ -26,10 +35,16 @@ const ClientTable = () => {
             wrap: true,
         },
         {
-            name: 'City',
-            selector: row => row.city,
+            name: 'Hotel Name',
+            selector: row => row.hotelname,
+            sortable: true,
             wrap: true,
         },
+        // {
+        //     name: 'City',
+        //     selector: row => row.city,
+        //     wrap: true,
+        // },
         {
             name: 'Pincode',
             selector: row => row.pincode,
@@ -45,48 +60,48 @@ const ClientTable = () => {
             selector: row => row.contact,
             wrap: true,
         },
+        
+        {
+            name: 'Event',
+            selector: row => row.event,
+            wrap: true,
+        },
+        // {
+        //     name: 'Gathering',
+        //     selector: row => row.Gathering,
+        //     wrap: true,
+        // },
+        // {
+        //     name: 'Catering',
+        //     selector: row => row.catering,
+        //     wrap: true,
+        // },
+        {
+            name: 'Creator Contact',
+            selector: row => row.CreatorContact,
+            wrap: true,
+        },
     ];
 
-    useEffect(() => {
-        firebase.listOfClient().then(profiles => {
-            const profilesData = profiles.docs.map((doc, index) => {
-                const data = doc.data();
-                return {
-                    id: index + 1, // Assign serial number
-                    name: data.fullName || data.name || "N/A",
-                    city: data.city || "N/A",
-                    pincode: data.pincode || "N/A",
-                    email: data.email || "N/A",
-                    contact: data.contact || "N/A",
-                };
-            });
-
-            setProfiles(profilesData);
-            setRecords(profilesData); // Initialize records with the fetched data
-        });
-    }, [firebase]);
-
     const handleFilter = (event) => {
-        const newData = profiles.filter(row => {
+        const newData = intrestedClients.filter(row => {
             return row.name.toLowerCase().includes(event.target.value.toLowerCase());
         });
         setRecords(newData);
     };
 
-   
-
     return (
-        <div className="">
+        <div>
             <Sidebar open={open} setOpen={setOpen} />
             {/* Main content */}
             <div
-                className={`transition-all duration-300 ${open ? "md:ml-60 ml-56  w-[40%] md:w-[82.4%]" : "ml-20 md:w-[94.15%]"} md:w-[100%] w-[95%]`}
+                className={`transition-all duration-300 ${open ? "md:ml-60 ml-56  w-[82.4%]" : "ml-20 md:w-[94.15%]"} w-[95%]`}
             >
-                <div className='bg-gray-300 pt-20 px-6  h-[100vh]'>
+                <div className='bg-gray-300 pt-20 px-6 h-[100vh]'>
                     <div className='mb-4'>
                         <div className='flex justify-between items-center px-1'>
                             <div className="text-3xl">
-                                <h1>Client Details</h1>
+                                <h1>Interested Client Details</h1>
                             </div>
                             <div className="relative">
                                 <input
@@ -126,6 +141,6 @@ const ClientTable = () => {
             </div>
         </div>
     );
-};
+}
 
-export default ClientTable;
+export default IntrestedClientTable;
