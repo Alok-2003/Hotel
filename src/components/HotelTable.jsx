@@ -3,12 +3,14 @@ import DataTable from 'react-data-table-component';
 import { useFirebase } from '../context/Firebase';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
 const HotelTable = () => {
     const firebase = useFirebase();
     const [hotels, setHotels] = useState([]);
     const [records, setRecords] = useState([]);
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false); // State for sidebar open/close
 
     const columns = [
         {
@@ -72,48 +74,58 @@ const HotelTable = () => {
     };
 
     return (
-        <div className='bg-gray-100 p-20'>
-            <div className='mb-4'>
-                <div className='flex justify-between items-center px-1'>
-                    <div className="text-3xl">
-                        <h1>Hotel details</h1>
-                    </div>
+        <div>
+            <Sidebar open={open} setOpen={setOpen} />
+            {/* Main content */}
+            <div
+                className={`transition-all duration-300 ${open ? "md:ml-60 ml-56  w-[40%] md:w-[82.4%]" : "ml-20 md:w-[94.15%]"} md:w-[100%] w-[95%]`}
+            >
 
-                    <div className="relative">
-                        <input
-                            type="text"
-                            onChange={handleFilter}
-                            placeholder="Search by hotel name"
-                            className="border border-gray-300 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                <div className='bg-gray-100 p-20'>
+                    <div className='mb-4'>
+                        <div className='flex justify-between items-center px-1'>
+                            <div className="text-3xl">
+                                <h1>Hotel details</h1>
+                            </div>
+
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    onChange={handleFilter}
+                                    placeholder="Search by hotel name"
+                                    className="border border-gray-300 rounded-full py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                />
+                                <FaSearch className="absolute top-2/4 left-3 transform -translate-y-2/4 text-gray-400" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-white shadow-lg rounded-xl p-6">
+                        <DataTable
+                            columns={columns}
+                            data={records}
+                            fixedHeader
+                            pagination
+                            customStyles={{
+                                headCells: {
+                                    style: {
+                                        fontSize: '24px',
+                                        fontWeight: 'bold',
+                                        color: '#4A4A4A',
+                                    },
+                                },
+                                cells: {
+                                    style: {
+                                        fontSize: '18px',
+                                        color: '#4A4A4A',
+                                    },
+                                },
+                            }}
                         />
-                        <FaSearch className="absolute top-2/4 left-3 transform -translate-y-2/4 text-gray-400" />
                     </div>
                 </div>
             </div>
-            <div className="bg-white shadow-lg rounded-xl p-6">
-                <DataTable
-                    columns={columns}
-                    data={records}
-                    fixedHeader
-                    pagination
-                    customStyles={{
-                        headCells: {
-                            style: {
-                                fontSize: '24px',
-                                fontWeight: 'bold',
-                                color: '#4A4A4A',
-                            },
-                        },
-                        cells: {
-                            style: {
-                                fontSize: '18px',
-                                color: '#4A4A4A',
-                            },
-                        },
-                    }}
-                />
-            </div>
         </div>
+
     );
 };
 

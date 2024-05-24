@@ -84,7 +84,7 @@ const ClientTable = () => {
             <div
                 className={`transition-all duration-300 ${open ? "md:ml-60 ml-56  w-[40%] md:w-[82.4%]" : "ml-20 md:w-[94.15%]"} md:w-[100%] w-[95%]`}
             >
-                <div className='bg-gray-600 pt-20 px-6  h-[100vh]'>
+                <div className='bg-gray-300 pt-20 px-6  h-[100vh]'>
                     <div className='mb-4'>
                         <div className='flex justify-between items-center px-1'>
                             <div className="text-3xl">

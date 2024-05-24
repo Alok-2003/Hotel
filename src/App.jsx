@@ -51,8 +51,8 @@ function App() {
             <Route path='/fform' element={<FForm />} > </Route>
             <Route path='/admin_create' element={<AdCreate />} > </Route>
             <Route path='/admin_hotels' element={<AdHotels />} > </Route>
-            <Route path='/client_intrested' element={<AdInstrested />} > </Route>
             <Route path='/Client_Profile' element={<CliProfile />} > </Route>
+            <Route path='/client_intrested' element={<AdInstrested />} > </Route>
             <Route path='/Intrested_Client' element={<IntrestedClient />} > </Route>
             <Route path='/test' element={<Test />} > </Route>
             <Route path='/Hotel_table' element={<HotelTable />} > </Route>
