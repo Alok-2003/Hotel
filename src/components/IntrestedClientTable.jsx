@@ -23,7 +23,7 @@ const IntrestedClientTable = () => {
 
     const columns = [
         {
-            name: 'Serial No',
+            name: 'Client id',
             selector: row => row.id,
             sortable: true,
             wrap: true,
@@ -45,27 +45,27 @@ const IntrestedClientTable = () => {
         //     selector: row => row.city,
         //     wrap: true,
         // },
-        {
-            name: 'Pincode',
-            selector: row => row.pincode,
-            wrap: true,
-        },
-        {
-            name: 'Email',
-            selector: row => row.email,
-            wrap: true,
-        },
+        // {
+        //     name: 'Pincode',
+        //     selector: row => row.pincode,
+        //     wrap: true,
+        // },
+        // {
+        //     name: 'Email',
+        //     selector: row => row.email,
+        //     wrap: true,
+        // },
         {
             name: 'Contact',
             selector: row => row.contact,
             wrap: true,
         },
         
-        {
-            name: 'Event',
-            selector: row => row.event,
-            wrap: true,
-        },
+        // {
+        //     name: 'Event',
+        //     selector: row => row.event,
+        //     wrap: true,
+        // },
         // {
         //     name: 'Gathering',
         //     selector: row => row.Gathering,
@@ -76,16 +76,16 @@ const IntrestedClientTable = () => {
         //     selector: row => row.catering,
         //     wrap: true,
         // },
-        {
-            name: 'Creator Contact',
-            selector: row => row.CreatorContact,
-            wrap: true,
-        },
+        // {
+        //     name: 'Creator Contact',
+        //     selector: row => row.CreatorContact,
+        //     wrap: true,
+        // },
     ];
 
     const handleFilter = (event) => {
         const newData = intrestedClients.filter(row => {
-            return row.name.toLowerCase().includes(event.target.value.toLowerCase());
+            return row.hotelname.toLowerCase().includes(event.target.value.toLowerCase());
         });
         setRecords(newData);
     };

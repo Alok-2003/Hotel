@@ -34,12 +34,21 @@ const HotelTable = () => {
             name: 'Details',
             selector: row => row.details,
             cell: row => (
-                <button
-                    className="text-blue-500 hover:underline"
-                    onClick={() => handleViewDetails(row.details)}
-                >
-                    View
-                </button>
+                <div className='' >
+                    <button
+                        className="text-blue-500 hover:underline"
+
+                        onClick={() => handleViewDetails(row.details)}
+                    >
+                        Analytic
+                    </button>
+                    <button
+                        className="text-blue-500 hover:underline ml-5"
+                        onClick={() => handleViewDetails(row.details)}
+                    >
+                        Edit
+                    </button>
+                </div>
             ),
         },
     ];
@@ -70,7 +79,7 @@ const HotelTable = () => {
     };
 
     const handleViewDetails = (hotelId) => {
-        navigate(`/hotelView/${hotelId}`);
+        navigate(`/admin_hotels/${hotelId}`);
     };
 
     return (

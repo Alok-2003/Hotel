@@ -14,7 +14,7 @@ import HSearch from './components/HSearch';
 import TCatering from './components/TCatering';
 import FForm from './components/FForm'; 10
 import AdCreate from './components/AdCreate';
-import AdHotels from './components/AdHotels';
+import Dashboard from './components/Dashboard';
 import CreateProfile from './components/CreateProfile';
 import { useFirebase } from './context/Firebase';
 import CliProfile from './components/CliProfile';
@@ -24,6 +24,7 @@ import IntrestedClient from './components/IntrestedClient';
 import HotelTable from './components/HotelTable';
 import ClientTable from './components/ClientTable';
 import IntrestedClientTable from './components/IntrestedClientTable';
+import AdHotels from './components/AdHotels';
 function App() {
   const firebase = useFirebase();
   // console.log(firebase.isLoggedIn)
@@ -50,15 +51,18 @@ function App() {
             <Route path="/hotelView/:hotelId" element={<HotelView />} />
             <Route path='/hotelView' element={<HotelView />} > </Route>
             <Route path='/fform' element={<FForm />} > </Route>
-            <Route path='/admin_create' element={<AdCreate />} > </Route>
-            <Route path='/admin_hotels' element={<AdHotels />} > </Route>
             <Route path='/Client_Profile' element={<CliProfile />} > </Route>
             <Route path='/client_intrested' element={<AdInstrested />} > </Route>
             <Route path='/Intrested_Client' element={<IntrestedClient />} > </Route>
             <Route path='/test' element={<Test />} > </Route>
+
+            <Route path='/admin_dashboard' element={<Dashboard />} > </Route>
             <Route path='/Hotel_table' element={<HotelTable />} > </Route>
-            <Route path='/Client_table' element={<ClientTable />} > </Route>
             <Route path='/Intrested_table' element={<IntrestedClientTable />} > </Route>
+            <Route path='/admin_create' element={<AdCreate />} > </Route>
+            <Route path='/Client_table' element={<ClientTable />} > </Route>
+
+            <Route path='/admin_hotels/:hotelId' element={<AdHotels />} > </Route>
           </>
         {/* ) : (
           <Route path='*' element={<Navigate to="/login" />} />

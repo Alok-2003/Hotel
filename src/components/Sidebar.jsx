@@ -5,7 +5,7 @@ const Sidebar = ({ open, setOpen }) => {
     const navigate = useNavigate();
 
     const Menus = [
-        { title: "Dashboard", src: "dashboard", url: "admin_hotels" },
+        { title: "Dashboard", src: "dashboard", url: "admin_dashboard" },
         { title: "Hotels", src: "hotel", url: "Hotel_table" },
         { title: "Client Interested", src: "interest", url: "Intrested_table" },
         { title: "Create Listing", src: "listing", url: "admin_create" },
@@ -45,7 +45,7 @@ const Sidebar = ({ open, setOpen }) => {
                         className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-md items-center gap-x-4 ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}`}
                         onClick={() => handleNavigation(Menu.url)}
                     >
-                        <img src={`./${Menu.src}.png`} className='h-[24px] w-[24px]' alt={`${Menu.title} icon`} />
+                        <img src={`/${Menu.src}.png`} className='h-[24px] w-[24px]' alt={`${Menu.title} icon`} />
                         <span className={`${!open && "hidden"} origin-left hover:text-black hover:text-lg duration-200`}>
                             {Menu.title}
                         </span>
