@@ -132,10 +132,12 @@ const EditHotel = () => {
         e.preventDefault();
         try {
             await HotelEdit(hotelId, formData); // Use HotelEdit function from 
-            toast.success("OTP sended successfully!");
+            toast.success("Changes done successfully");
             console.log(hotelId)
 
-            // navigate("/hotels");
+            setTimeout(() => {
+                navigate("/Hotel_table");
+            }, 2000);
         } catch (error) {
             console.error("Error updating hotel:", error);
         }
@@ -149,8 +151,8 @@ const EditHotel = () => {
                     } md:w-[81%]  w-[95%] md:mt `}
             >
                 <div className="flex">
+                        <Toaster className="text-lg" toastOptions={{ duration: 4000 }} />
                     <div className="mt-20 ml-4 mb-4 text-2xl">
-                        <Toaster toastOptions={{ duration: 4000 }} />
 
                         <h1 className='text-3xl font-bold underline underline-offset-3' >Edit Hotel Details</h1>
                         {hotel && (
