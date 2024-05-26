@@ -14,7 +14,7 @@ const Dashboard = () => {
         firebase.listOfHotels().then(async (hotels) => {
             const hotelsData = hotels.docs.map(doc => doc.data());
             setHotels(hotelsData);
-            console.log(hotelsData);
+            console.log(hotelsData.length);
 
             // Fetch the second image URL for each hotel using getImageURL function from Firebase context
             const urls = await Promise.all(hotelsData.map(async (hotel) => {
@@ -53,7 +53,7 @@ const Dashboard = () => {
                             <div className="">
 
                                 <h1 className='ml-2 mt-2' >No of hotels Listed</h1>
-                                <h1 className='ml-2 text-3xl' >7</h1>
+                                <h1 className='ml-2 text-3xl' > {hotels.length}</h1>
                             </div>
                         </div>
                         <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">

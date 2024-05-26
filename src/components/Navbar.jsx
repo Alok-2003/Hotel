@@ -20,7 +20,7 @@ const Nav = () => {
     const content = (
         <div className="lg:hidden block absolute top-16 w-full  left-0 right-0 backdrop-blur-sm bg-black/50">
             <ul className="text-centre text-xl px-8 py-0 ">
-                <Link to={"admin_hotels"} spy={true} smooth={true} >
+                <Link to={"admin_dashboard"} spy={true} smooth={true} >
                     <li className="my-2 py-2 border-b  " >Admin</li>
                 </Link>
                 <Link spy={true} smooth={true} to="">
@@ -48,7 +48,7 @@ const Nav = () => {
                 <div className=" font-[gilroy] md:flex md:flex-1 items-center justify-end font-thin hidden">
                     <div className="flex">
                         <ul className="flex gap-8 mr- text-[20px]">
-                            <Link to={"admin_hotels"}   >
+                            <Link to={"admin_dashboard"}   >
                                 <li className="">Admin</li>
                             </Link>
                             <Link   >

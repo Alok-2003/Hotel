@@ -8,7 +8,7 @@ import {
     signInWithPopup,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc,updateDoc } from "firebase/firestore";
 
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -103,35 +103,16 @@ export const FirebaseProvider = (props) => {
                 console.error("Hotel ID is undefined or null");
                 return null;
             }
-    
-            console.log(`Hotel ID: ${id}`);
-    
-            // Fetch all documents in the "Hotels" collection
-            const hotelsSnapshot = await getDocs(collection(firestore, "Hotels"));
-    
-            // Check if the provided ID matches any document ID in the collection
-            let hotelDocRef = null;
-    
-            hotelsSnapshot.forEach(doc => {
-                const data = doc.data();
-                console.log(`Document data: ${JSON.stringify(data)}`);
-                console.log(`Document reference path: ${doc.ref.path}`);
-                // Ensure both the id in data and the id being compared are strings
-                if (data.id.toString() === id.toString()) {
-                    hotelDocRef = doc.ref;
-                }
-            });
-    
-            if (!hotelDocRef) {
+            console.log(id)
+            const hotelDocRef = doc(firestore, "Hotels", id);
+            const hotelSnapshot = await getDoc(hotelDocRef);
+            console.log(hotelDocRef)
+            console.log(hotelSnapshot)
+            if (!hotelSnapshot.exists()) {
                 console.error("No such hotel exists!");
                 return;
             }
-    
-            console.log("Hotel Doc Ref:", hotelDocRef.path);
-    
-            // Update Firestore document with the new data
             await updateDoc(hotelDocRef, updatedData);
-    
             console.log("Hotel updated successfully:", updatedData);
         } catch (error) {
             console.error("Error updating hotel document:", error);
@@ -139,15 +120,6 @@ export const FirebaseProvider = (props) => {
         }
     };
     
-
-
-
-
-
-
-
-
-
 
     const CreateNewProfile = async (name, city, pincode, contact, email) => {
         return await addDoc(collection(firestore, "Profiles"), {
@@ -163,18 +135,9 @@ export const FirebaseProvider = (props) => {
 
     // console.log(user)
 
-    const listOfHotels = async () => {
-        try {
-            const hotelsSnapshot = await getDocs(collection(firestore, "Hotels"));
-            hotelsSnapshot.forEach(doc => {
-                // console.log(`Hotel ID: ${doc.id}, Hotel Data:`, doc.data());
-            });
-            return getDocs(collection(firestore, "Hotels"))
-        } catch (error) {
-            console.error("Error listing hotels:", error);
-        }
+    const listOfHotels = () => {
+        return getDocs(collection(firestore, "Hotels"))
     };
-
 
 
     // const getImageURL = async (paths) => {
@@ -190,29 +153,29 @@ export const FirebaseProvider = (props) => {
         return getDownloadURL(ref(storage, path));
     }
 
-    // const getHotelById = async (hotelId) => {
-    //     try {
-    //         if (!hotelId) {
-    //             console.error("Hotel ID is undefined or null");
-    //             return null;
-    //         }
+    const getHotelById = async (hotelId) => {
+        try {
+            if (!hotelId) {
+                console.error("Hotel ID is undefined or null");
+                return null;
+            }
 
-    //         // Get the hotel document by its ID
-    //         const hotelDoc = doc(firestore, "Hotels", hotelId);
-    //         const hotelSnapshot = await getDoc(hotelDoc);
+            // Get the hotel document by its ID
+            const hotelDoc = doc(firestore, "Hotels", hotelId);
+            const hotelSnapshot = await getDoc(hotelDoc);
 
-    //         if (hotelSnapshot.exists()) {
-    //             // Return the data of the document if it exists
-    //             return hotelSnapshot.data();
-    //         } else {
-    //             console.log("No such document!");
-    //             return null;
-    //         }
-    //     } catch (error) {
-    //         console.error("Error getting hotel document:", error);
-    //         throw error; // Throw the error for handling in the calling code
-    //     }
-    // };
+            if (hotelSnapshot.exists()) {
+                // Return the data of the document if it exists
+                return hotelSnapshot.data();
+            } else {
+                console.log("No such document!");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error getting hotel document:", error);
+            throw error; // Throw the error for handling in the calling code
+        }
+    };
 
     const IntrestedClientForm = async (hotelname, name, city, pincode, contact, email, event, catering, Gathering) => {
         return await addDoc(collection(firestore, "Intrested"), {

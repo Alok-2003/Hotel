@@ -25,6 +25,7 @@ import HotelTable from './components/HotelTable';
 import ClientTable from './components/ClientTable';
 import IntrestedClientTable from './components/IntrestedClientTable';
 import AdHotels from './components/AdHotels';
+import EditHotel from './components/EditHotel';
 function App() {
   const firebase = useFirebase();
   // console.log(firebase.isLoggedIn)
@@ -63,6 +64,7 @@ function App() {
             <Route path='/Client_table' element={<ClientTable />} > </Route>
 
             <Route path='/admin_hotels/:hotelId' element={<AdHotels />} > </Route>
+            <Route path='/edit/:hotelId' element={<EditHotel />} > </Route>
           </>
         {/* ) : (
           <Route path='*' element={<Navigate to="/login" />} />

@@ -26,7 +26,7 @@ const HotelTable = () => {
             wrap: true,
         },
         {
-            name: 'Contact',
+            name: 'Hotel Manager',
             selector: row => row.contact,
             wrap: true,
         },
@@ -44,7 +44,7 @@ const HotelTable = () => {
                     </button>
                     <button
                         className="text-blue-500 hover:underline ml-5"
-                        onClick={() => handleViewDetails(row.details)}
+                        onClick={() => handleEditDetails(row.details)}
                     >
                         Edit
                     </button>
@@ -56,7 +56,7 @@ const HotelTable = () => {
     useEffect(() => {
         firebase.listOfHotels().then(async (hotels) => {
             const hotelsData = hotels.docs.map(doc => doc.data());
-
+// console.log(doc.id)
             // Transform the fetched data to the required structure
             const formattedHotels = hotelsData.map((hotel, index) => ({
                 id: index + 1, // Assign serial number
@@ -80,6 +80,9 @@ const HotelTable = () => {
 
     const handleViewDetails = (hotelId) => {
         navigate(`/admin_hotels/${hotelId}`);
+    };
+    const handleEditDetails = (hotelId) => {
+        navigate(`/edit/${hotelId}`);
     };
 
     return (
