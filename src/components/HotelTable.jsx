@@ -93,10 +93,10 @@ const HotelTable = () => {
                 className={`transition-all duration-300 ${open ? "md:ml-60 ml-56  w-[40%] md:w-[82.4%]" : "ml-20 md:w-[94.15%]"} md:w-[100%] w-[95%]`}
             >
 
-                <div className='bg-gray-100 p-20'>
+                <div className='bg-gray-700 p-20 h-[100vh]'>
                     <div className='mb-4'>
                         <div className='flex justify-between items-center px-1'>
-                            <div className="text-3xl">
+                            <div className="text-3xl text-white">
                                 <h1>Hotel details</h1>
                             </div>
 

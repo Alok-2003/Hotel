@@ -157,9 +157,9 @@ const AdHotels = () => {
                         </Carousel>
                         <div className=" mt-2 flex justify-between items-center">
 
-                            <h1 className='text-[2rem] font-bold underline underline-offset-3' >Hotel Details</h1>
+                            {/* <h1 className='text-[2rem] font-bold underline underline-offset-3' >Hotel Details</h1> */}
                             <button
-                                className="border text-gray-50 text-xl duration-300 relative group cursor-pointer overflow-hidden h-12 w-48 rounded-md bg-neutral-800 p-2 font-extrabold hover:bg-sky-700"
+                                className="border text-gray-50 text-xl duration-300 relative group cursor-pointer overflow-hidden h-12 w-full rounded-md bg-neutral-800 p-2 font-extrabold hover:bg-sky-700"
                                 onClick={() => setDetailsOpen(!detailsOpen)}
                             >
                                 <div className="absolute group-hover:-top-1 group-hover:-right-2 z-10 w-16 h-16 rounded-full group-hover:scale-150 duration-700 right-12 top-12 bg-yellow-500"></div>
@@ -168,7 +168,7 @@ const AdHotels = () => {
                                 <div className="absolute group-hover:-top-1 group-hover:-right-2 z-10 w-4 h-4 rounded-full group-hover:scale-150 duration-700 right-2 top-12 bg-red-600"></div>
                                 <p className="z-10 absolute bottom-2 left-2 flex justify-between items-center">
                                     {detailsOpen ? 'Hide Details' : 'Show Details'}
-                                    {detailsOpen ? <FaChevronUp className="ml-8" /> : <FaChevronDown className="ml-8" />}
+                                    {detailsOpen ? <FaChevronUp className="ml-[28rem]" /> : <FaChevronDown className="ml-[28rem]" />}
                                 </p>
                             </button>
                         </div>

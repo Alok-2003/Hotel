@@ -122,7 +122,7 @@ const Login = () => {
                 <Toaster toastOptions={{ duration: 4000 }} />
                 <div className="backdrop-blur-sm bg-white/30 py-8 p-4 md:p-10 rounded-3xl">
                     <div className="flex justify-center items-center md:mb-3">
-                        <h1 className="md:text-5xl text-[2.5rem] font-bold">Login</h1>
+                        <h1 className="md:text-5xl text-[2.5rem] font-bold md:text-black text-white/90">Login</h1>
                     </div>
 
                     {log ? (

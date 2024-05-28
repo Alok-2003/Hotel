@@ -60,7 +60,19 @@ const IntrestedClientTable = () => {
             selector: row => row.contact,
             wrap: true,
         },
-        
+        {
+            name: 'Details',
+            selector: row => row.details,
+            cell: row => (
+                    <button
+                        className="text-blue-500 hover:underline"
+
+                        onClick={() => handleViewDetails(row.details)}
+                    >
+                        More details
+                    </button>
+            ),
+        },
         // {
         //     name: 'Event',
         //     selector: row => row.event,
@@ -97,10 +109,10 @@ const IntrestedClientTable = () => {
             <div
                 className={`transition-all duration-300 ${open ? "md:ml-60 ml-56  w-[82.4%]" : "ml-20 md:w-[94.15%]"} w-[95%]`}
             >
-                <div className='bg-gray-300 pt-20 px-6 h-[100vh]'>
+                <div className='bg-gray-700 pt-20 px-6 h-[100vh]'>
                     <div className='mb-4'>
                         <div className='flex justify-between items-center px-1'>
-                            <div className="text-3xl">
+                            <div className="text-3xl text-white">
                                 <h1>Interested Client Details</h1>
                             </div>
                             <div className="relative">

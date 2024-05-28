@@ -39,7 +39,7 @@ console.log(selectedCateringGlobal);
                                 </div>
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent group-hover:from-black/30 group-hover:via-black/30 group-hover:to-black/30"></div>
                                 <div className="absolute inset-0 flex md:translate-y-[38%] translate-y-[34%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0" onClick={() => handleCatering(cateringOptions[0])}>
-                                    <h1 className="font-dmserif md:text-6xl text-4xl font-bold text-black textStroke">Yes</h1>
+                                    <h1 className="font-dmserif md:text-6xl text-4xl font-bold text-black ">Yes</h1>
                                 </div>
                             </div>
                             {/* 2nd */}
@@ -49,7 +49,7 @@ console.log(selectedCateringGlobal);
                                 </div>
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent group-hover:from-black/30 group-hover:via-black/30 group-hover:to-black/30"></div>
                                 <div className="absolute inset-0 flex md:translate-y-[38%] translate-y-[34%] flex-col items-center justify-center px-9 text-center transition-all duration-500 group-hover:translate-y-0" onClick={() => handleCatering(cateringOptions[1])}>
-                                    <h1 className="font-dmserif md:text-6xl text-4xl font-bold text-black textStroke">No</h1>
+                                    <h1 className="font-dmserif md:text-6xl text-4xl font-bold text-black ">No</h1>
                                 </div>
                             </div>
                         </div>

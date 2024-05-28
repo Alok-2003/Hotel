@@ -81,7 +81,7 @@ const Dashboard = () => {
                         <h1>Location</h1>
                         <h1>Contact</h1>
                         <Link to={"/admin_create"}>
-                            <h1 >Actions(Create)</h1>
+                            <h1 >Buttons</h1>
                         </Link>
 
                     </div>
@@ -108,7 +108,7 @@ const Dashboard = () => {
                             </div>
                         </main>
                     ))}
-                    <div className="md:flex justify-around items-center gap-2 mt-4 mb-">
+                    {/* <div className="md:flex justify-around items-center gap-2 mt-4 mb-">
                         <button className='bg-yellow-400 hover:bg-yellow-400/60 md:px-4 px-4 py-2 md:py-1 rounded-xl md:text-xl text-lg font-bold' onClick={handleViewProfile}>
                             Client Profile
                         </button>
@@ -118,7 +118,7 @@ const Dashboard = () => {
                         <button className='bg-green-400 hover:bg-green-400/60 md:px-4 px-4 py-2 md:py-1 rounded-xl md:text-xl text-lg font-bold' onClick={handleViewInterested}>
                             Client Interested
                         </button>
-                    </div>
+                    </div> */}
                     <Footer />
                 </div>
             </div>

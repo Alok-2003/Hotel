@@ -21,7 +21,7 @@ const Nav = () => {
         <div className="lg:hidden block absolute top-16 w-full  left-0 right-0 backdrop-blur-sm bg-black/50">
             <ul className="text-centre text-xl px-8 py-0 ">
                 <Link to={"admin_dashboard"} spy={true} smooth={true} >
-                    <li className="my-2 py-2 border-b  " >Admin</li>
+                    <li className="my-2 py-2 border-b border-  " >Admin</li>
                 </Link>
                 <Link spy={true} smooth={true} to="">
                     <li className="my-2 py-2 border-b ">About</li>
@@ -41,7 +41,7 @@ const Nav = () => {
 
     return (
         <nav className=" ">
-            <div className="gilroyMed z-50 bg-gray-500/80 backdrop-blur-sm md:font-['gilroy] h-16 flex justify-between  text-white md:px-8 px-4 py-4  fixed w-full  ">
+            <div className="gilroyMed z-50 bg-gray-500/80 backdrop-blur-md md:font-['gilroy] h-16 flex justify-between  text-white md:px-8 px-4 py-4  fixed w-full  ">
                 <div className="md:font-['gilroy] flex items-center flex-1">
                     <span className="text-3xl md:font-bold  "> Hotel Hub</span>
                 </div>
@@ -49,18 +49,18 @@ const Nav = () => {
                     <div className="flex">
                         <ul className="flex gap-8 mr- text-[20px]">
                             <Link to={"admin_dashboard"}   >
-                                <li className="">Admin</li>
+                                <li className="hover:text-amber-400 hover:font-bold">Admin</li>
                             </Link>
                             <Link   >
-                                <li className="">About</li>
+                                <li className="hover:text-amber-400 hover:font-bold">About</li>
                             </Link >
                             {firebase.isLoggedIn ? (
                                 <Link to="/" onClick={handleLogout} >
-                                    <li className="" >Logout</li>
+                                    <li className="hover:text-amber-400 hover:font-bold" >Logout</li>
                                 </Link>
                             ) : (
                                 <Link to="/">
-                                    <li className="">Login</li>
+                                    <li className="hover:text-amber-400 hover:font-bold">Login</li>
                                 </Link>
                             )}
                         </ul>

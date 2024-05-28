@@ -182,7 +182,7 @@ const AdCreate = () => {
 
                 <div>
                     <Toaster toastOptions={{ duration: 4000 }} />
-                    <div className="min-h-screen gilroyMed lg:font-['gilroy'] flex items-center justify-center bg-black  bg-cover">
+                    <div className="min-h-screen gilroyMed lg:font-['gilroy'] flex items-center justify-center bg-gray-700  bg-cover">
                         <div className="mt-20 backdrop-blur-sm bg-white/100 px-3 lg:px-4 py-4  rounded-3xl shadow-lg w-[96%] md:w-[90%] md:mb-14">
                             <h2 className="text-4xl lg:font-bold text-black">New Hotel Listing</h2>
                             <form onSubmit={handleSubmit}>
