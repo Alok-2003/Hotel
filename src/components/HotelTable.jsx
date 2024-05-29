@@ -14,7 +14,7 @@ const HotelTable = () => {
 
     const columns = [
         {
-            name: 'Serial No',
+            name: 'Hotel Id',
             selector: row => row.id,
             sortable: true,
             wrap: true,

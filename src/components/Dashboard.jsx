@@ -39,7 +39,7 @@ const Dashboard = () => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div className='md:h-fit bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center'>
+        <div className='md:h-fit bg-gray-400 bg-cover flex justify-center'>
             <div className="flex w-full">
                 <Sidebar open={open} setOpen={setOpen} />
                 {/* Main content */}
@@ -70,6 +70,14 @@ const Dashboard = () => {
 
                                 <h1 className='ml-2 mt-2' >No of hotels booked</h1>
                                 <h1 className='ml-2 text-3xl' >4</h1>
+                            </div>
+                        </div>
+                        <div className="h-20 w-full rounded-lg bg-white flex items-center mb-2 md:mb-0">
+                            <img src="./listing.png" alt="" className='w-16 md:w-16 md:h-16 h-16 ml-2 ' />
+                            <div className="">
+
+                                <h1 className='ml-2 mt text-3xl' >Create Listing</h1>
+                                {/* <h1 className='ml-2 text-3xl' >4</h1> */}
                             </div>
                         </div>
                     </div>
