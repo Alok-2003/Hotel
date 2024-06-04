@@ -48,7 +48,7 @@ const Dashboard = () => {
                         } md:w-11/12  w-[95%] mt-14 md:mt-20 `}
                 >
                     <div className="md:flex justify-between md:gap-6  mt-4 lg:mt-0 lg:mb-4 ">
-                        <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">
+                        <div className="h-20 w-full rounded-xl bg-white flex mb-2 md:mb-0">
                             <img src="./hotels.png" alt="" className='w-16 md:w-14 md:h-16 h-16 ml-2 pt-2' />
                             <div className="">
 
@@ -56,7 +56,7 @@ const Dashboard = () => {
                                 <h1 className='ml-2 text-3xl' > {hotels.length}</h1>
                             </div>
                         </div>
-                        <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">
+                        <div className="h-20 w-full rounded-xl bg-white flex mb-2 md:mb-0">
                             <img src="./hotels.png" alt="" className='w-16 md:w-14 md:h-16 h-16 ml-2 pt-2' />
                             <div className="">
 
@@ -64,7 +64,7 @@ const Dashboard = () => {
                                 <h1 className='ml-2 text-3xl' >2</h1>
                             </div>
                         </div>
-                        <div className="h-20 w-full rounded-lg bg-white flex mb-2 md:mb-0">
+                        <div className="h-20 w-full rounded-xl bg-white flex mb-2 md:mb-0">
                             <img src="./hotels.png" alt="" className='w-16 md:w-14 md:h-16 h-16 ml-2 pt-2' />
                             <div className="">
 
@@ -72,13 +72,15 @@ const Dashboard = () => {
                                 <h1 className='ml-2 text-3xl' >4</h1>
                             </div>
                         </div>
-                        <div className="h-20 w-full rounded-lg bg-white flex items-center mb-2 md:mb-0">
+                        <div className="h-20 w-full rounded-xl bg-white flex items-center mb-2 md:mb-0">
                             <img src="./listing.png" alt="" className='w-16 md:w-16 md:h-16 h-16 ml-2 ' />
+                            <Link to="/admin_create" >
                             <div className="">
 
-                                <h1 className='ml-2 mt text-3xl' >Create Listing</h1>
+                                <h1 className='ml-2 mt text-3xl hover:text-[1.9rem]' >Create Listing</h1>
                                 {/* <h1 className='ml-2 text-3xl' >4</h1> */}
                             </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="sm:gilroyMed hidden   font-bold backdrop-blur-sm bg-white/70 rounded-lg md:rounded-t-3xl  md:text-[1.4rem] text-[0.6rem] h-8 md:h-12 md:grid grid-cols-5 md:gap-4 justify-items-center items-center px-2 md:px-4 text-zinc-700">

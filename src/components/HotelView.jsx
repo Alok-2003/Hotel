@@ -10,8 +10,9 @@ import { FaHospital, FaTrain, FaWifi } from "react-icons/fa";
 import { MdRestaurant } from "react-icons/md";
 import { MdLocalBar } from "react-icons/md";
 import { Link } from 'react-router-dom';
+// import ImageGrid from './ImageGrid';
 
-export let IntrestedHotel='';
+export let IntrestedHotel = '';
 
 const HotelView = () => {
     const { hotelId } = useParams(); // Retrieve hotelId from URL parameter
@@ -54,11 +55,21 @@ const HotelView = () => {
     }
 
     const handleIntrested = () => {
-     IntrestedHotel= hotel[0].name;
+        IntrestedHotel = hotel[0].name;
         console.log(IntrestedHotel)
         navigate('/fform');
     };
+    const handleImageClick = (index) => {
+        // Logic to handle image click
+        console.log('Image clicked:', index);
+        // You can perform any action here, such as displaying the clicked image in a modal
+    };
 
+    const handleCloseFullScreen = () => {
+        // Logic to close full-screen image
+        console.log('Close full-screen image');
+        // You can perform any action here to close the full-screen image modal
+    };
     // const slides = hotel[0].imageUrls;
     // console.log(slides)
 
@@ -74,21 +85,27 @@ const HotelView = () => {
                                 ))}
                             </Carousel>
                         </div>
-                        <div className='hidden lg:block ' >
-                            <div className="grid grid-cols-2 gap-1 ">
-                                {/* Big Image */}
-                                <div>
+                        <ImageGrid
+                            slides={slides}
+                            handleImageClick={handleImageClick}
+                            handleCloseFullScreen={handleCloseFullScreen}
+                        />
+                        {/* <div className='hidden lg:block ' >
+                            <div className="grid grid-cols-2 gap-1 "> */}
+                        {/* Big Image */}
+                        {/* <div>
                                     <img src={slides[0]} alt="Big" className="w-full  rounded-l-3xl " />
-                                </div>
-                                {/* Small Images */}
-                                <div className="grid grid-cols-2 gap-1  p-[0.75px]">
+                                </div> */}
+                        {/* Small Images */}
+                        {/* <div className="grid grid-cols-2 gap-1  p-[0.75px]">
                                     <img src={slides[1]} alt="Small 1" className="w-full h-full" />
                                     <img src={slides[2]} alt="Small 1" className=" rounded-tr-3xl h-full" />
                                     <img src={slides[3]} alt="Small 2" className="h-full " />
                                     <img src={slides[4]} alt="Small 2" className=" rounded-br-3xl h-full" />
-                                </div>
-                            </div>
-                        </div>
+                                </div> */}
+
+                        {/* </div>
+                        </div> */}
                         {/* )} */}
                     </div>
 

@@ -45,7 +45,7 @@ const Sidebar = ({ open, setOpen }) => {
                         className={`flex rounded-md ml-1 py-[0.75rem] cursor-pointer hover:bg-light-white text-gray-300 text-md items-center gap-x-4 ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}`}
                         onClick={() => handleNavigation(Menu.url)}
                     >
-                        <img src={`/${Menu.src}.png`} className='h-[30px] w-[30px]  rounded- hover:bg-slate-300' alt={`${Menu.title} icon`} />
+                        <img src={`/${Menu.src}.png`} className='h-[30px] w-[30px]   hover:bg-slate-400' alt={`${Menu.title} icon`} />
                         <span className={`${!open && "hidden"} origin-left text-gray-900 hover:font-bold hover:text-blue-700 hover:text-lg duration-200`}>
                             {Menu.title}
                         </span>
