@@ -37,7 +37,8 @@ const Hotels = () => {
             return isSelectedCity && isSelectedCard && isSelectedGathering && isSelectedCatering;
         });
     };
-
+{/* <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-sm">
+                                {hotel.discount ? `${hotel.discount}% OFF` : 'No Discount'} */}
     const filteredHotels = filterHotels(hotels, selectedCityGlobal, selectedEventGlobal, selectedGatheringGlobal, selectedCateringGlobal);
     useEffect(() => {
         if (filteredHotels.length > 0) {
@@ -46,47 +47,26 @@ const Hotels = () => {
         }
     }, [filteredHotels]);
 
-    // console.log(filteredHotels)
-    // if (filteredHotels.length === 0) {
-    //     return (
-    //         <div className="h-10 flex justify-center items-center">
-    //             <h1>No hotel found</h1>
-    //         </div>
-    //     );
-    // }
-    // else {
-    //     return (
-    //         <div className="h-10 flex justify-center items-center">
-    //             <h1>No hotel found</h1>
-    //         </div>
-    //     );
-    // }
-
-    // console.log(hotels)
     return (
-        <div className='h-screen md:h-full font-[gilroy] bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover flex justify-center '>
+        <div className='h-screen md:h-full font-[gilroy] bg-slate-500 bg-cover flex justify-center '>
             <div className='w-11/12 h-min md:px-8 mt-20 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
                 {filteredHotels.map((hotel, index) => (
-                    // <Link key={index} to={`/hotel/${hotel.name}`}>
-                    //     <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg ">
-                    //         {/* Image */}
-                    //         {/* <img src={url} alt={hotel.name} className="w-full h-64 object-cover" /> */}
-                    //         <img src={url && url[index]} alt={hotel.name} className="w-full h-52 object-cover" />
-                    //         {/* Hotel name */}
-                    //         <div className="my-1 mx-4">
-                    //             <div className="font-bold text-2xl ">{hotel.name}</div>
-                    //         </div>
-                    //     </div>
-                    // </Link>
                     <Link key={index} to={`/hotelView/${hotel.id}`}>
-                        <div className="backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg hover:opacity-80 ">
+                        <div className="relative backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg hover:opacity-80 ">
+                            {/* Discount Label */}
+                            {hotel.discount && (
+                                <div className="absolute top-4 right-0">
+                                    <div className="bg-red-500 text-white px-3 py-1 text-sm font-bold rounded-bl-lg shadow-lg transform rotate-12 origin-top-right">
+                                        {`${hotel.discount}% OFF`}
+                                    </div>
+                                </div>
+                            )}
                             <img src={url && url[index]} alt={hotel.fullName} className="w-full h-52 object-cover  " />
                             <div className="my-1 mx-4">
                                 <div className="font-bold text-2xl ">{hotel.fullName}</div>
                             </div>
                         </div>
                     </Link>
-
                 ))}
             </div>
         </div>

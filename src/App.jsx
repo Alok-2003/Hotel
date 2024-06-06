@@ -26,6 +26,7 @@ import ClientTable from './components/ClientTable';
 import IntrestedClientTable from './components/IntrestedClientTable';
 import AdHotels from './components/AdHotels';
 import EditHotel from './components/EditHotel';
+import HotelReserveCount from './components/HotelReserveCount';
 function App() {
   const firebase = useFirebase();
   // console.log(firebase.isLoggedIn)
@@ -44,6 +45,7 @@ function App() {
             <Route path='/HSearch' element={<HSearch />} > </Route>
             <Route path='/requirement' element={<Requirement />} > </Route>
             <Route path='/gathering' element={<Gatherings />} > </Route>
+            <Route path='/reserve' element={<HotelReserveCount />} > </Route>
 
             <Route path='/catering' element={<Catering />} > </Route>
             {/* <Route path='/tcatering' element={<TCatering />} > </Route> */}

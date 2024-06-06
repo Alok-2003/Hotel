@@ -42,13 +42,13 @@ const ImageGrid = ({ slides, handleImageClick, handleCloseFullScreen }) => {
                     )}
                 </div>
                 {/* Small Images */}
-                <div className="grid grid-cols-2 gap-1 p-[0.75px]">
+                <div className="grid grid-cols-2 gap-1 p-[0.75px] rounded-xl">
                     {slides.slice(1).map((slide, index) => (
                         <div key={index} className="relative">
                             <img
                                 src={slide}
                                 alt={`Small ${index + 1}`}
-                                className="w-full h-full cursor-pointer"
+                                className="w-full h-full cursor-pointer rounded-3xl"
                                 onClick={() => handleImageClickFullScreen(index + 1)} // Call handleImageClickFullScreen for full-screen image
                             />
                             <div className="absolute inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300" onClick={() => handleImageClickFullScreen(index + 1)}>

@@ -75,9 +75,9 @@ const HotelView = () => {
 
     return (
         <>
-            <div className=' gilroyMed flex justify-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_6.jpg?alt=media&token=8f859143-a7b1-4db4-be8e-e228be56a76e")] bg-cover '>
-                <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl mt-16 mb-14">
-                    <div className="rounded-full container mx-auto   ">
+            <div className=' gilroyMed flex justify-center bg-slate-500 bg-cover '>
+                <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl mt-20 mb-14">
+                    <div className="rounded-full container mx-auto  mt-2 mx-2 ">
                         <div className=' lg:hidden ' >
                             <Carousel className="" >
                                 {slides.map((s) => (
