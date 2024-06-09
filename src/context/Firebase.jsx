@@ -139,16 +139,6 @@ export const FirebaseProvider = (props) => {
         }
     };
     
-
-
-
-
-
-
-
-
-
-
     const CreateNewProfile = async (name, city, pincode, contact, email) => {
         return await addDoc(collection(firestore, "Profiles"), {
             name, city, pincode, contact, email,
@@ -214,9 +204,9 @@ export const FirebaseProvider = (props) => {
     //     }
     // };
 
-    const IntrestedClientForm = async (hotelname, name, city, pincode, contact, email, event, catering, Gathering) => {
+    const IntrestedClientForm = async (hotelname, name, city, pincode, contact, email, event, catering, Gathering,adults,children,rooms,travelingWithPets,checkIn,checkOut) => {
         return await addDoc(collection(firestore, "Intrested"), {
-            hotelname, name, city, pincode, contact, email, event, catering, Gathering,
+            hotelname, name, city, pincode, contact, email, event, catering, Gathering,adults,children,rooms,travelingWithPets,checkIn,checkOut,
             CreatorContact: user.phoneNumber,
         });
     };

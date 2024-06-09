@@ -11,10 +11,10 @@ import { selectedCateringGlobal } from './Catering';
 
 const Hotels = () => {
 
-    console.log(selectedCityGlobal)
-    console.log(selectedEventGlobal)
-    console.log(selectedGatheringGlobal)
-    console.log(selectedCateringGlobal)
+    // console.log(selectedCityGlobal)
+    // console.log(selectedEventGlobal)
+    // console.log(selectedGatheringGlobal)
+    // console.log(selectedCateringGlobal)
     const firebase = useFirebase();
     const navigate = useNavigate();
     const [hotels, setHotels] = useState([]);
@@ -48,11 +48,11 @@ const Hotels = () => {
     }, [filteredHotels]);
 
     return (
-        <div className='h-screen md:h-full font-[gilroy] bg-slate-500 bg-cover flex justify-center '>
+        <div className='h-screen md:h-full font-[gilroy] bg-custom-bg bg-cover flex justify-center '>
             <div className='w-11/12 h-min md:px-8 mt-20 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
                 {filteredHotels.map((hotel, index) => (
                     <Link key={index} to={`/hotelView/${hotel.id}`}>
-                        <div className="relative backdrop-blur-sm bg-white/50 rounded-3xl text-xl  overflow-hidden shadow-lg hover:opacity-80 ">
+                        <div className="relative backdrop-blur-sm bg-white/70 rounded-3xl text-xl  overflow-hidden shadow-lg hover:opacity-80 ">
                             {/* Discount Label */}
                             {hotel.discount && (
                                 <div className="absolute top-4 right-0">

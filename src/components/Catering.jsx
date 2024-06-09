@@ -19,13 +19,13 @@ const Catering = () => {
     const handleCatering = (selectedOption) => {
         setCatering(selectedOption);
         selectedCateringGlobal = selectedOption.value;
-        navigate("/hotels");
+        navigate("/ReserveDate");
 
     };
 console.log(selectedCateringGlobal);
     return (
         <>
-            <div className='h-[100vh] gilroyMed flex justify-center items-center bg-[url("https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_4.jpg?alt=media&token=e1c8039b-f043-4a9f-81d7-7f30e9be0233")] bg-cover'>
+            <div className='h-[100vh] gilroyMed flex justify-center items-center bg-custom-bg bg-cover'>
                 <div className='md:min-h-[100vh]  flex justify-center items-center w-5/6  '>
                     <div className=''>
                         <div className="flex justify-center">

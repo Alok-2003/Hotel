@@ -105,13 +105,26 @@ const HotelReserveCount = () => {
                 </div>
 
                 <div className="flex justify-center items-center mt-6">
-                    <button
-                        onClick={handleExportData}
-                        className="bg-blue-500 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-2xl"
+                <button
+                    onClick={handleExportData}
+                    className="overflow-hidden relative w-32 p-2 h-12 bg-white text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
+                >
+                    Next
+                    <span
+                        className="absolute w-36 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"
+                    ></span>
+                    <span
+                        className="absolute w-36 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"
+                    ></span>
+                    <span
+                        className="absolute w-36 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"
+                    ></span>
+                    <span
+                        className="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-10 z-10"
+                    >Next</span
                     >
-                        Submit
-                    </button>
-                </div>
+                </button>
+            </div>
             </div>
         </div>
     );
