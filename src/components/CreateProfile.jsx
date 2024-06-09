@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useFirebase } from '../context/Firebase';
 import { Link } from 'react-router-dom';
 import { toast, Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateProfile = () => {
     const firebase = useFirebase();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -35,13 +37,15 @@ const CreateProfile = () => {
             whatsappNo: '',
             email: '',
         });
+        navigate("/HSearch");
+
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 bg-[url('https://firebasestorage.googleapis.com/v0/b/hotel-60204.appspot.com/o/Background_Images%2FBG_2.jpg?alt=media&token=0a342de3-713c-4e07-8a6f-0645aa3e7eb8')] bg-cover">
             <Toaster toastOptions={{ duration: 4000 }} />
 
-            <div className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl shadow-lg w-[90%] lg:w-1/3">
+            <div className="backdrop-blur-sm bg-white/30 p-8 rounded-3xl shadow-lg w-[90%] lg:w-1/3 mt-16">
                 <h2 className="text-4xl font-bold mb-2 text-black">Create Profile</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">

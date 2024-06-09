@@ -10,7 +10,8 @@ const Requirement = () => {
         { title: "Marriage", image: "/Marriage.jpg", link: "/gathering?option=Marriage" },
         { title: "Birthday Party", image: "/Birthday.jpg", link: "/gathering?option=BirthdayParty" },
         { title: "Party", image: "/Party.jpg", link: "/gathering?option=Party" },
-        { title: "Personal Stay", image: "/Personal_Stay.jpg", link: "/gathering?option=PersonalStay" },
+        { title: "Personal Stay", image: "/Personal_Stay.jpg", link: "/ReserveCount" },
+        // { title: "Personal Stay", image: "/Personal_Stay.jpg", link: "/gathering?option=PersonalStay" },
         { title: "Conference", image: "/Conference.jpg", link: "/gathering?option=Conference" },
         { title: "Anniversary", image: "/anniversary.jpg", link: "/gathering?option=Anniversary" }
     ];

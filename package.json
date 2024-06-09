@@ -20,6 +20,7 @@
     "aos": "^3.0.0-beta.6",
     "chart.js": "2.9.3",
     "date-fns": "^3.6.0",
+    "dayjs": "^1.11.11",
     "firebase": "^10.8.1",
     "libphonenumber-js": "^1.10.58",
     "otp-input-react": "^0.3.0",
