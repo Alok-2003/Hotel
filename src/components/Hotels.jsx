@@ -8,6 +8,8 @@ import { selectedCityGlobal } from './HSearch';
 import { selectedEventGlobal } from './Requirement';
 import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
+import { FaStar } from "react-icons/fa";
+
 
 const Hotels = () => {
 
@@ -48,7 +50,7 @@ const Hotels = () => {
     }, [filteredHotels]);
 
     return (
-        <div className='h-screen md:h-full font-[gilroy] bg-custom-bg bg-cover flex justify-center '>
+        <div className='h-screen md:h-full font-[gilroy] gilroyMed bg-custom-bg bg-cover flex justify-center '>
             <div className='w-11/12 h-min md:px-8 mt-20 mb-12 md:mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
                 {filteredHotels.map((hotel, index) => (
                     <Link key={index} to={`/hotelView/${hotel.id}`}>
@@ -62,8 +64,9 @@ const Hotels = () => {
                                 </div>
                             )}
                             <img src={url && url[index]} alt={hotel.fullName} className="w-full h-52 object-cover  " />
-                            <div className="my-1 mx-4">
-                                <div className="font-bold text-2xl ">{hotel.fullName}</div>
+                            <div className="flex justify-between items-center mt- my-1 mx-4">
+                                <div className="font-bold flex items-center text-2xl ">{hotel.fullName}</div>
+                                <div className=" flex  items-cente text-xl gilroyTin mt-[2px]">{hotel.rating}<FaStar className='mt-[1px]' /> </div>
                             </div>
                         </div>
                     </Link>

@@ -14,11 +14,14 @@ const FForm = () => {
     const firebase = useFirebase();
     const { getCurrentUser } = useFirebase();
     const currentUser = getCurrentUser();
+    const { isLoggedIn, getUserDetails } = useFirebase();
+    const userDetails = getUserDetails();
+    console.log(userDetails);
     const currentPhoneNumber = currentUser.phoneNumber;
     const [profile, setProfile] = useState([]);
 
-    console.log(reservationDataGlobal);
-    console.log(reservationDateGlobal);
+    // console.log(reservationDataGlobal);
+    // console.log(reservationDateGlobal);
 
     const [formData, setFormData] = useState({
         Hotelname: IntrestedHotel,
@@ -109,7 +112,7 @@ const FForm = () => {
 
     return (
         <div>
-            <div className="gilroyMed min-h-screen flex items-center justify-center bg-gray-100 bg-custom-bg bg-cover">
+            <div className="gilroyMed min-h-screen flex items-center justify-center  bg-custom-bg bg-cover">
                 <Toaster toastOptions={{ duration: 4000 }} />
                 <div className="backdrop-blu bg-whit md:p-8 p-4 rounded-3xl shadow-l md:w-2/3 w-[85%] mt-20 md:mb-4 mb-12">
                     <h2 className="text-4xl font-bold mb-3 text-slate-900 underline underline-offset-2">Verify details</h2>

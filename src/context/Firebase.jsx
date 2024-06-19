@@ -52,6 +52,14 @@ export const FirebaseProvider = (props) => {
 
     const isLoggedIn = user ? true : false;
 
+    const getUserDetails = () => {
+        if (isLoggedIn && user) {
+            const { displayName, email  } = user;
+            return { displayName, email };
+        }
+        return null;
+    };
+
     const signOut = () => {
         // Sign out user
         auth.signOut().then(() => {
@@ -62,7 +70,11 @@ export const FirebaseProvider = (props) => {
         });
     };
 
-    const signinWithGoogle = () => signInWithPopup(auth, googleProvider);
+
+    const signinWithGoogle = () => {
+        signInWithPopup(auth, googleProvider);
+        navigate("/HSearch");
+    };
 
     const getCurrentUser = () => {
         // Clean the phoneNumber of the currentUser if it exists
@@ -227,6 +239,7 @@ export const FirebaseProvider = (props) => {
         CreateNewProfile,
         listOfClient,
         // getHotelById,
+        getUserDetails,
         getCurrentUser,
         IntrestedClientForm,
         IntrestedClientData,
