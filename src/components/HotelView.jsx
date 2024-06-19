@@ -77,7 +77,7 @@ const HotelView = () => {
         <>
             <div className=' gilroyMed flex justify-center bg-slate-500 bg-cover '>
                 <div className="md:w-11.5/12 backdrop-blur-sm bg-white/50 md:rounded-3xl mt-20 mb-14">
-                    <div className="rounded-full container mx-auto  mt-2 mx-2 ">
+                    <div className="rounded-full container mt- mx-2 ">
                         <div className=' lg:hidden ' >
                             <Carousel className="" >
                                 {slides.map((s) => (
@@ -108,7 +108,6 @@ const HotelView = () => {
                         </div> */}
                         {/* )} */}
                     </div>
-
                     {/* Description */}
                     <div className="max-w-xl mx-auto bg-white p-4 md:rounded-3xl shadow-lg md:max-w-full md:m-2 md:flex md:justify-between">
                         <div className='md:'>
@@ -140,8 +139,8 @@ const HotelView = () => {
                             <a href="#" className="text-blue-500  inline-block mb-2">See all property amenities &gt;</a>
                         </div>
 
-                        <div className='rounded-full'>
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.043813144539!2d76.78222047466204!3d30.745270785028293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a09098a47aa89%3A0xc0ef30e113006e91!2sTaj%20Chandigarh!5e0!3m2!1sen!2sin!4v1710182425959!5m2!1sen!2sin" width="330" height="250" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        <div className='rounded-full flex gap-8 items-center'>
+                            <div className="">
                             <p className="mt-4 md:mt-0 my-2 text-xl font-bold"> Check out the area </p>
                             <ul className="mb-2">
                                 {locations.map((location, index) => (
@@ -155,6 +154,8 @@ const HotelView = () => {
                                 ))}
                             </ul>
                             <button className="text-blue-500 ">See more &gt;</button>
+                                </div>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3429.043813144539!2d76.78222047466204!3d30.745270785028293!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a09098a47aa89%3A0xc0ef30e113006e91!2sTaj%20Chandigarh!5e0!3m2!1sen!2sin!4v1710182425959!5m2!1sen!2sin" width="330" height="250" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

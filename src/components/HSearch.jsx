@@ -51,6 +51,7 @@ const HSearch = () => {
                 <h2 className="text-4xl  mb-4 ">Select City</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
+                        <h1>Search city by entering first letter</h1>
                         <select id="city" name="city" value={selectedCity} onChange={handleCityChange} className="text-lg mt-1 p-2 border border-gray-500 rounded-md w-full">
                             <option value="">Name of cities</option>
                             {cities.map((city, index) => (

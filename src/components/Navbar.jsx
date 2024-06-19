@@ -45,7 +45,7 @@ const Nav = () => {
                 <div className="md:font-['gilroy] flex items-center flex-1">
                     <span className="text-3xl md:font-bold  "> Hotel Hub</span>
                 </div>
-                <div className=" font-[gilroy] md:flex md:flex-1 items-center justify-end font-thin hidden">
+                <div className=" font-[gilroy] gilroyMed md:flex md:flex-1 items-center justify-end font-thin hidden">
                     <div className="flex">
                         <ul className="flex gap-8 mr- text-[20px]">
                             <Link to={"admin_dashboard"}   >

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { useNavigate } from "react-router-dom";
 import '../App.css'
+import { selectedEventGlobal } from './Requirement';
+
 
 export let selectedCateringGlobal = '';
 
@@ -19,9 +21,14 @@ const Catering = () => {
     const handleCatering = (selectedOption) => {
         setCatering(selectedOption);
         selectedCateringGlobal = selectedOption.value;
-        navigate("/ReserveDate");
-
+        if (selectedCateringGlobal === "Personal Stay") {
+            navigate("/ReserveDate");
+        } else {
+            navigate("/hotels");
+        }
     };
+    
+
 console.log(selectedCateringGlobal);
     return (
         <>

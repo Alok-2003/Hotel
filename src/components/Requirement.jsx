@@ -16,12 +16,17 @@ const Requirement = () => {
         { title: "Anniversary", image: "/anniversary.jpg", link: "/gathering?option=Anniversary" }
     ];
 
-    const handleCardSelect = (card) => {
-        setSelectedCard(card);
-        console.log(card)
-        selectedEventGlobal = card.title; // Update selectedEventGlobal with the new value
-        console.log(selectedEventGlobal); // Log the selected card globally
-    };
+    const handleCatering = (selectedOption) => {
+    setCatering(selectedOption);
+    selectedCateringGlobal = selectedOption.value;
+
+    if (selectedCateringGlobal === "Personal Stay") {
+        navigate("/ReserveDate");
+    } else {
+        navigate("/hotels");
+    }
+};
+
 
     return (
         <div className='md:min-h-[100vh]  gilroyMed  flex justify-center items-center mb-6 md:mb-0 bg-custom-bg bg-cover'>
