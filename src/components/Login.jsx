@@ -21,31 +21,25 @@ const Login = () => {
     const [otp, setOtp] = useState("");
     const navigate = useNavigate();
     const firebase = useFirebase();
-    const [profiles, setprofile] = useState([]);
+    const [profiles, setProfile] = useState([]);
 
     useEffect(() => {
         firebase.listOfClient().then((profiles) => {
-            setprofile(profiles.docs.map(doc => doc.data()))
-        }
-        )
-    }, []);
-    const creatorContacts = profiles.map(profile => profile.CreatorContact);
+            setProfile(profiles.docs.map(doc => doc.data()))
+        });
+    }, [firebase]);
+
+    const creatorContacts = profiles
+        .map(profile => profile.CreatorContact)
+        .filter(contact => contact !== null && contact !== undefined); // Filter out null or undefined contacts
+
     const cleanedContacts = creatorContacts.map(contact => contact.replace("+", ""));
 
-    console.log(creatorContacts)
-    console.log(cleanedContacts)
+    console.log(creatorContacts);
+    console.log(cleanedContacts);
 
-
-    // useEffect(() => {
-    //     if (firebase.isLoggedIn) {
-    //         navigate("/HSearch");
-    //     }
-    // }, [firebase, navigate]);
-
-
-
-    console.log(firebase.isLoggedIn)
-    console.log(phone)
+    console.log(firebase.isLoggedIn);
+    console.log(phone);
 
     const sendOtp = async () => {
         try {
@@ -54,51 +48,47 @@ const Login = () => {
                 throw new Error('Invalid phone number format.');
             }
 
-            // const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {})
-            const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {})
-            const confirmation = await signInWithPhoneNumber(auth, phoneNumber.number, recaptcha)
-            setUser(confirmation)
+            const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
+            const confirmation = await signInWithPhoneNumber(auth, phoneNumber.number, recaptcha);
+            setUser(confirmation);
             setShowOTP(true);
-            toast.success("OTP sended successfully!");
+            toast.success("OTP sent successfully!");
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 
     const verifyOtp = async () => {
         try {
             const data = await user.confirm(otp);
-            console.log(data)
-            setLog(data.user)
-            console.log(data.user)
-            toast.success("You Login successfully!");
+            console.log(data);
+            setLog(data.user);
+            console.log(data.user);
+            toast.success("You logged in successfully!");
         } catch (err) {
             console.error(err);
         }
     }
+
     useEffect(() => {
         if (log) {
             const timeout = setTimeout(() => {
-                // Check if user's profile exists and redirect accordingly
                 if (cleanedContacts.includes(phone)) {
                     navigate("/HSearch");
-                    console.log("redirect Search")
+                    console.log("Redirect to Search");
                 } else {
                     navigate("/CProfile");
-                    console.log("redirect to profile")
+                    console.log("Redirect to Profile");
                 }
             }, 3000);
 
             return () => clearTimeout(timeout);
         }
     }, [log, navigate, cleanedContacts, phone]);
-   
-    // console.log(phone)
 
     useEffect(() => {
         if (log) {
             const timeout = setTimeout(() => {
-                // Check if user's profile exists and redirect accordingly
                 firebase.checkProfileExists(phone).then((profileExists) => {
                     if (profileExists) {
                         navigate("/HSearch");

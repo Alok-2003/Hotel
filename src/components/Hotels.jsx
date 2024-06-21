@@ -10,44 +10,60 @@ import { selectedGatheringGlobal } from './Gatherings';
 import { selectedCateringGlobal } from './Catering';
 import { FaStar } from "react-icons/fa";
 
-
 const Hotels = () => {
+    console.log(selectedCityGlobal);
+    console.log(selectedEventGlobal);
+    console.log(selectedGatheringGlobal);
+    console.log(selectedCateringGlobal);
 
-    // console.log(selectedCityGlobal)
-    // console.log(selectedEventGlobal)
-    // console.log(selectedGatheringGlobal)
-    // console.log(selectedCateringGlobal)
     const firebase = useFirebase();
     const navigate = useNavigate();
     const [hotels, setHotels] = useState([]);
-    const city = selectedCityGlobal;
-    const event = selectedEventGlobal;
-    const gathering = selectedGatheringGlobal;
-    const catering = selectedCateringGlobal;
-    const [url, setURL] = useState(null);
+    const [filteredHotels, setFilteredHotels] = useState([]);
+    const [urls, setURLs] = useState([]);
 
     useEffect(() => {
-        firebase.listOfHotels().then((hotels) => setHotels(hotels.docs.map(doc => doc.data())));
-    }, []);
-    // console.log(hotels)
-    const filterHotels = (hotels, city, card, gathering, catering) => {
-        return hotels.filter(hotel => {
-            const isSelectedCity = !city || hotel.location === city;
-            const isSelectedCard = !card || hotel.event === card;
-            const isSelectedGathering = !gathering || hotel.Strength === gathering;
-            const isSelectedCatering = !catering || hotel.meal === catering;
-            return isSelectedCity && isSelectedCard && isSelectedGathering && isSelectedCatering;
+        firebase.listOfHotels().then((hotels) => {
+            const hotelData = hotels.docs.map(doc => doc.data());
+            setHotels(hotelData);
+            filterAndSetHotels(hotelData);
         });
-    };
-{/* <div className="absolute top-4 right-4 bg-red-500 text-white px-2 py-1 rounded-full text-sm">
-                                {hotel.discount ? `${hotel.discount}% OFF` : 'No Discount'} */}
-    const filteredHotels = filterHotels(hotels, selectedCityGlobal, selectedEventGlobal, selectedGatheringGlobal, selectedCateringGlobal);
+    }, []);
+
     useEffect(() => {
-        if (filteredHotels.length > 0) {
-            Promise.all(filteredHotels.map(hotel => firebase.getImageURL(hotel.imageUrls[2])))
-                .then(urls => setURL(urls));
+        filterAndSetHotels(hotels);
+    }, [selectedCityGlobal, selectedEventGlobal, selectedGatheringGlobal, selectedCateringGlobal]);
+
+    const filterAndSetHotels = (hotels) => {
+        const filtered = hotels.filter(hotel => {
+            const isSelectedCity = !selectedCityGlobal || hotel.city === selectedCityGlobal;
+            const isSelectedEvent = !selectedEventGlobal || hotel.eventType === selectedEventGlobal;
+    
+            // Skip eventStrength and meal filters if the event type is "personal stay"
+            if (selectedEventGlobal === "Personal Stay") {
+                return isSelectedCity && isSelectedEvent;
+            } else {
+                const isSelectedGathering = !selectedGatheringGlobal || hotel.eventStrength === selectedGatheringGlobal;
+                const isSelectedCatering = selectedCateringGlobal === undefined || hotel.meal === selectedCateringGlobal;
+                return isSelectedCity && isSelectedEvent && isSelectedGathering && isSelectedCatering;
+            }
+        });
+    
+        setFilteredHotels(filtered);
+        fetchImageURLs(filtered);
+    };
+    
+
+    const fetchImageURLs = (hotels) => {
+        if (hotels.length > 0) {
+            Promise.all(hotels.map(hotel => firebase.getImageURL(hotel.imageUrls[2])))
+                .then(urls => setURLs(urls));
+        } else {
+            setURLs([]);
         }
-    }, [filteredHotels]);
+    };
+
+    console.log(filteredHotels);
 
     return (
         <div className='h-screen md:h-full font-[gilroy] gilroyMed bg-custom-bg bg-cover flex justify-center '>
@@ -63,7 +79,7 @@ const Hotels = () => {
                                     </div>
                                 </div>
                             )}
-                            <img src={url && url[index]} alt={hotel.fullName} className="w-full h-52 object-cover  " />
+                            <img src={urls[index]} alt={hotel.fullName} className="w-full h-52 object-cover  " />
                             <div className="flex justify-between items-center mt- my-1 mx-4">
                                 <div className="font-bold flex items-center text-2xl ">{hotel.fullName}</div>
                                 <div className=" flex  items-cente text-xl gilroyTin mt-[2px]">{hotel.rating}<FaStar className='mt-[1px]' /> </div>

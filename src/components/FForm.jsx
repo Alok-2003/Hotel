@@ -14,14 +14,15 @@ const FForm = () => {
     const firebase = useFirebase();
     const { getCurrentUser } = useFirebase();
     const currentUser = getCurrentUser();
-    const { isLoggedIn, getUserDetails } = useFirebase();
-    const userDetails = getUserDetails();
-    console.log(userDetails);
-    const currentPhoneNumber = currentUser.phoneNumber;
+    const currentPhoneNumber = currentUser?.phoneNumber || '';
     const [profile, setProfile] = useState([]);
 
-    // console.log(reservationDataGlobal);
-    // console.log(reservationDateGlobal);
+    const { isLoggedIn, getUserDetails } = useFirebase();
+    const userDetails = getUserDetails();
+    console.log(userDetails)
+
+    console.log(reservationDataGlobal);
+    console.log(reservationDateGlobal);
 
     const [formData, setFormData] = useState({
         Hotelname: IntrestedHotel,
@@ -33,15 +34,13 @@ const FForm = () => {
         eventType: selectedEventGlobal,
         gatheringStrength: selectedGatheringGlobal,
         meal: selectedCateringGlobal,
-        adults: reservationDataGlobal.adults || 0,
-        children: reservationDataGlobal.children || 0,
-        rooms: reservationDataGlobal.rooms || 0,
-        travelingWithPets: reservationDataGlobal.travelingWithPets || false,
+        adults: reservationDataGlobal.adults || "",
+        children: reservationDataGlobal.children || "",
+        rooms: reservationDataGlobal.rooms || "",
+        travelingWithPets: reservationDataGlobal.travelingWithPets ,
         checkIn: reservationDateGlobal.checkIn || null,
         checkOut: reservationDateGlobal.checkOut || null
     });
-
-
     useEffect(() => {
         firebase.listOfClient().then((profiles) => {
             const filteredProfile = profiles.docs
@@ -60,14 +59,12 @@ const FForm = () => {
             }
         });
     }, [firebase, currentPhoneNumber]);
-
     const handleCityChange = (e) => {
         setFormData(prevState => ({
             ...prevState,
             city: e.target.value
         }));
     };
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -75,7 +72,6 @@ const FForm = () => {
             [name]: value
         }));
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -101,7 +97,6 @@ const FForm = () => {
             toast.error("Error submitting data. Please try again later.");
         }
     };
-
     const cities = [
         'Agra', 'Ahmedabad', 'Ajmer', 'Allahabad', 'Amritsar', 'Aurangabad', 'Bangalore', 'Bhopal', 'Bhubaneswar', 'Chandigarh',
         'Chennai', 'Coimbatore', 'Delhi', 'Faridabad', 'Ghaziabad', 'Goa', 'Gurgaon', 'Guwahati', 'Hyderabad', 'Indore',
@@ -162,10 +157,16 @@ const FForm = () => {
                                         </label>
                                     )}
                                 </div> */}
-                                <div class="block relative w-full">
+                                <div className="block relative w-full">
                                     <label htmlFor="email" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-">Email</label>
-                                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
-
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        value={formData.email || userDetails?.email || ''}
+                                        onChange={handleChange}
+                                        className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
+                                    />
                                 </div>
                             </div>
                             <div className="flex items-center justify-center mt-2 md-2 md:mt-0">
@@ -211,14 +212,16 @@ const FForm = () => {
                                 )}
                                     
                             </div> */}
-                            <div class="block relative w-full">
-                                <label htmlFor="fullName" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-"> Full Name</label>
-                                <input type="text"
+                            <div className="block relative w-full">
+                                <label htmlFor="fullName" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-">Full Name</label>
+                                <input
+                                    type="text"
                                     id="fullName"
                                     name="fullName"
-                                    value={formData.fullName}
+                                    value={formData.fullName || userDetails?.displayName || ''}
                                     onChange={handleChange}
-                                    className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
+                                    className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2 ring-gray-900 outline-0"
+                                />
                             </div>
                         </div>
                         <div className="grid md:grid-cols-2 gap-4 mb-2">
@@ -282,11 +285,19 @@ const FForm = () => {
                                         </label>
                                     )}
                                 </div> */}
-                                <div class="block relative w-full">
-                                    <label htmlFor="adults" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-"> Adults</label>
-                                    <input  type="number" id="adults" name="adults" value={formData.adults} onChange={handleChange}
-                                        className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
-                                </div>
+                                {formData.adults !== "" && (
+                                    <div className="block relative w-full">
+                                        <label htmlFor="adults" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-">Adults</label>
+                                        <input
+                                            type="number"
+                                            id="adults"
+                                            name="adults"
+                                            value={formData.adults}
+                                            onChange={handleChange}
+                                            className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0"
+                                        />
+                                    </div>
+                                )}
                             </div>
                             <div className="flex items-center justify-center">
                                 {/* <div className="relative w-full">
@@ -303,11 +314,19 @@ const FForm = () => {
                                         </label>
                                     )}
                                 </div> */}
-                                <div class="block relative w-full">
-                                    <label htmlFor="children" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-"> Children</label>
-                                    <input   type="number" id="children" name="children" value={formData.children} onChange={handleChange}
-                                        className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
-                                </div>
+                                {formData.children !== "" && (
+                                    <div className="block relative w-full">
+                                        <label htmlFor="children" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-">Children</label>
+                                        <input
+                                            type="number"
+                                            id="children"
+                                            name="children"
+                                            value={formData.children}
+                                            onChange={handleChange}
+                                            className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0"
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -327,14 +346,23 @@ const FForm = () => {
                                         </label>
                                     )}
                                 </div> */}
-                                <div class="block relative w-full">
-                                    <label htmlFor="rooms" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-"> Rooms</label>
-                                    <input   type="number" id="rooms" name="rooms" value={formData.rooms} onChange={handleChange}
-                                        className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
-                                </div>
+                                {formData.rooms !== "" && (
+                                    <div className="block relative w-full">
+                                        <label htmlFor="rooms" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-">Rooms</label>
+                                        <input
+                                            type="number"
+                                            id="rooms"
+                                            name="rooms"
+                                            value={formData.rooms}
+                                            onChange={handleChange}
+                                            className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0"
+                                        />
+                                    </div>
+                                )}
                             </div>
                             <div className="flex items-center justify-center">
-                            <div className=" w-full flex items-center -center gap-10 ">
+                            {formData.travelingWithPets !== undefined && (
+                                <div className=" w-full flex items-center -center gap-10 ">
                                     {/* <input
                                         type="checkbox" id="travelingWithPets" name="travelingWithPets" checked={formData.travelingWithPets} onChange={(e) => setFormData(prevState => ({
                                             ...prevState,
@@ -379,6 +407,7 @@ const FForm = () => {
 
 
                                 </div>
+                            )}
                             </div>
                         </div>
 
@@ -400,7 +429,7 @@ const FForm = () => {
                                 </div> */}
                                 <div class="block relative w-full">
                                     <label htmlFor="checkIn" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-"> Check-In Date</label>
-                                    <input   type="date" id="checkIn" name="checkIn" value={formData.checkIn} onChange={handleChange}
+                                    <input type="date" id="checkIn" name="checkIn" value={formData.checkIn} onChange={handleChange}
                                         className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
                                 </div>
                             </div>
@@ -421,7 +450,7 @@ const FForm = () => {
                                 </div> */}
                                 <div class="block relative w-full">
                                     <label htmlFor="checkOut" className="block text-slate-900 cursor-text text-lg leading-[140%] font-normal mb-"> Check-Out Date</label>
-                                    <input    type="date" id="checkOut" name="checkOut" value={formData.checkOut} onChange={handleChange}
+                                    <input type="date" id="checkOut" name="checkOut" value={formData.checkOut} onChange={handleChange}
                                         className="rounded border border-gray-200 text-sm w-full font-normal leading-[18px] text-black tracking-[0px] appearance-none block h-11 m-0 p-[11px] focus:ring-2 ring-offset-2  ring-gray-900 outline-0" />
                                 </div>
                             </div>
@@ -429,7 +458,7 @@ const FForm = () => {
 
                         <button
                             type="submit"
-                            className="overflow-hidden relative w-32 p-2 h-12 bg-gray-400 text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
+                            className="overflow-hidden relative w-32 p-2 h-12 bg-gray-300 text-black border-none rounded-md text-xl font-bold cursor-pointer z-10 group"
                         >
                             Submit
                             <span

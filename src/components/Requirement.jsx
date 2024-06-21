@@ -16,15 +16,18 @@ const Requirement = () => {
         { title: "Anniversary", image: "/anniversary.jpg", link: "/gathering?option=Anniversary" }
     ];
 
-    const handleCatering = (selectedOption) => {
-    setCatering(selectedOption);
-    selectedCateringGlobal = selectedOption.value;
+    const handleCardSelecdt = (card) => {
+        setSelectedCard(card);
+        console.log(card)
+        selectedEventGlobal = card.title; // Update selectedEventGlobal with the new value
+        console.log(selectedEventGlobal); // Log the selected card globally
+    };
 
-    if (selectedCateringGlobal === "Personal Stay") {
-        navigate("/ReserveDate");
-    } else {
-        navigate("/hotels");
-    }
+    const handleCardSelect = (card) => {
+        setSelectedCard(card);
+        console.log(card)
+        selectedEventGlobal = card.title; // Update selectedEventGlobal with the new value
+        console.log(selectedEventGlobal);
 };
 
 

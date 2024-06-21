@@ -52,6 +52,8 @@ export const FirebaseProvider = (props) => {
 
     const isLoggedIn = user ? true : false;
 
+    console.log(user)
+
     const getUserDetails = () => {
         if (isLoggedIn && user) {
             const { displayName, email  } = user;
@@ -71,16 +73,32 @@ export const FirebaseProvider = (props) => {
     };
 
 
-    const signinWithGoogle = () => {
-        signInWithPopup(auth, googleProvider);
-        navigate("/HSearch");
+    const signinWithGoogle = async () => {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            // Check if user profile exists
+            const userProfileRef = doc(firestore, "Profiles", user.uid);
+            const userProfileSnap = await getDoc(userProfileRef);
+
+            if (userProfileSnap.exists()) {
+                navigate("/HSearch");
+            } else {
+                navigate("/Cprofile");
+            }
+        } catch (error) {
+            console.error("Error signing in with Google:", error);
+        }
     };
 
     const getCurrentUser = () => {
-        // Clean the phoneNumber of the currentUser if it exists
-        const cleanedPhoneNumber = user ? user.phoneNumber.replace("+91", "") : null;
+        if (!user) return null;
+        // Check if phoneNumber exists and clean it if it does
+        const cleanedPhoneNumber = user.phoneNumber ? user.phoneNumber.replace("+91", "") : null;
         return { ...user, phoneNumber: cleanedPhoneNumber };
     };
+    
 
     const AddNewHotel = async (
         id, fullName, locationUrl, city, pincode, images, whatsappNo, email,
