@@ -28,6 +28,7 @@ import AdHotels from './components/AdHotels';
 import EditHotel from './components/EditHotel';
 import HotelReserveCount from './components/HotelReserveCount';
 import DateSelector from './components/DateSelector';
+
 function App() {
   const firebase = useFirebase();
   // console.log(firebase.isLoggedIn)
@@ -43,21 +44,25 @@ function App() {
         {/* {firebase.isLoggedIn ? ( */}
           <>
             <Route path='/CProfile' element={<CreateProfile />} > </Route>
+
+            {/* Requirement or User Need */}
             <Route path='/HSearch' element={<HSearch />} > </Route>
             <Route path='/requirement' element={<Requirement />} > </Route>
             <Route path='/gathering' element={<Gatherings />} > </Route>
+
             <Route path='/ReserveCount' element={<HotelReserveCount />} > </Route>
             <Route path='/ReserveDate' element={<DateSelector />} > </Route>
 
             <Route path='/catering' element={<Catering />} > </Route>
             {/* <Route path='/tcatering' element={<TCatering />} > </Route> */}
             {/* <Route path='/verify' element={<Verify />} > </Route> */}
-            <Route path='/hotels' element={<Hotels />} > </Route>
             <Route path="/hotelView/:hotelId" element={<HotelView />} />
-            <Route path='/hotelView' element={<HotelView />} > </Route>
             <Route path='/fform' element={<FForm />} > </Route>
-            <Route path='/Client_Profile' element={<CliProfile />} > </Route>
+            
             <Route path='/client_intrested' element={<AdInstrested />} > </Route>
+            <Route path='/hotels' element={<Hotels />} > </Route>
+            <Route path='/hotelView' element={<HotelView />} > </Route>
+            <Route path='/Client_Profile' element={<CliProfile />} > </Route>
             <Route path='/Intrested_Client' element={<IntrestedClient />} > </Route>
             <Route path='/test' element={<Test />} > </Route>
 
